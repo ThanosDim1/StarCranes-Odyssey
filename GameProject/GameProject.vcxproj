@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="box.h" />
     <ClInclude Include="gameobject.h" />
+    <ClInclude Include="gamepanel.h" />
     <ClInclude Include="gamestate.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="player.h" />
