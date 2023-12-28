@@ -26,6 +26,5 @@ int main(int argc, char** argv) {
     graphics::startMessageLoop();
     return 0;
 }
-sdasdasdddddd
 
 

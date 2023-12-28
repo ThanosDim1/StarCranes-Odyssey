@@ -16,13 +16,17 @@ void Level::draw()
 	float w = m_state->getCanvasWidth();
 	float h = m_state->getCanvasHeight();
 
-	float offset_x = m_state->m_global_offset_x + w / 2.0f;
-	float offset_y = m_state->m_global_offset_y  + h / 2.0f;
+	float offset_x = m_state->m_global_offset_x / 2.0f + w / 2.0f;
+	float offset_y = m_state->m_global_offset_y / 2.0f + h / 2.0f;
 
 	//draw background
-	graphics::drawRect(offset_x, offset_y, w,h, m_brush_background);
+	graphics::drawRect(offset_x, offset_y, 2.0f * w, 4.0f * w, m_brush_background);
 
+	// draw player
+	if (m_state->getPlayer()->isActive())
+		m_state->getPlayer()->draw();
 }
+
 
 Level::~Level()
 {
