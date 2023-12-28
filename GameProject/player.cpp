@@ -18,7 +18,7 @@ void Player::update(float dt)
 
 void Player::draw()
 {
-	graphics::drawRect(m_state->getCanvasWidth()*0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, m_brush_player);
+	graphics::drawRect(m_state->getCanvasWidth() * 0.5, m_state->getCanvasHeight() * 0.8f, 2.0f, 2.0f, m_brush_player);
 	
 	if (m_state->m_debugging)
 		debugDraw();
@@ -64,9 +64,9 @@ void Player::movePlayer(float dt)
 	// Stage 2 code: Acceleration-based velocity
 	float move = 0.0f;
 	if (graphics::getKeyState(graphics::SCANCODE_A))
-		move -= 1.5f;
+		move -= 2.0f;
 	if (graphics::getKeyState(graphics::SCANCODE_D))
-		move = 1.5f;
+		move = 2.0f;
 
 	m_vx = std::min<float>(m_max_velocity, m_vx + delta_time * move * m_accel_horizontal);
 	m_vx = std::max<float>(-m_max_velocity, m_vx);

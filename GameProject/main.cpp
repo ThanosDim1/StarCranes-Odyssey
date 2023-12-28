@@ -15,7 +15,7 @@ void update(float dt)
 
 int main(int argc, char** argv)
 {
-    graphics::createWindow(800, 800, "Maou");
+    graphics::createWindow(960, 600, "Maou");
 
     GameState::getInstance()->init();
 
