@@ -1,4 +1,5 @@
-#include "sgg/graphics.h"
+#include <sgg/graphics.h>
+
 #include "gamestate.h"
 
 void draw()
@@ -11,9 +12,10 @@ void update(float dt)
     GameState::getInstance()->update(dt);
 }
 
-int main(int argc, char** argv) {
 
-    graphics::createWindow(850, 500, "Maou");
+int main(int argc, char** argv)
+{
+    graphics::createWindow(800, 800, "Maou");
 
     GameState::getInstance()->init();
 
@@ -26,5 +28,4 @@ int main(int argc, char** argv) {
     graphics::startMessageLoop();
     return 0;
 }
-
 

@@ -31,7 +31,7 @@ class Level : public GameObject
 	void checkCollisions();
 
 public:
-	//void update(float dt) override;
+	void update(float dt) override;
 	void draw() override;
 	//void init() override;
 

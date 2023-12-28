@@ -33,7 +33,6 @@ bool GameState::init()
 	m_player->init();
 
 	graphics::preloadBitmaps(getAssetDir());
-	graphics::setFont(m_asset_path + "OpenSans-Regular.ttf");
 
 	return true;
 }
@@ -68,7 +67,6 @@ void GameState::update(float dt)
 	m_current_level->update(dt);
 
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);
-
 
 }
 

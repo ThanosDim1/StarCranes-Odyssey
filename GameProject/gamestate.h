@@ -9,8 +9,8 @@ private:
 
 	const std::string m_asset_path = "assets\\";
 
-	const float m_canvas_width = 7.0f;
-	const float m_canvas_height = 4.0f;
+	const float m_canvas_width = 6.0f;
+	const float m_canvas_height = 6.0f;
 
 	class Level* m_current_level = 0;
 	class Player* m_player = 0;
