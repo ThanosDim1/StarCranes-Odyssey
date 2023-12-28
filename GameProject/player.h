@@ -28,8 +28,8 @@ public:
 
 
 protected:
-	/*void debugDraw();*/
+	void debugDraw();
 
 	// dynamic motion control
-	/*void movePlayer(float dt);*/
+	void movePlayer(float dt);
 };
