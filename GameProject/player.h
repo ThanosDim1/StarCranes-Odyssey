@@ -14,6 +14,7 @@ class Player : public Box, public GameObject
 	const float m_accel_horizontal = 20.0f;
 	const float m_accel_vertical = 300.1f;
 	const float m_max_velocity = 5.0f;
+	const float m_gravity = 10.0f;
 
 public:
 	float m_vx = 0.0f;

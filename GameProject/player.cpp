@@ -64,19 +64,33 @@ void Player::movePlayer(float dt)
 	// Stage 2 code: Acceleration-based velocity
 	float move = 0.0f;
 	if (graphics::getKeyState(graphics::SCANCODE_A))
-		move -= 1.0f;
+		move -= 1.5f;
 	if (graphics::getKeyState(graphics::SCANCODE_D))
-		move = 1.0f;
+		move = 1.5f;
 
 	m_vx = std::min<float>(m_max_velocity, m_vx + delta_time * move * m_accel_horizontal);
 	m_vx = std::max<float>(-m_max_velocity, m_vx);
 
+	// friction
+	m_vx -= 0.2f * m_vx / (0.1f + fabs(m_vx));
+
+	// apply static friction threshold
+	if (fabs(m_vx) < 0.01f)
+		m_vx = 0.0f;
+
 	// adjust horizontal position
 	m_pos_x += m_vx * delta_time;
+
+	// jump only when not in flight:
+	if (m_vy == 0.0f)
+		m_vy -= (graphics::getKeyState(graphics::SCANCODE_W) ? m_accel_vertical : 0.0f) * 0.02f;// not delta_time!! Burst 
+
+	
 
 	// adjust vertical position
 	m_pos_y += m_vy * delta_time;
 
-	
+
 }
+
 
