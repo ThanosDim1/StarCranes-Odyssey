@@ -9,15 +9,15 @@ void Level::drawBlock(int i)
 	Box& box = m_blocks[i];
 	std::string& name = m_block_names[i];
 
-	float x = box.m_pos_x + m_state->m_global_offset_x;
-	float y = box.m_pos_y + m_state->m_global_offset_y;
+	float x = box.m_pos_x + 3.0f * m_state->m_global_offset_x;
+	float y = box.m_pos_y + 3.0f * m_state->m_global_offset_y;
 
 	m_block_brush.texture = m_state->getFullAssetPath(name);
 
 	graphics::drawRect(x,y, 2.0f * m_block_size, 2.0f * m_block_size, m_block_brush);
 
 	if (m_state->m_debugging)
-		graphics::drawRect(x, y, m_block_size, m_block_size, m_block_brush_debug);
+		graphics::drawRect(x, y, 2.0f * m_block_size,2.0f * m_block_size, m_block_brush_debug);
 
 }
 
@@ -41,15 +41,15 @@ void Level::draw()
 	//draw background
 	graphics::drawRect(2.8f * offset_x, offset_y, 4.0f * w, h, m_brush_background);
 
+	// draw player
+	if (m_state->getPlayer()->isActive())
+		m_state->getPlayer()->draw();
+
 	// draw blocks
 	for (int i = 0; i < m_blocks.size(); i++)
 	{
 		drawBlock(i);
 	}
-
-	// draw player
-	if (m_state->getPlayer()->isActive())
-		m_state->getPlayer()->draw();
 
 }
 
@@ -86,6 +86,7 @@ void Level::checkCollisions()
 		{
 			m_state->getPlayer()->m_pos_y += offset;
 
+		
 			m_state->getPlayer()->m_vy = 0.0f;
 
 			break;
@@ -102,7 +103,10 @@ void Level::checkCollisions()
 			m_state->getPlayer()->m_vx = 0.0f;
 			break;
 		}
+
 	}
+
+
 }
 
 void Level::init()
@@ -117,15 +121,15 @@ void Level::init()
 	// initialize some collidable blocks here.
 	// normally, you should build a Block class 
 	// and automate the process more.
-
-	m_blocks.push_back(Box(1, 1, 1, 1));
-	m_blocks.push_back(Box(1, 2, 1, 1));
-	m_blocks.push_back(Box(1, 3, 1, 1));
-	m_blocks.push_back(Box(1, 4, 1, 1));
-	m_blocks.push_back(Box(1, 5, 1, 1));
-	m_blocks.push_back(Box(1, 6, 1, 1));
-	m_blocks.push_back(Box(1, 7, 1, 1));
-	m_blocks.push_back(Box(1, 8, 1, 1));
+	m_blocks.push_back(Box(-7, 0, 1, 1));
+	m_blocks.push_back(Box(-7, 1, 1, 1));
+	m_blocks.push_back(Box(-7, 2, 1, 1));
+	m_blocks.push_back(Box(-7, 3, 1, 1));
+	m_blocks.push_back(Box(-7, 4, 1, 1));
+	m_blocks.push_back(Box(-7, 5, 1, 1));
+	m_blocks.push_back(Box(-7, 6, 1, 1));
+	m_blocks.push_back(Box(-7, 7, 1, 1));
+	m_blocks.push_back(Box(-7, 8, 1, 1));
 
 	m_block_names.push_back("tile_13.png");
 	m_block_names.push_back("tile_13.png");
