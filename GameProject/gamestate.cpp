@@ -29,7 +29,11 @@ bool GameState::init()
 	m_current_level = new Level("1.lvl");
 	m_current_level->init();
 
+	m_player = new Player("Player");
+	m_player->init();
+
 	graphics::preloadBitmaps(getAssetDir());
+	graphics::setFont(m_asset_path + "OpenSans-Regular.ttf");
 
 	return true;
 }

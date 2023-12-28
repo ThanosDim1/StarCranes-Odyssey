@@ -9,7 +9,6 @@ Level::Level(const std::string& name)
 	m_brush_background.outline_opacity = 0.0f;
 	m_brush_background.texture = m_state->getFullAssetPath("background6.png");
 
-
 }
 
 void Level::draw()
@@ -21,7 +20,7 @@ void Level::draw()
 	float offset_y = m_state->m_global_offset_y  + h / 2.0f;
 
 	//draw background
-	graphics::drawRect(1.55f * offset_x, 0.4f * offset_y, 1.5f * w,1.5f * h, m_brush_background);
+	graphics::drawRect(offset_x, offset_y, w,h, m_brush_background);
 
 }
 
