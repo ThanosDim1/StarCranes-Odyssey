@@ -81,11 +81,7 @@ void Player::movePlayer(float dt)
 	// adjust horizontal position
 	m_pos_x += m_vx * delta_time;
 
-	// jump only when not in flight:
-	if (m_vy == 0.0f)
-		m_vy -= (graphics::getKeyState(graphics::SCANCODE_W) ? m_accel_vertical : 0.0f) * 0.02f;// not delta_time!! Burst 
 
-	
 
 	// adjust vertical position
 	m_pos_y += m_vy * delta_time;

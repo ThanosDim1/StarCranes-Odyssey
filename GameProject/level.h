@@ -33,10 +33,9 @@ class Level : public GameObject
 public:
 	void update(float dt) override;
 	void draw() override;
-	//void init() override;
+	void init() override;
 
 	
-
 	Level(const std::string& name = "Level0");
 	~Level() override;
 };
