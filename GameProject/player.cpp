@@ -73,9 +73,9 @@ void Player::movePlayer(float dt)
 		(m_pos_x += delta_time * velocity);
 	if (graphics::getKeyState(graphics::SCANCODE_W))
 		(m_pos_y -= delta_time * velocity);
-	if (graphics::getKeyState(graphics::SCANCODE_S))
-		(m_pos_y += delta_time * velocity);
-	
+
+	m_vy += delta_time * m_gravity;
+	m_pos_y += delta_time * m_vy;
 
 
 
