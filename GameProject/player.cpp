@@ -2,7 +2,7 @@
 #include "util.h"
 #include <cmath>
 #include <iostream>
-
+// an den doulepsei to spao
 void Player::update(float dt)
 {
 	float delta_time = dt / 1000.0f;
@@ -53,7 +53,7 @@ void Player::debugDraw()
 	SETCOLOR(debug_brush.outline_color, 1, 0.1f, 0);
 	debug_brush.fill_opacity = 0.1f;
 	debug_brush.outline_opacity = 1.0f;
-	graphics::drawRect(m_state->getCanvasWidth()*0.5f, m_state->getCanvasHeight() * 0.8f, m_width, m_height, debug_brush);
+	graphics::drawRect(m_state->getCanvasWidth()*0.5f, m_state->getCanvasHeight() * 0.85f, m_width, m_height, debug_brush);
 	
 	char s[20];
 	sprintf_s(s, "(%5.2f, %5.2f)", m_pos_x, m_pos_y);
