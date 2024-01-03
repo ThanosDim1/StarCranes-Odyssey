@@ -83,7 +83,7 @@ void Level::checkCollisions()
 	for (auto& block : m_blocks)
 	{
 		float offset = 0.0f;
-		if (offset = m_state->getPlayer()->intersect(block))
+		if (offset = m_state->getPlayer()->intersectDown(block))
 		{
 			m_state->getPlayer()->m_pos_y += offset;
 
@@ -97,7 +97,7 @@ void Level::checkCollisions()
 	for (auto& block : m_blocks)
 	{
 		float offset = 0.0f;
-		if (offset = m_state->getPlayer()->intersect(block))
+		if (offset = m_state->getPlayer()->intersectSideways(block))
 		{
 			m_state->getPlayer()->m_pos_x += offset;
 
