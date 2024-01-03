@@ -10,7 +10,6 @@ class Player : public Box, public GameObject
 	std::vector<std::string> m_sprites;
 
 	graphics::Brush m_brush_player;
-
 	const float m_accel_horizontal = 20.0f;
 	const float m_accel_vertical = 300.1f;
 	const float m_max_velocity = 5.0f;
@@ -26,7 +25,6 @@ public:
 	void draw() override;
 	void init() override;
 	Player(std::string name) : GameObject(name) {}
-
 
 protected:
 	void debugDraw();

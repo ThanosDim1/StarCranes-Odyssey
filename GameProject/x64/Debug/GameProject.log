@@ -1,0 +1,10 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  gameobject.cpp
+  gamestate.cpp
+  level.cpp
+  main.cpp
+  player.cpp
+C:\Users\Χάρης\Contacts\Desktop\GameProject\GameProject\player.cpp(23,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  timer.cpp
+  Generating Code...
+  GameProject.vcxproj -> C:\Users\Χάρης\Contacts\Desktop\GameProject\bin\GameProject.exe
