@@ -76,6 +76,7 @@ void Level::checkCollisions()
 	{
 		if (m_state->getPlayer()->intersect(box))
 			std::cout << ("*");
+
 	}
 
 
@@ -101,7 +102,7 @@ void Level::checkCollisions()
 			m_state->getPlayer()->m_pos_x += offset;
 
 			m_state->getPlayer()->m_vx = 0.0f;
-			m_state->getPlayer()->m_vy = m_state->getPlayer()->m_vy+ m_state->getPlayer()->m_gravity ;
+			m_state->getPlayer()->m_vy = m_state->getPlayer()->m_vy + 10.0f ;
 			break;
 		}
 

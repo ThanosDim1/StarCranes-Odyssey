@@ -64,7 +64,7 @@ void Player::draw()
 void Player::init()
 {
 	// stage 1
-	m_pos_x = 5.0f;
+	m_pos_x = 2.0f;
 	m_pos_y = 5.0f;
 
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
