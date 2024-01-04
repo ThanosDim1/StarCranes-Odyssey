@@ -1,9 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  gamestate.cpp
-  level.cpp
   player.cpp
 C:\Users\Χάρης\Contacts\Desktop\Platform Game\PlatformGame\GameProject\player.cpp(23,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-sggd.lib(lodepng.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(lodepng.obj)' or at ''; linking object as if no debug info
-sggd.lib(texture.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(texture.obj)' or at ''; linking object as if no debug info
   GameProject.vcxproj -> C:\Users\Χάρης\Contacts\Desktop\Platform Game\PlatformGame\bin\GameProject.exe

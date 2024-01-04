@@ -4,8 +4,6 @@
 #include "util.h"
 #include <iostream>
 
-//HarisGRE
-//HarisGRE
 
 
 void Level::drawBlock(int i)
