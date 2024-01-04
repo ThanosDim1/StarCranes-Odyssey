@@ -4,8 +4,6 @@
 #include "util.h"
 #include <iostream>
 
-
-
 void Level::drawBlock(int i)
 {
 	Box& box = m_blocks[i];
@@ -16,7 +14,7 @@ void Level::drawBlock(int i)
 
 	m_block_brush.texture = m_state->getFullAssetPath(name);
 
-	graphics::drawRect(x,y,  m_block_size, m_block_size, m_block_brush);
+	graphics::drawRect(x, y, m_block_size, m_block_size, m_block_brush);
 
 	if (m_state->m_debugging)
 		graphics::drawRect(x, y, m_block_size, m_block_size, m_block_brush_debug);
@@ -41,7 +39,7 @@ void Level::draw()
 	float offset_y = m_state->m_global_offset_y;
 
 	//draw background
-	graphics::drawRect(offset_x, offset_y, 3.0f * w, 3.0f*h, m_brush_background);
+	graphics::drawRect(offset_x, offset_y, 3.0f * w, 3.0f * h, m_brush_background);
 
 	// draw player
 	if (m_state->getPlayer()->isActive())
@@ -77,7 +75,7 @@ void Level::checkCollisions()
 	for (auto& box : m_blocks)
 	{
 		if (m_state->getPlayer()->intersect(box))
-			std::cout<<("*");
+			std::cout << ("*");
 	}
 
 
@@ -88,7 +86,7 @@ void Level::checkCollisions()
 		{
 			m_state->getPlayer()->m_pos_y += offset;
 
-		
+
 			m_state->getPlayer()->m_vy = 0.0f;
 
 			break;

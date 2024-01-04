@@ -7,7 +7,11 @@
 class Player : public Box, public GameObject
 {
 	// animated player
-	std::vector<std::string> m_sprites;
+	std::vector<std::string> m_spritesright;
+	std::vector<std::string> m_spritesleft;
+	std::vector<std::string> m_spritesidle;
+	std::vector<std::string> m_spritesjumpright;
+	std::vector<std::string> m_spritesjumpleft;
 
 	graphics::Brush m_brush_player;
 	const float m_accel_horizontal = 20.0f;

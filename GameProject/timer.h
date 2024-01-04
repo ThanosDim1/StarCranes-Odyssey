@@ -52,4 +52,3 @@ public:
 	*/
 	operator float();
 };
-
