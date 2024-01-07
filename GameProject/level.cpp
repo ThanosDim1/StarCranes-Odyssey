@@ -4,6 +4,11 @@
 #include "util.h"
 #include <iostream>
 
+bool isCollidingSideways = false;
+bool isCollidingDown = false;
+
+
+
 void Level::drawBlock(int i)
 {
 	Box& box = m_blocks[i];
@@ -70,25 +75,25 @@ Level::~Level()
 }
 
 void Level::checkCollisions()
-{
-
-	for (auto& box : m_blocks)
-	{
-		if (m_state->getPlayer()->intersect(box))
-			std::cout << ("*");
-
-	}
-
-
+{	
 	for (auto& block : m_blocks)
 	{
 		float offset = 0.0f;
 		if (offset = m_state->getPlayer()->intersectDown(block))
 		{
+			if (isCollidingSideways)
+			{
+				m_state->getPlayer()->m_vx = 0.0f;
+				m_state->getPlayer()->m_vy = 0.0f;
+			}		
 			m_state->getPlayer()->m_pos_y += offset;
 
 
 			m_state->getPlayer()->m_vy = 0.0f;
+
+			isCollidingDown = true;
+			isCollidingSideways = false;
+
 
 			break;
 		}
@@ -99,10 +104,14 @@ void Level::checkCollisions()
 		float offset = 0.0f;
 		if (offset = m_state->getPlayer()->intersectSideways(block))
 		{
+			
 			m_state->getPlayer()->m_pos_x += offset;
-
 			m_state->getPlayer()->m_vx = 0.0f;
-			m_state->getPlayer()->m_vy = m_state->getPlayer()->m_vy + 10.0f ;
+
+			
+
+			isCollidingSideways = true;
+
 			break;
 		}
 

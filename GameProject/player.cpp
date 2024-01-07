@@ -3,6 +3,11 @@
 #include <cmath>
 #include <iostream>
 
+extern bool isCollidingSideways;
+extern bool isCollidingDown;
+
+
+
 void Player::update(float dt)
 {
 	float delta_time = dt / 1000.0f;
@@ -64,7 +69,7 @@ void Player::draw()
 void Player::init()
 {
 	// stage 1
-	m_pos_x = 2.0f;
+	m_pos_x = 0.0f;
 	m_pos_y = 5.0f;
 
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
@@ -129,11 +134,17 @@ void Player::movePlayer(float dt)
 
 	const float velocity = 5.0f;
 	if (graphics::getKeyState(graphics::SCANCODE_A))
-		m_pos_x -= (delta_time * velocity);
+		if ((isCollidingSideways == false))
+			m_pos_x -= (delta_time * velocity);
 	if (graphics::getKeyState(graphics::SCANCODE_D))
-		(m_pos_x += delta_time * velocity);
+		if (isCollidingSideways == false)
+			m_pos_x += (delta_time * velocity);
 	if (graphics::getKeyState(graphics::SCANCODE_W))
-		(m_pos_y -= delta_time * velocity);
+		if (isCollidingSideways == false)
+			m_pos_y -= (delta_time * velocity);
+		
+		
+
 
 	m_vy += delta_time * m_gravity;
 

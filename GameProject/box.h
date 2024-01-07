@@ -4,10 +4,10 @@
 
 struct Box
 {
-    float m_pos_x = 0.0f;
-    float m_pos_y = 0.0f;
-    float m_width = 1.0f;
-    float m_height = 1.0f;
+    float m_pos_x;
+    float m_pos_y;
+    float m_width;
+    float m_height;
 
     /** Detects intersection (overlap) between this Box and another Box instance.
     *   \param other is a reference to another Box instance to check for collision with

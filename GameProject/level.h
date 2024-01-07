@@ -9,6 +9,7 @@
 
 class Level : public GameObject
 {
+public:
 	graphics::Brush m_brush_background;
 
 	std::vector<GameObject*> m_static_objects;
