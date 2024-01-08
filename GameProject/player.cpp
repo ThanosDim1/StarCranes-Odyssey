@@ -106,8 +106,8 @@ void Player::init()
 
 
 	// Adjust width for finer collision detection
-	m_width = 0.3f;
-	m_height = 1.0f;
+	m_width = 0.5f;
+	m_height = 1.05f;
 }
 
 
@@ -133,26 +133,23 @@ void Player::movePlayer(float dt)
 	float delta_time = dt / 1000.0f;
 
 	const float velocity = 5.0f;
-	if (graphics::getKeyState(graphics::SCANCODE_A))
-		if ((isCollidingSideways == false))
-			m_pos_x -= (delta_time * velocity);
-	if (graphics::getKeyState(graphics::SCANCODE_D))
-		if (isCollidingSideways == false)
-			m_pos_x += (delta_time * velocity);
 	if (graphics::getKeyState(graphics::SCANCODE_W))
-		if (isCollidingSideways == false)
+		if (isCollidingSideways == false) {
 			m_pos_y -= (delta_time * velocity);
+		}
+	if (graphics::getKeyState(graphics::SCANCODE_A))
+		if (isCollidingSideways == false) {
+			m_pos_x -= (delta_time * velocity);
+		}
+	if (graphics::getKeyState(graphics::SCANCODE_D))
+		if (isCollidingSideways == false) {
+			m_pos_x += (delta_time * velocity);
+		}
 		
 		
-
-
 	m_vy += delta_time * m_gravity;
 
 	m_pos_y += delta_time * m_vy;
-
-
-
-
 
 
 }
