@@ -149,10 +149,4 @@ void Player::movePlayer(float dt)
 	m_vy += delta_time * m_gravity;
 
 	m_pos_y += delta_time * m_vy;
-
-
-
-
-
-
 }
