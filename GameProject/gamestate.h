@@ -38,4 +38,5 @@ public:
 	float getCanvasHeight() { return m_canvas_height; }
 
 	class Player* getPlayer() { return m_player; }
+	class Level* getLevel() { return m_current_level;  }
 };
