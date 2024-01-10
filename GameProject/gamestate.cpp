@@ -80,4 +80,5 @@ std::string GameState::getAssetDir()
 	return m_asset_path;
 }
 
+
 GameState* GameState::m_unique_instance = nullptr;
