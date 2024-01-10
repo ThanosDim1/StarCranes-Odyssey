@@ -23,7 +23,6 @@ public:
 	float m_vx = 0.0f;
 	float m_vy = 0.0f;
 
-
 public:
 	void update(float dt) override;
 	void draw() override;
@@ -35,4 +34,5 @@ protected:
 
 	// dynamic motion control
 	void movePlayer(float dt);
+
 };

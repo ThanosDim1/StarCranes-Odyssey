@@ -126,18 +126,14 @@ void Player::movePlayer(float dt)
 
 	const float velocity = 5.0f;
 	if (graphics::getKeyState(graphics::SCANCODE_W))
-		if (!m_state->getLevel()->getCollSideways()) {
-			m_pos_y -= (delta_time * velocity);
-		}
-	
+		m_vy -= (delta_time * velocity);
+
 	if (graphics::getKeyState(graphics::SCANCODE_A))
-		if (!m_state->getLevel()->getCollSideways()) {
-			m_pos_x -= (delta_time * velocity);
-		}
+		m_pos_x -= (delta_time * velocity);
+		
 	if (graphics::getKeyState(graphics::SCANCODE_D))
-		if (!m_state->getLevel()->getCollSideways()) {
-			m_pos_x += (delta_time * velocity);
-		}
+		m_pos_x += (delta_time * velocity);
+		
 		
 		
 	m_vy += delta_time * m_gravity;
