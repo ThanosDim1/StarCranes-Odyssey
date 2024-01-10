@@ -161,3 +161,5 @@ void Level::init()
 	SETCOLOR(m_block_brush_debug.fill_color, 0.1f, 1.0f, 0.1f);
 	SETCOLOR(m_block_brush_debug.outline_color, 0.3f, 1.0f, 0.2f);
 }
+
+//fdgfd
