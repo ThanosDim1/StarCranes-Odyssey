@@ -1,11 +1,8 @@
 #include "player.h"
 #include "util.h"
+#include "level.h"
 #include <cmath>
 #include <iostream>
-
-extern bool isCollidingSideways;
-extern bool isCollidingDown;
-
 
 
 void Player::update(float dt)
@@ -119,13 +116,8 @@ void Player::debugDraw()
 	SETCOLOR(debug_brush.outline_color, 1, 0.1f, 0);
 	debug_brush.fill_opacity = 0.1f;
 	debug_brush.outline_opacity = 1.0f;
-	graphics::drawRect(m_state->getCanvasWidth() * 0.495f, m_state->getCanvasHeight() * 0.5f, m_width * 2.0f, m_height * 1.25f, debug_brush);
+	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, m_width , m_height, debug_brush);
 
-	char s[20];
-	sprintf_s(s, "(%5.2f, %5.2f)", m_pos_x, m_pos_y);
-	SETCOLOR(debug_brush.fill_color, 1, 0, 0);
-	debug_brush.fill_opacity = 1.0f;
-	graphics::drawText(m_state->getCanvasWidth() * 0.5f - 0.4f, m_state->getCanvasHeight() * 0.5f, 0.15f, s, debug_brush);
 }
 
 void Player::movePlayer(float dt)
@@ -134,15 +126,16 @@ void Player::movePlayer(float dt)
 
 	const float velocity = 5.0f;
 	if (graphics::getKeyState(graphics::SCANCODE_W))
-		if (isCollidingSideways == false) {
+		if (!m_state->getLevel()->getCollSideways()) {
 			m_pos_y -= (delta_time * velocity);
 		}
+	
 	if (graphics::getKeyState(graphics::SCANCODE_A))
-		if (isCollidingSideways == false) {
+		if (!m_state->getLevel()->getCollSideways()) {
 			m_pos_x -= (delta_time * velocity);
 		}
 	if (graphics::getKeyState(graphics::SCANCODE_D))
-		if (isCollidingSideways == false) {
+		if (!m_state->getLevel()->getCollSideways()) {
 			m_pos_x += (delta_time * velocity);
 		}
 		

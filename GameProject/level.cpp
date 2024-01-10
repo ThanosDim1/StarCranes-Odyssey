@@ -5,16 +5,13 @@
 #include "timer.h"
 #include <iostream>
 
-bool isCollidingSideways = false;
-bool isCollidingDown = false;
-
 
 
 void Level::drawBlock(int i)
 {
 	Box& box = m_blocks[i];
 	std::string& name = m_block_names[i];
-
+	
 	float x = box.m_pos_x + m_state->m_global_offset_x;
 	float y = box.m_pos_y + m_state->m_global_offset_y;
 
