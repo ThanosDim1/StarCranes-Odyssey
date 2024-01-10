@@ -2,6 +2,7 @@
 #include <sgg/graphics.h>
 #include "player.h"
 #include "util.h"
+#include "timer.h"
 #include <iostream>
 
 bool isCollidingSideways = false;
@@ -76,47 +77,48 @@ Level::~Level()
 
 void Level::checkCollisions()
 {	
-	for (auto& block : m_blocks)
-	{
-		float offset = 0.0f;
-		if (offset = m_state->getPlayer()->intersectDown(block))
-		{
-			if (isCollidingSideways)
-			{
-				m_state->getPlayer()->m_vx = 0.0f;
-				m_state->getPlayer()->m_vy = 0.0f;
-			}		
-			m_state->getPlayer()->m_pos_y += offset;
-
-
-			m_state->getPlayer()->m_vy = 0.0f;
-
-			isCollidingDown = true;
-			isCollidingSideways = false;
-
-
-			break;
-		}
-	}
 
 	for (auto& block : m_blocks)
 	{
 		float offset = 0.0f;
 		if (offset = m_state->getPlayer()->intersectSideways(block))
 		{
-			
+			isCollidingSideways = true;
 			m_state->getPlayer()->m_pos_x += offset;
 			m_state->getPlayer()->m_vx = 0.0f;
 
-			
-
-			isCollidingSideways = true;
 
 			break;
 		}
 
 	}
 
+	for (auto& block : m_blocks)
+	{
+		float offset = 0.0f;
+		if (offset = m_state->getPlayer()->intersectDown(block))
+		{	
+			isCollidingDown = true;
+			m_state->getPlayer()->m_vy = 0.0f;
+
+			if ((m_state->getPlayer()->m_vy == 0 || !isCollidingSideways) && isCollidingDown) 
+			{
+				if (isCollidingSideways)
+				{
+					m_state->getPlayer()->m_vx = 0.0f;
+					m_state->getPlayer()->m_vy = 0.0f;
+					isCollidingSideways = false;
+			
+				}
+
+				m_state->getPlayer()->m_pos_y += offset;
+				
+				break;
+			}
+		}
+	}
+
+	
 
 }
 
@@ -179,6 +181,7 @@ void Level::init()
 	m_blocks.push_back(Box(2, 9, 1, 1));
 	m_blocks.push_back(Box(3, 9, 1, 1));
 	m_blocks.push_back(Box(4, 9, 1, 1));
+	m_blocks.push_back(Box(3, 8, 1, 1));
 
 
 	m_block_names.push_back("Tile_13.png");
@@ -228,6 +231,7 @@ void Level::init()
 	m_block_names.push_back("Tile_02.png");
 	m_block_names.push_back("Tile_02.png");
 	m_block_names.push_back("Tile_02.png");
+	m_block_names.push_back("Tile_13.png");
 
 	m_block_brush.outline_opacity = 0.0f;
 	m_block_brush_debug.fill_opacity = 0.1f;
