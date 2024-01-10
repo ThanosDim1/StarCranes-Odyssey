@@ -126,7 +126,9 @@ void Player::movePlayer(float dt)
 
 	const float velocity = 5.0f;
 	if (graphics::getKeyState(graphics::SCANCODE_W))
-		m_vy -= (delta_time * velocity);
+		if (m_state->getLevel()->getCollDown()) {
+			m_vy -= 7.0f;
+		}
 
 	if (graphics::getKeyState(graphics::SCANCODE_A))
 		m_pos_x -= (delta_time * velocity);

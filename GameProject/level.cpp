@@ -113,6 +113,10 @@ void Level::checkCollisions()
 				break;
 			}
 		}
+		else
+		{
+			isCollidingDown = false;
+		}
 	}
 
 	
