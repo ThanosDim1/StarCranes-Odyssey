@@ -50,11 +50,7 @@ struct Box
             return std::min<float>(0.0f, other.m_pos_x - (other.m_width / 2.0f) - m_pos_x - (m_width / 2.0f));
     }
 
-    /*float intersectTwoBlockes(Box& other, Box& other2)
-    {
-        if (fabes(m_pos_y-other.m_pos_y))
-    }*/
-
+ 
     /** Default ctor
     */
     Box() {}
