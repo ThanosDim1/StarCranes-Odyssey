@@ -1,6 +1,7 @@
 #include "gamestate.h"
 #include "level.h"
 #include "player.h"
+#include "enemy.h"
 #include <thread>
 #include <chrono>
 using namespace std::chrono_literals;
@@ -31,6 +32,9 @@ bool GameState::init()
 
 	m_player = new Player("Player");
 	m_player->init();
+	
+	m_enemy = new Enemy("Enemy");
+	m_enemy->init();
 
 	graphics::preloadBitmaps(getAssetDir());
 

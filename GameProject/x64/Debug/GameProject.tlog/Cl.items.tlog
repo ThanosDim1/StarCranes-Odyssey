@@ -1,6 +1,7 @@
-C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.cpp;C:\Users\thana\source\repos\PlatformGame\GameProject\x64\Debug\gamestate.obj
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp;C:\Users\thana\source\repos\PlatformGame\GameProject\x64\Debug\level.obj
-C:\Users\thana\source\repos\PlatformGame\GameProject\main.cpp;C:\Users\thana\source\repos\PlatformGame\GameProject\x64\Debug\main.obj
-C:\Users\thana\source\repos\PlatformGame\GameProject\gameobject.cpp;C:\Users\thana\source\repos\PlatformGame\GameProject\x64\Debug\gameobject.obj
-C:\Users\thana\source\repos\PlatformGame\GameProject\player.cpp;C:\Users\thana\source\repos\PlatformGame\GameProject\x64\Debug\player.obj
-C:\Users\thana\source\repos\PlatformGame\GameProject\timer.cpp;C:\Users\thana\source\repos\PlatformGame\GameProject\x64\Debug\timer.obj
+C:\C++\PlatformGame\GameProject\enemy.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\enemy.obj
+C:\C++\PlatformGame\GameProject\gamestate.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\gamestate.obj
+C:\C++\PlatformGame\GameProject\level.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\level.obj
+C:\C++\PlatformGame\GameProject\main.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\main.obj
+C:\C++\PlatformGame\GameProject\gameobject.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\gameobject.obj
+C:\C++\PlatformGame\GameProject\player.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\player.obj
+C:\C++\PlatformGame\GameProject\timer.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\timer.obj
