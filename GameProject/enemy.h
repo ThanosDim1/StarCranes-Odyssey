@@ -2,9 +2,9 @@
 
 #include "gameobject.h"
 #include <sgg/graphics.h>
-#include "box.h"
+#include "CollisionObject.h"
 
-class Enemy : public Box, public GameObject
+class Enemy : public CollisionObject, public GameObject
 {
 	std::vector<std::string> m_spritesenemy1;
 
