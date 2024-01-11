@@ -9,20 +9,17 @@ void Enemy::update(float dt)
 {
 	float delta_time = dt / 1000.0f;
 
-	// update offset for other game objects
-	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
-	m_state->m_global_offset_y = m_state->getCanvasHeight() / 2.0f - m_pos_y;
-
 	// Move left at a constant speed
-	m_pos_x -= m_max_velocity * delta_time;
+	m_pos_x -= (m_max_velocity * delta_time);
 
 	// Simulate gravity
-	m_vy += m_gravity * delta_time;
-	m_pos_y += m_vy * delta_time;
+	//m_vy += m_gravity * delta_time;
+	//m_pos_y += m_vy * delta_time;
 
 	GameObject::update(dt);
 
 }
+
 void Enemy::draw()
 {
 	int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 9.0f, m_spritesenemy1.size());

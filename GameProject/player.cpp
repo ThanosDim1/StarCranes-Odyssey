@@ -66,7 +66,7 @@ void Player::draw()
 void Player::init()
 {
 	// stage 1
-	m_pos_x = -10.0f;
+	m_pos_x = -6.0f;
 	m_pos_y = 0.0f;
 
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
@@ -126,22 +126,14 @@ void Player::movePlayer(float dt)
 
 	const float velocity = 5.0f;
 	if (graphics::getKeyState(graphics::SCANCODE_W))
-		if (m_state->getLevel()->getCollDown()) {
+		if (m_state->getLevel()->getCollDown())
 			m_vy -= 7.0f;
-			//m_pos_y -= 0.3f;
-		}
-
+		
 	if (graphics::getKeyState(graphics::SCANCODE_A))
 		m_pos_x -= (delta_time * velocity);
 		
 	if (graphics::getKeyState(graphics::SCANCODE_D))
 		m_pos_x += (delta_time * velocity);
-		
-	//if (graphics::getKeyState(graphics::SCANCODE_S))
-		//if (m_state->getLevel()->getCollDown()) {
-			//m_vy -= 7.0f;
-		//m_pos_y += 0.3f;
-	//}	
 		
 	m_vy += delta_time * m_gravity;
 
