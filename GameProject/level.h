@@ -6,6 +6,8 @@
 #include <string>
 #include <sgg/graphics.h>
 #include "player.h"
+#include "enemy.h"
+
 
 class Level : public GameObject
 {
@@ -32,6 +34,7 @@ public:
 
 	// detect collisions
 	void checkCollisions();
+	void checkCollisionsForEnemy();
 	
 
 public:
