@@ -9,13 +9,15 @@ void Enemy::update(float dt)
 {
 
 	float delta_time = dt / 1000.0f;
+	//std::printf("\n%f,%f,Player %f,%f",m_pos_x, m_pos_y,m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y);
 
 	if (m_isDeactivating)
 	{
 
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the enemy
-		if (m_currentDeactivationSprite >= m_spritesdeactivation.size())
+		if (animationtimer >= 60)
 		{
+			delete m_state->getEnemy();
 			setActive(false);
 		}
 	}
@@ -37,7 +39,7 @@ void Enemy::update(float dt)
 
 void Enemy::draw()
 {
-	animationtimer += 0.001f;
+	animationtimer += 0.1f;
 	if (m_isDeactivating)
 	{
 		// Draw the current deactivation sprite
@@ -46,7 +48,6 @@ void Enemy::draw()
 		float offset_y = m_state->m_global_offset_y;
 		m_brush_enemy.texture = m_spritesdeactivation[spritesdeactivation];
 		graphics::drawRect(m_pos_x + offset_x, m_pos_y + offset_y, 1.0f, 1.0f, m_brush_enemy);
-		m_currentDeactivationSprite++;
 	}
 	
 	else {

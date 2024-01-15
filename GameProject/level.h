@@ -15,7 +15,7 @@ public:
 	graphics::Brush m_brush_background;
 
 	std::vector<GameObject*> m_static_objects;
-	std::list<GameObject*> m_dynamic_objects;
+	std::list<GameObject*> m_enemy_objects;
 
 	// add some collidable blocks
 	std::vector<CollisionObject> m_blocks;
@@ -37,6 +37,8 @@ public:
 	// detect collisions
 	void checkCollisions();
 	void checkCollisionsForEnemy();
+
+	void checkCollisionsMovingObjects();
 	
 
 public:
