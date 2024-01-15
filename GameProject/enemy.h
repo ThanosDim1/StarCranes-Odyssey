@@ -7,7 +7,10 @@
 class Enemy : public CollisionObject, public GameObject
 {
 	std::vector<std::string> m_spritesenemy1;
-
+	std::vector<std::string> m_spritesdeactivation;
+	int m_currentDeactivationSprite = 0;
+	float animationtimer =0.0f;
+	
 	graphics::Brush m_brush_enemy;
 	const float m_accel_horizontal = 20.0f;
 	const float m_accel_vertical = 300.1f;
@@ -23,8 +26,12 @@ public:
 	void draw() override;
 	void init() override;
 	Enemy(std::string name) : GameObject(name) {}
+	bool m_isDeactivating = false;
+
 
 protected:
 	void debugDraw();
 
 };
+
+

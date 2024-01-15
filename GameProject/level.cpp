@@ -7,6 +7,7 @@
 #include <iostream>
 
 
+
 void Level::drawBlock(int i)
 {
 	CollisionObject& CollisionObject = m_blocks[i];
@@ -131,21 +132,22 @@ void Level::checkCollisions()
 
 void Level::checkCollisionsForEnemy()
 {
-
 	for (auto& block : m_blocks)
 	{
 		float offset = 0.0f;
 		if (offset = m_state->getEnemy()->intersectSideways(block))
 		{
+			std::cout << "enemy is colliding sideways" << std::endl;
 			isCollidingSidewaysEnemy = true;
 			m_state->getEnemy()->m_pos_x += offset;
 			m_state->getEnemy()->m_vx = 0.0f;
 
-
+			// Deactivate the enemy
+			m_state->getEnemy()->m_isDeactivating = true;
 			break;
 		}
-
 	}
+
 
 	for (auto& block : m_blocks)
 	{
