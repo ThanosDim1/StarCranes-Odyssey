@@ -144,7 +144,6 @@
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="gameobject.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="timer.cpp" />
   </ItemGroup>
@@ -154,7 +153,6 @@
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
     <ClInclude Include="level.h" />
-    <ClInclude Include="Menu.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="util.h" />
