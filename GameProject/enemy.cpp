@@ -12,6 +12,7 @@ void Enemy::update(float dt)
 	// Move left at a constant speed
 	m_pos_x -= (m_max_velocity * delta_time);
 
+
 	// Simulate gravity
 	//m_vy += m_gravity * delta_time;
 	//m_pos_y += m_vy * delta_time;
@@ -22,7 +23,7 @@ void Enemy::update(float dt)
 
 void Enemy::draw()
 {
-	int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 9.0f, m_spritesenemy1.size());
+	int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 3.0f, m_spritesenemy1.size());
 
 	m_brush_enemy.texture = m_spritesenemy1[spritesenemy1];
 	graphics::drawRect(m_pos_x, m_pos_y, 1.0f, 1.0f, m_brush_enemy);

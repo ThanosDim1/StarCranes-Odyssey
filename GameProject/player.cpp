@@ -21,14 +21,8 @@ void Player::update(float dt)
 }
 
 void Player::draw()
-{
-
-	if (!graphics::getKeyState(graphics::SCANCODE_D) && !graphics::getKeyState(graphics::SCANCODE_A) && !graphics::getKeyState(graphics::SCANCODE_W)) {
-		int sprite_idle = (int)fmod(100.0f - m_pos_x * 3.0f, m_spritesidle.size());
-		m_brush_player.texture = m_spritesidle[sprite_idle];
-		graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, m_brush_player);
-	}
-
+{	
+	animationtimer += 0.05f;
 	if (graphics::getKeyState(graphics::SCANCODE_W)) {
 		if (graphics::getKeyState(graphics::SCANCODE_D)) {
 			int sprite_jumpright = (int)fmod(100.0f - m_pos_x * 1.5f, m_spritesjumpright.size());
@@ -55,6 +49,12 @@ void Player::draw()
 		int sprite_left = (int)fmod(100.0f - m_pos_x * 1.5f, m_spritesleft.size());
 		m_brush_player.texture = m_spritesleft[sprite_left];
 		graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, m_brush_player);
+	}
+	else {
+		int sprite_idle = (int)fmod(animationtimer, m_spritesidle.size());
+		m_brush_player.texture = m_spritesidle[sprite_idle];
+		graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, m_brush_player);
+
 	}
 
 

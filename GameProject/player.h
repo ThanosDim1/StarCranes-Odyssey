@@ -2,6 +2,7 @@
 
 #include "gameobject.h"
 #include <sgg/graphics.h>
+#include "timer.h"
 #include "CollisionObject.h"
 
 class Player : public CollisionObject, public GameObject
@@ -18,6 +19,7 @@ class Player : public CollisionObject, public GameObject
 	const float m_accel_vertical = 300.1f;
 	const float m_max_velocity = 5.0f;
 	const float m_gravity = 12.0f;
+	
 
 public:
 	float m_vx = 0.0f;
@@ -28,6 +30,8 @@ public:
 	void draw() override;
 	void init() override;
 	Player(std::string name) : GameObject(name) {}
+	float animationtimer = 0.0f;
+
 
 protected:
 	void debugDraw();
