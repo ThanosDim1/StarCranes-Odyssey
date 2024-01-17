@@ -22,8 +22,9 @@ class Player : public CollisionObject, public GameObject
 	
 
 public:
-	float m_vx = 0.0f;
+	float m_vx = 5.0f;
 	float m_vy = 0.0f;
+	int m_player_health = 10;
 
 public:
 	void update(float dt) override;
