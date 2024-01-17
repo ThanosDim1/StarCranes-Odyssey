@@ -8,6 +8,8 @@ class Enemy : public CollisionObject, public GameObject
 {
 	std::vector<std::string> m_spritesenemy1;
 	std::vector<std::string> m_spritesdeactivation;
+	std::vector<std::string> m_spritesleftattack;
+std::vector<std::string> m_spritesrightattack;
 	int m_currentDeactivationSprite = 0;
 	float animationtimer =0.0f;
 	
@@ -18,7 +20,7 @@ class Enemy : public CollisionObject, public GameObject
 	const float m_gravity = 12.0f;
 
 public:
-	float m_vx = 0.0f;
+	float m_vx = 2.0f;
 	float m_vy = 0.0f;
 
 public:
