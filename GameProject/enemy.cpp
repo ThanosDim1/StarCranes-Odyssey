@@ -25,7 +25,7 @@ void Enemy::update(float dt)
 	else
 	{
 		// Move left at a constant speed
-		m_pos_x -= (m_max_velocity * delta_time);
+		m_pos_x -= (m_vx * delta_time);
 
 
 		//Stimulate gravity
@@ -37,30 +37,44 @@ void Enemy::update(float dt)
 	}
 }
 
+
 void Enemy::draw()
 {
-	animationtimer += 0.1f;
-	if (m_isDeactivating)
-	{
+	animationtimer += 0.08f;
+
+	if (m_isDeactivating) {
 		// Draw the current deactivation sprite
 		int spritesdeactivation = (int)fmod(animationtimer, m_spritesdeactivation.size());
-		float offset_x = m_state->m_global_offset_x;
-		float offset_y = m_state->m_global_offset_y;
 		m_brush_enemy.texture = m_spritesdeactivation[spritesdeactivation];
-		graphics::drawRect(m_pos_x + offset_x, m_pos_y + offset_y, 1.0f, 1.0f, m_brush_enemy);
 	}
-	
+	else if (m_state->getLevel()->isCollidingPlayerEnemy) {
+		// Determine whether the player is to the left or right of the enemy
+		if (m_state->getPlayer()->m_pos_x > m_pos_x) {
+			// Player is to the right, draw the right attack sprite
+			int spritesrightattack = (int)fmod(animationtimer, m_spritesrightattack.size());
+			m_brush_enemy.texture = m_spritesrightattack[spritesrightattack];
+		}
+		else {
+			// Player is to the left, draw the left attack sprite
+			int spritesleftattack = (int)fmod(animationtimer, m_spritesleftattack.size());
+			m_brush_enemy.texture = m_spritesleftattack[spritesleftattack];
+		}
+	}
 	else {
+		// Draw the current enemy sprite
 		int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 3.0f, m_spritesenemy1.size());
-		float offset_x = m_state->m_global_offset_x;
-		float offset_y = m_state->m_global_offset_y;
 		m_brush_enemy.texture = m_spritesenemy1[spritesenemy1];
-		graphics::drawRect(m_pos_x + offset_x, m_pos_y + offset_y, 1.0f, 1.0f, m_brush_enemy);
 	}
+
+	// Draw the enemy
+	float offset_x = m_state->m_global_offset_x;
+	float offset_y = m_state->m_global_offset_y;
+	graphics::drawRect(m_pos_x + offset_x, m_pos_y + offset_y, 1.0f, 1.0f, m_brush_enemy);
 
 	if (m_state->m_debugging)
 		debugDraw();
 }
+
 
 void Enemy::init()
 {
@@ -84,9 +98,27 @@ void Enemy::init()
 	m_spritesdeactivation.push_back(m_state->getFullAssetPath("PunkDeath4.png"));
 	m_spritesdeactivation.push_back(m_state->getFullAssetPath("PunkDeath5.png"));
 
+	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy1LookingLeft.png"));
+	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy2LookingLeft.png"));
+	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy3LookingLeft.png"));
+	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy4LookingLeft.png"));
+	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy5LookingLeft.png"));
+	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy6LookingLeft.png"));
+	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy7LookingLeft.png"));
+	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy8LookingLeft.png"));
+
+	
+	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy1LookingRight.png"));
+	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy2LookingRight.png"));
+	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy3LookingRight.png"));
+	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy4LookingRight.png"));
+	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy5LookingRight.png"));
+	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy6LookingRight.png"));
+	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy7LookingRight.png"));
+	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy8LookingRight.png"));
 
 	// Adjust width for finer collision detection
-	m_width = 0.5f;
+	m_width = 0.7f;
 	m_height = 1.05f;
 }
 

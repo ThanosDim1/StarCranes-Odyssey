@@ -181,9 +181,11 @@ void Level::checkCollisionsMovingObjects() {
 	if (m_state->getEnemy() != nullptr) {
 		CollisionObject& enemy = *m_state->getEnemy();
 		if (m_state->getPlayer()->intersectSideways(enemy)) {
-	
-			float delta_time = graphics::getDeltaTime() / 1000.0f;
 
+			float delta_time = graphics::getDeltaTime() / 1000.0f;
+			m_state->getEnemy()->m_vx = 0.0f;
+			// Set isCollidingPlayerEnemy to true
+			isCollidingPlayerEnemy = true;
 			// Apply deceleration force to player's velocity
 			if (graphics::getKeyState(graphics::SCANCODE_A)) {
 				m_state->getPlayer()->m_vx = 3.0f;
@@ -194,9 +196,14 @@ void Level::checkCollisionsMovingObjects() {
 		}
 		else {
 			m_state->getPlayer()->m_vx = 5.0f;
+			m_state->getEnemy()->m_vx = 2.0f;
+			isCollidingSidewaysEnemy = false;
+			// Set isCollidingPlayerEnemy to false
+			isCollidingPlayerEnemy = false;
 		}
 	}
 }
+
 
 void Level::init()
 {
@@ -234,4 +241,3 @@ void Level::init()
 	SETCOLOR(m_block_brush_debug.outline_color, 0.3f, 1.0f, 0.2f);
 }
 
-//fdgfd
