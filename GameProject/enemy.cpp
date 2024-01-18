@@ -9,13 +9,12 @@ void Enemy::update(float dt)
 {
 
 	float delta_time = dt / 1000.0f;
-	//std::printf("\n%f,%f,Player %f,%f",m_pos_x, m_pos_y,m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y);
 
 	if (m_isDeactivating)
 	{
 
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the enemy
-		if (animationtimer >= 60)
+		if (animationtimerfordeath >= 5)
 		{
 			delete m_state->getEnemy();
 			setActive(false);
@@ -44,8 +43,9 @@ void Enemy::draw()
 
 	if (m_isDeactivating) {
 		// Draw the current deactivation sprite
-		int spritesdeactivation = (int)fmod(animationtimer, m_spritesdeactivation.size());
+		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
 		m_brush_enemy.texture = m_spritesdeactivation[spritesdeactivation];
+		animationtimerfordeath += 0.05f;
 	}
 	else if (m_state->getLevel()->isCollidingPlayerEnemy) {
 		// Determine whether the player is to the left or right of the enemy
@@ -62,7 +62,7 @@ void Enemy::draw()
 	}
 	else {
 		// Draw the current enemy sprite
-		int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 3.0f, m_spritesenemy1.size());
+		int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 4.0f, m_spritesenemy1.size());
 		m_brush_enemy.texture = m_spritesenemy1[spritesenemy1];
 	}
 

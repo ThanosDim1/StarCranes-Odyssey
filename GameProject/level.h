@@ -13,9 +13,16 @@ class Level : public GameObject
 {
 public:
 	graphics::Brush m_brush_background;
+	graphics::Brush m_brush_health_system;
+
 
 	std::vector<GameObject*> m_static_objects;
 	std::list<GameObject*> m_enemy_objects;
+	std::vector<std::string> m_spriteshealthsystemfull;
+	std::vector<std::string> m_spriteshealthsystemalmosthalf;
+	std::vector<std::string> m_spriteshealthsystemhalf;
+	std::vector<std::string> m_spriteshealthsystemlastlife;
+	std::vector<std::string> m_spriteshealthsystemdeath;
 
 	// add some collidable blocks
 	std::vector<CollisionObject> m_blocks;
@@ -31,6 +38,8 @@ public:
 	bool isCollidingSidewaysEnemy = false;
 	bool isCollidingDownEnemy = false;
 	bool isCollidingPlayerEnemy = false;
+	float animationtimerforhealthsystem = 0.0f;
+
 
 	// dedicated method to draw a block
 	void drawBlock(int i);

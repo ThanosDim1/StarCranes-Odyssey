@@ -10,19 +10,38 @@ void Player::update(float dt)
 	float delta_time = dt / 1000.0f;
 
 	movePlayer(dt);
+	hurtPlayer();
 
+	if (m_gameover) {
+		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the player
+		if (animationtimerfordeath >= 6)
+		{
+			delete m_state->getPlayer();
+			setActive(false);
+		}
+	}
+	else {
 	// update offset for other game objects
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
 	m_state->m_global_offset_y = m_state->getCanvasHeight() / 2.0f - m_pos_y;
 
 
 	GameObject::update(dt);
+	}
 
 }
 
 void Player::draw()
 {	
-	animationtimer += 0.05f;
+	animationtimerforafk+= 0.05f;
+	
+	if (m_gameover) {
+		// Draw the current deactivation sprite
+		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
+		m_brush_player.texture = m_spritesdeactivation[spritesdeactivation];
+		animationtimerfordeath += 0.05f;
+	}
+	else
 	if (graphics::getKeyState(graphics::SCANCODE_W)) {
 		if (graphics::getKeyState(graphics::SCANCODE_D) && !graphics::getKeyState(graphics::SCANCODE_A)) {
 			int sprite_jumpright = (int)fmod(100.0f - m_pos_x * 1.5f, m_spritesjumpright.size());
@@ -42,7 +61,7 @@ void Player::draw()
 		m_brush_player.texture = m_spritesleft[sprite_left];
 	}
 	else {
-		int sprite_idle = (int)fmod(animationtimer, m_spritesidle.size());
+		int sprite_idle = (int)fmod(animationtimerforafk, m_spritesidle.size());
 		m_brush_player.texture = m_spritesidle[sprite_idle];
 	}
 	//Draw Player
@@ -91,6 +110,13 @@ void Player::init()
 	m_spritesleft.push_back(m_state->getFullAssetPath("Biker_left4.png"));
 	m_spritesleft.push_back(m_state->getFullAssetPath("Biker_left5.png"));
 
+	m_spritesdeactivation.push_back(m_state->getFullAssetPath("BikerDeath1.png"));
+	m_spritesdeactivation.push_back(m_state->getFullAssetPath("BikerDeath2.png"));
+	m_spritesdeactivation.push_back(m_state->getFullAssetPath("BikerDeath3.png"));
+	m_spritesdeactivation.push_back(m_state->getFullAssetPath("BikerDeath4.png"));
+	m_spritesdeactivation.push_back(m_state->getFullAssetPath("BikerDeath5.png"));
+	m_spritesdeactivation.push_back(m_state->getFullAssetPath("BikerDeath6.png"));
+
 
 	// Adjust width for finer collision detection
 	m_width = 0.5f;
@@ -113,6 +139,11 @@ void Player::debugDraw()
 void Player::movePlayer(float dt)
 {
 	float delta_time = dt / 1000.0f;
+	
+	if (m_gameover) {
+		m_vx = 0.0f;
+		m_vy = 0.0f;
+	}
 
 	if (graphics::getKeyState(graphics::SCANCODE_A) && graphics::getKeyState(graphics::SCANCODE_D)) {
 		m_vx = 0.0f;
@@ -121,7 +152,7 @@ void Player::movePlayer(float dt)
 	if (graphics::getKeyState(graphics::SCANCODE_W))
 		if (m_state->getLevel()->getCollDown())
 			m_vy -= 7.0f;
-		
+
 	if (graphics::getKeyState(graphics::SCANCODE_A)) {
 		m_pos_x -= (delta_time * m_vx);
 	}
@@ -132,6 +163,22 @@ void Player::movePlayer(float dt)
 	m_vy += delta_time * m_gravity;
 
 	m_pos_y += delta_time * m_vy;
+}
 
-
+void Player::hurtPlayer() {
+	static float timer = 0.0f; // timer to keep track of time since collision started
+	if (m_state->getLevel()->isCollidingPlayerEnemy) {
+		timer += 0.5f; // increment timer by the elapsed time
+		if (timer >= 30.0f) { // if timer exceeds the enemy's attack animation duration
+			m_player_health -= 1; // player loses 1hp
+			if (m_player_health <= 0) { // if player's health is 0 or less
+				m_state->getPlayer()->m_gameover = true; // game over
+			}
+			timer = 0.0f; // reset timer
+		}
+		std::cout << "Player Health: " << m_player_health;
+	}
+	else {
+		timer = 0.0f; // reset timer if player is not colliding with enemy
+	}
 }
