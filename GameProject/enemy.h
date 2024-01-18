@@ -9,9 +9,10 @@ class Enemy : public CollisionObject, public GameObject
 	std::vector<std::string> m_spritesenemy1;
 	std::vector<std::string> m_spritesdeactivation;
 	std::vector<std::string> m_spritesleftattack;
-std::vector<std::string> m_spritesrightattack;
+	std::vector<std::string> m_spritesrightattack;
 	int m_currentDeactivationSprite = 0;
-	float animationtimer =0.0f;
+	float animationtimerfordeath =0.0f;
+	float animationtimer = 0.0f;
 	
 	graphics::Brush m_brush_enemy;
 	const float m_accel_horizontal = 20.0f;

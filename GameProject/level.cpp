@@ -41,6 +41,8 @@ void Level::update(float dt)
 
 void Level::draw()
 {
+	animationtimerforhealthsystem += 0.05f;
+
 	float w = m_state->getCanvasWidth();
 	float h = m_state->getCanvasHeight();
 
@@ -50,6 +52,7 @@ void Level::draw()
 	//draw background
 	graphics::drawRect(offset_x, offset_y, 6.0f * w, 3.0f * h, m_brush_background);
 
+	
 	// draw blocks
 	for (int i = 0; i < m_blocks.size(); i++)
 	{
@@ -64,6 +67,29 @@ void Level::draw()
 	if (m_state->getPlayer()->isActive())
 		m_state->getPlayer()->draw();
 
+	//draw health system
+	if (m_state->getPlayer()->m_player_health ==5){
+		int spriteshealthsystemfull = (int)fmod(animationtimerforhealthsystem, m_spriteshealthsystemfull .size());
+		m_brush_health_system.texture = m_spriteshealthsystemfull[spriteshealthsystemfull];
+	}
+	else if (m_state->getPlayer()->m_player_health == 4) {
+		int spriteshealthsystemalmostfull = (int)fmod(animationtimerforhealthsystem, m_spriteshealthsystemalmosthalf.size());
+		m_brush_health_system.texture = m_spriteshealthsystemalmosthalf[spriteshealthsystemalmostfull];
+	}
+	else if (m_state->getPlayer()->m_player_health == 3) {
+		int spriteshealthsystemhalf = (int)fmod(animationtimerforhealthsystem, m_spriteshealthsystemhalf.size());
+		m_brush_health_system.texture = m_spriteshealthsystemhalf[spriteshealthsystemhalf];
+	}
+	else if(m_state->getPlayer()->m_player_health == 2 || m_state->getPlayer()->m_player_health == 1){
+		int spriteshealthsystemlastlife = (int)fmod(animationtimerforhealthsystem, m_spriteshealthsystemlastlife.size());
+		m_brush_health_system.texture = m_spriteshealthsystemlastlife[spriteshealthsystemlastlife];
+	}
+	else {
+		int spriteshealthsystemdeath = (int)fmod(animationtimerforhealthsystem, m_spriteshealthsystemdeath.size());
+		m_brush_health_system.texture = m_spriteshealthsystemdeath[spriteshealthsystemdeath];
+	}
+
+	graphics::drawRect(1.3, 1.1, 1.8, 0.5 , m_brush_health_system);
 }
 
 Level::Level(const std::string& name)
@@ -71,6 +97,8 @@ Level::Level(const std::string& name)
 {
 	m_brush_background.outline_opacity = 0.0f;
 	m_brush_background.texture = m_state->getFullAssetPath("background7.png");
+
+	m_brush_health_system.outline_opacity = 0.0f;
 
 }
 
@@ -239,5 +267,70 @@ void Level::init()
 	m_block_brush_debug.fill_opacity = 0.1f;
 	SETCOLOR(m_block_brush_debug.fill_color, 0.1f, 1.0f, 0.1f);
 	SETCOLOR(m_block_brush_debug.outline_color, 0.3f, 1.0f, 0.2f);
+
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full1.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full2.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full3.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full4.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full5.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full6.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full7.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full8.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full9.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full10.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full11.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full12.png"));
+	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full13.png"));
+
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf1.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf2.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf3.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf4.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf5.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf6.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf7.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf8.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf9.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf10.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf11.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf12.png"));
+	m_spriteshealthsystemalmosthalf.push_back(m_state->getFullAssetPath("almosthalf13.png"));
+
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half1.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half2.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half3.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half4.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half5.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half6.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half7.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half8.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half9.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half10.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half11.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half12.png"));
+	m_spriteshealthsystemhalf.push_back(m_state->getFullAssetPath("half13.png"));
+
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife1.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife2.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife3.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife4.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife5.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife6.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife7.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife8.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife9.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife10.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife11.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife12.png"));
+	m_spriteshealthsystemlastlife.push_back(m_state->getFullAssetPath("lastlife13.png"));
+
+	m_spriteshealthsystemdeath.push_back(m_state->getFullAssetPath("death1.png"));
+	m_spriteshealthsystemdeath.push_back(m_state->getFullAssetPath("death2.png"));
+	
+	
+		
+
+
+
 }
 

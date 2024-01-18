@@ -13,31 +13,35 @@ class Player : public CollisionObject, public GameObject
 	std::vector<std::string> m_spritesidle;
 	std::vector<std::string> m_spritesjumpright;
 	std::vector<std::string> m_spritesjumpleft;
+	std::vector<std::string> m_spritesdeactivation;
 
 	graphics::Brush m_brush_player;
 	const float m_accel_horizontal = 20.0f;
 	const float m_accel_vertical = 300.1f;
 	const float m_max_velocity = 5.0f;
 	const float m_gravity = 12.0f;
+	float animationtimerfordeath = 0.0f;
+	float animationtimerforafk = 0.0f;
 	
 
 public:
 	float m_vx = 5.0f;
 	float m_vy = 0.0f;
-	int m_player_health = 10;
+	int m_player_health = 5;
+	bool m_gameover = false;
 
 public:
 	void update(float dt) override;
 	void draw() override;
 	void init() override;
 	Player(std::string name) : GameObject(name) {}
-	float animationtimer = 0.0f;
-
 
 protected:
 	void debugDraw();
 
 	// dynamic motion control
 	void movePlayer(float dt);
+	//dynamic health control
+	void hurtPlayer();
 
 };
