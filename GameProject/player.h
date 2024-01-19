@@ -14,7 +14,9 @@ class Player : public CollisionObject, public GameObject
 	std::vector<std::string> m_spritesjumpright;
 	std::vector<std::string> m_spritesjumpleft;
 	std::vector<std::string> m_spritesdeactivation;
-
+	std::vector<std::string> m_spritesattackwithkniferight;
+	std::vector<std::string> m_spritesattackwithknifeleft;
+	graphics::MouseState mouse;
 	graphics::Brush m_brush_player;
 	const float m_accel_horizontal = 20.0f;
 	const float m_accel_vertical = 300.1f;
@@ -22,6 +24,8 @@ class Player : public CollisionObject, public GameObject
 	const float m_gravity = 12.0f;
 	float animationtimerfordeath = 0.0f;
 	float animationtimerforafk = 0.0f;
+	float animationtimerforattackwithknife = 0.0f;
+	bool isAnimationPlaying = false;
 	
 
 public:
@@ -43,5 +47,6 @@ protected:
 	void movePlayer(float dt);
 	//dynamic health control
 	void hurtPlayer();
+	void attackEnemy();
 
 };

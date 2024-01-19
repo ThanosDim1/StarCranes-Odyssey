@@ -153,6 +153,23 @@ void Level::checkCollisions()
 			isCollidingDown = false;
 		}
 	}
+
+	for (auto& block : m_blocks)
+	{
+		float offset = 0.0f;
+		if (offset = m_state->getPlayer()->intersectUp(block))
+		{
+			isCollidingUp = true;
+			m_state->getPlayer()->m_vy = 0.0f;
+			break;
+		}
+		else
+		{
+			isCollidingUp = false;
+		}
+	}
+
+
 }
 
 void Level::checkCollisionsForEnemy()

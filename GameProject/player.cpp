@@ -11,6 +11,12 @@ void Player::update(float dt)
 
 	movePlayer(dt);
 	hurtPlayer();
+	graphics::getMouseState(mouse);
+	
+	if (mouse.button_left_pressed && !isAnimationPlaying && !graphics::getKeyState(graphics::SCANCODE_A) && !graphics::getKeyState(graphics::SCANCODE_D)) {
+		isAnimationPlaying = true;
+		animationtimerforattackwithknife = 0; // Reset the animation timer
+	}
 
 	if (m_gameover) {
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the player
@@ -34,7 +40,26 @@ void Player::update(float dt)
 void Player::draw()
 {	
 	animationtimerforafk+= 0.05f;
-	
+
+	if (isAnimationPlaying) {
+		if (m_state->getPlayer()->m_pos_x > m_state->getEnemy()->m_pos_x) {
+			int spritesattackwithknifeleft = (int)fmod(animationtimerforattackwithknife, m_spritesattackwithknifeleft.size());
+			m_brush_player.texture = m_spritesattackwithknifeleft[spritesattackwithknifeleft];
+		}
+		else {
+			int spritesattackwithkniferight = (int)fmod(animationtimerforattackwithknife, m_spritesattackwithkniferight.size());
+			m_brush_player.texture = m_spritesattackwithkniferight[spritesattackwithkniferight];
+		}
+
+		// Increment the animation timer
+		animationtimerforattackwithknife += 0.1f;
+
+		// If the animation has finished, reset the isAnimationPlaying variable
+		if (animationtimerforattackwithknife >= std::max(m_spritesattackwithkniferight.size(), m_spritesattackwithknifeleft.size())) {
+			isAnimationPlaying = false;
+		}
+	}
+	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, m_brush_player);
 	if (m_gameover) {
 		// Draw the current deactivation sprite
 		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
@@ -64,12 +89,14 @@ void Player::draw()
 		int sprite_idle = (int)fmod(animationtimerforafk, m_spritesidle.size());
 		m_brush_player.texture = m_spritesidle[sprite_idle];
 	}
+
 	//Draw Player
-	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, m_brush_player);
+	
 
 	if (m_state->m_debugging)
 		debugDraw();
 
+	
 }
 
 void Player::init()
@@ -117,10 +144,23 @@ void Player::init()
 	m_spritesdeactivation.push_back(m_state->getFullAssetPath("BikerDeath5.png"));
 	m_spritesdeactivation.push_back(m_state->getFullAssetPath("BikerDeath6.png"));
 
+	m_spritesattackwithkniferight.push_back(m_state->getFullAssetPath("AttackKnife1R.png"));
+	m_spritesattackwithkniferight.push_back(m_state->getFullAssetPath("AttackKnife2R.png"));
+	m_spritesattackwithkniferight.push_back(m_state->getFullAssetPath("AttackKnife3R.png"));
+	m_spritesattackwithkniferight.push_back(m_state->getFullAssetPath("AttackKnife4R.png"));
+	m_spritesattackwithkniferight.push_back(m_state->getFullAssetPath("AttackKnife5R.png"));
+	m_spritesattackwithkniferight.push_back(m_state->getFullAssetPath("AttackKnife6R.png"));
+
+	m_spritesattackwithknifeleft.push_back(m_state->getFullAssetPath("AttackKnifeL1.png"));
+	m_spritesattackwithknifeleft.push_back(m_state->getFullAssetPath("AttackKnifeL2.png"));
+	m_spritesattackwithknifeleft.push_back(m_state->getFullAssetPath("AttackKnifeL3.png"));
+	m_spritesattackwithknifeleft.push_back(m_state->getFullAssetPath("AttackKnifeL4.png"));
+	m_spritesattackwithknifeleft.push_back(m_state->getFullAssetPath("AttackKnifeL5.png"));
+	m_spritesattackwithknifeleft.push_back(m_state->getFullAssetPath("AttackKnifeL6.png"));
 
 	// Adjust width for finer collision detection
 	m_width = 0.5f;
-	m_height = 1.05f;
+	m_height = 1.0f;
 }
 
 
@@ -145,6 +185,7 @@ void Player::movePlayer(float dt)
 		m_vy = 0.0f;
 	}
 
+	
 	if (graphics::getKeyState(graphics::SCANCODE_A) && graphics::getKeyState(graphics::SCANCODE_D)) {
 		m_vx = 0.0f;
 	}
@@ -182,3 +223,4 @@ void Player::hurtPlayer() {
 		timer = 0.0f; // reset timer if player is not colliding with enemy
 	}
 }
+
