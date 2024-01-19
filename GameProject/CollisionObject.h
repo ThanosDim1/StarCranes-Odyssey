@@ -37,8 +37,7 @@ struct CollisionObject
     {
         if (fabs(m_pos_x - other.m_pos_x) * 2.0f >= (m_width + other.m_width) || m_pos_y < other.m_pos_y)
             return 0.0f;
-        float intersectDistance = m_pos_y + (m_height / 2.0f) - other.m_pos_y - (other.m_height / 2.0f);
-        return intersectDistance > 0.0f && intersectDistance < m_height ? std::max<float>(0.0f, intersectDistance) : 0.0f;
+        return std::max<float>(0.0f, m_pos_y + (m_height / 2.0f) - (other.m_pos_y + other.m_height / 2.0f));
     }
 
 

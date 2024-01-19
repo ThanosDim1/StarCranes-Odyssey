@@ -31,6 +31,7 @@ class Player : public CollisionObject, public GameObject
 public:
 	float m_vx = 5.0f;
 	float m_vy = 0.0f;
+	float offsetmvy;
 	int m_player_health = 5;
 	bool m_gameover = false;
 

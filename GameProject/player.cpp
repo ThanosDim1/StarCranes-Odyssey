@@ -190,9 +190,21 @@ void Player::movePlayer(float dt)
 		m_vx = 0.0f;
 	}
 
-	if (graphics::getKeyState(graphics::SCANCODE_W))
-		if (m_state->getLevel()->getCollDown())
-			m_vy -= 7.0f;
+	if (graphics::getKeyState(graphics::SCANCODE_W)) {
+		if (m_state->getLevel()->getCollDown()) {
+			std::cout << "\n" << offsetmvy;
+			if (offsetmvy == 2) {
+				m_vy -= 5.0f;
+			}
+			else if (offsetmvy == 1) {
+				m_vy -= 2.0f;
+			}
+			else {
+				m_vy -= 7.0f;
+			}
+		}
+		offsetmvy = 0.0f;
+	}
 
 	if (graphics::getKeyState(graphics::SCANCODE_A)) {
 		m_pos_x -= (delta_time * m_vx);
