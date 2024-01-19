@@ -35,10 +35,12 @@ public:
 	float m_center_y = 5.0f;
 	bool isCollidingSideways = false;
 	bool isCollidingDown = false;
+	bool isCollidingUp = false;	
 	bool isCollidingSidewaysEnemy = false;
 	bool isCollidingDownEnemy = false;
 	bool isCollidingPlayerEnemy = false;
 	float animationtimerforhealthsystem = 0.0f;
+	
 
 
 	// dedicated method to draw a block
