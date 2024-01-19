@@ -33,6 +33,7 @@ public:
 	float m_vy = 0.0f;
 	int m_player_health = 5;
 	bool m_gameover = false;
+	float offsetmvy;
 
 public:
 	void update(float dt) override;

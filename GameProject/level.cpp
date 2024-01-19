@@ -169,7 +169,14 @@ void Level::checkCollisions()
 		}
 	}
 
+	for (auto& block : m_blocks)
+	{
 
+		if (m_state->getPlayer()->intersectUp(block))
+		{
+			m_state->getPlayer()->offsetmvy = m_state->getPlayer()->intersectUp(block);
+		}
+	}
 }
 
 void Level::checkCollisionsForEnemy()

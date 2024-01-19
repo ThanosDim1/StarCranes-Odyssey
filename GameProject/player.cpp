@@ -190,9 +190,27 @@ void Player::movePlayer(float dt)
 		m_vx = 0.0f;
 	}
 
-	if (graphics::getKeyState(graphics::SCANCODE_W))
-		if (m_state->getLevel()->getCollDown())
-			m_vy -= 7.0f;
+	if (graphics::getKeyState(graphics::SCANCODE_W)) {
+		if (m_state->getLevel()->getCollDown()) {
+			std::cout << "\n" << offsetmvy;
+			if (offsetmvy == 2) {
+				m_vy -= 5.0f;
+			}
+			else if (offsetmvy == 1) {
+				m_vy -= 2.0f;
+			}
+			else {
+				m_vy -= 7.0f;
+			}
+		}
+		offsetmvy = 0.0f;
+	}
+	float intersectUp(CollisionObject & other)
+	{
+		if (fabs(m_pos_x - other.m_pos_x) * 2.0f >= (m_width + other.m_width) || m_pos_y < other.m_pos_y)
+			return 0.0f;
+		return std::max<float>(0.0f, m_pos_y + (m_height / 2.0f) - (other.m_pos_y + other.m_height / 2.0f));
+	}
 
 	if (graphics::getKeyState(graphics::SCANCODE_A)) {
 		m_pos_x -= (delta_time * m_vx);
