@@ -7,10 +7,11 @@
 
 void Enemy::update(float dt)
 {
-
+	hurtEnemy();
 	float delta_time = dt / 1000.0f;
-
-	if (m_isDeactivating)
+	graphics::getMouseState(mouse);
+	
+	if (m_isDeactivating || m_gameover)
 	{
 
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the enemy
@@ -41,7 +42,8 @@ void Enemy::draw()
 {
 	animationtimer += 0.08f;
 
-	if (m_isDeactivating) {
+
+	if (m_isDeactivating || m_gameover) {
 		// Draw the current deactivation sprite
 		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
 		m_brush_enemy.texture = m_spritesdeactivation[spritesdeactivation];
@@ -134,4 +136,15 @@ void Enemy::debugDraw()
 	float offset_x = m_state->m_global_offset_x;
 	float offset_y = m_state->m_global_offset_y;
 	graphics::drawRect(m_pos_x +offset_x , m_pos_y + offset_y, m_width, m_height, debug_brush);
+}
+
+
+void Enemy::hurtEnemy() {
+	if (m_state->getLevel()->isCollidingPlayerEnemy && mouse.button_left_pressed) {
+		m_enemy_health -= 1; // enemy loses 2hp
+		if (m_enemy_health <= 0) { // if player's health is 0 or less
+			m_state->getEnemy()->m_gameover = true; // game over
+		}
+
+	}
 }
