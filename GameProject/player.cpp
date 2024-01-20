@@ -38,6 +38,7 @@ void Player::update(float dt)
 }
 
 void Player::draw()
+
 {	
 	animationtimerforafk+= 0.05f;
 
@@ -59,7 +60,7 @@ void Player::draw()
 			isAnimationPlaying = false;
 		}
 	}
-	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, m_brush_player);
+	
 	if (m_gameover) {
 		// Draw the current deactivation sprite
 		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
@@ -89,14 +90,26 @@ void Player::draw()
 		int sprite_idle = (int)fmod(animationtimerforafk, m_spritesidle.size());
 		m_brush_player.texture = m_spritesidle[sprite_idle];
 	}
+	
+	/*if (m_player_health == 1) {
+		if (static_cast<int>(timer) % 2 == 0) { // flash every 1 second
+			graphics::Brush low_life_brush;
+			SETCOLOR(low_life_brush.fill_color, 1.0f, 0.1f, 0.1f);
+			SETCOLOR(low_life_brush.outline_color, 1.0f, 0.1f, 0.1f);
+			low_life_brush.fill_opacity = 0.4f;
+			low_life_brush.outline_opacity = 1.0f;
+		}
+		graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, low_life_brush);
+	}*/
 
 	//Draw Player
-	
+	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, 1.0f, 1.0f, m_brush_player);
 
 	if (m_state->m_debugging)
 		debugDraw();
 
 	
+
 }
 
 void Player::init()
@@ -221,7 +234,7 @@ void Player::movePlayer(float dt)
 void Player::hurtPlayer() {
 	static float timer = 0.0f; // timer to keep track of time since collision started
 	if (m_state->getLevel()->isCollidingPlayerEnemy) {
-		timer += 0.5f; // increment timer by the elapsed time
+		timer += 0.25f; // increment timer by the elapsed time
 		if (timer >= 30.0f) { // if timer exceeds the enemy's attack animation duration
 			m_player_health -= 1; // player loses 1hp
 			if (m_player_health <= 0) { // if player's health is 0 or less
@@ -234,5 +247,7 @@ void Player::hurtPlayer() {
 	else {
 		timer = 0.0f; // reset timer if player is not colliding with enemy
 	}
+	
+
 }
 

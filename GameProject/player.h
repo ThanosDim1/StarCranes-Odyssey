@@ -18,6 +18,7 @@ class Player : public CollisionObject, public GameObject
 	std::vector<std::string> m_spritesattackwithknifeleft;
 	graphics::MouseState mouse;
 	graphics::Brush m_brush_player;
+	graphics::Brush low_life_brush;
 	const float m_accel_horizontal = 20.0f;
 	const float m_accel_vertical = 300.1f;
 	const float m_max_velocity = 5.0f;

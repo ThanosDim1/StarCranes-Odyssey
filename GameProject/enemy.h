@@ -13,12 +13,14 @@ class Enemy : public CollisionObject, public GameObject
 	int m_currentDeactivationSprite = 0;
 	float animationtimerfordeath =0.0f;
 	float animationtimer = 0.0f;
-	
+	graphics::MouseState mouse;
 	graphics::Brush m_brush_enemy;
 	const float m_accel_horizontal = 20.0f;
 	const float m_accel_vertical = 300.1f;
 	const float m_max_velocity = 2.0f;
 	const float m_gravity = 12.0f;
+	int m_enemy_health = 1;
+	bool m_gameover = false;
 
 public:
 	float m_vx = 2.0f;
@@ -34,6 +36,7 @@ public:
 
 protected:
 	void debugDraw();
+	void hurtEnemy();
 
 };
 
