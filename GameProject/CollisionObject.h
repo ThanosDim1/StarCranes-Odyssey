@@ -40,9 +40,6 @@ struct CollisionObject
         return std::max<float>(0.0f, m_pos_y + (m_height / 2.0f) - (other.m_pos_y + other.m_height / 2.0f));
     }
 
-
-
-
     /** Detects a horizontal intersection this Box is beside a target box (other).
     *   and reports the adjustment offset so that the two boxes are separated.
     *
