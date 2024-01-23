@@ -7,30 +7,31 @@
 
 void Enemy::update(float dt)
 {
+
 	hurtEnemy();
 	float delta_time = dt / 1000.0f;
 	graphics::getMouseState(mouse);
-	
-	if (m_isDeactivating || m_gameover)
+
+	if (this->m_isDeactivating || this->m_gameover)
 	{
 
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the enemy
 		if (animationtimerfordeath >= 5)
 		{
-			delete m_state->getEnemy();
-			setActive(false);
+			delete this;
+			this->setActive(false);
 		}
 	}
 
 	else
 	{
 		// Move left at a constant speed
-		m_pos_x -= (m_vx * delta_time);
+		this->m_pos_x -= (this->m_vx * delta_time);
 
 
 		//Stimulate gravity
-		m_vy += m_gravity * delta_time;
-		m_pos_y += m_vy * delta_time;
+		this->m_vy += m_gravity * delta_time;
+		this->m_pos_y += this->m_vy * delta_time;
 
 		GameObject::update(dt);
 
@@ -42,14 +43,13 @@ void Enemy::draw()
 {
 	animationtimer += 0.08f;
 
-
-	if (m_isDeactivating || m_gameover) {
+	if (this->m_isDeactivating || this->m_gameover) {
 		// Draw the current deactivation sprite
 		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
 		m_brush_enemy.texture = m_spritesdeactivation[spritesdeactivation];
 		animationtimerfordeath += 0.05f;
 	}
-	else if (m_state->getLevel()->isCollidingPlayerEnemy) {
+	else if (this->isCollidingPlayerEnemy) {
 		// Determine whether the player is to the left or right of the enemy
 		if (m_state->getPlayer()->m_pos_x > m_pos_x) {
 			// Player is to the right, draw the right attack sprite
@@ -71,19 +71,15 @@ void Enemy::draw()
 	// Draw the enemy
 	float offset_x = m_state->m_global_offset_x;
 	float offset_y = m_state->m_global_offset_y;
-	graphics::drawRect(m_pos_x + offset_x, m_pos_y + offset_y, 1.0f, 1.0f, m_brush_enemy);
+	graphics::drawRect(this->m_pos_x + offset_x, this->m_pos_y + offset_y, 1.0f, 1.0f, m_brush_enemy);
 
 	if (m_state->m_debugging)
-		debugDraw();
+		this->debugDraw();
 }
 
 
 void Enemy::init()
 {
-	// stage 1
-	m_pos_x = 5.0f;
-	m_pos_y = 5.0f;
-
 
 	m_brush_enemy.fill_opacity = 1.0f;
 	m_brush_enemy.outline_opacity = 0.0f;
@@ -109,7 +105,7 @@ void Enemy::init()
 	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy7LookingLeft.png"));
 	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy8LookingLeft.png"));
 
-	
+
 	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy1LookingRight.png"));
 	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy2LookingRight.png"));
 	m_spritesrightattack.push_back(m_state->getFullAssetPath("Enemy3LookingRight.png"));
@@ -135,16 +131,15 @@ void Enemy::debugDraw()
 	debug_brush.outline_opacity = 1.0f;
 	float offset_x = m_state->m_global_offset_x;
 	float offset_y = m_state->m_global_offset_y;
-	graphics::drawRect(m_pos_x +offset_x , m_pos_y + offset_y, m_width, m_height, debug_brush);
+	graphics::drawRect(m_pos_x + offset_x, m_pos_y + offset_y, m_width, m_height, debug_brush);
 }
 
-
 void Enemy::hurtEnemy() {
-	if (m_state->getLevel()->isCollidingPlayerEnemy && mouse.button_left_pressed) {
-		m_enemy_health -= 1; // enemy loses 2hp
-		if (m_enemy_health <= 0) { // if player's health is 0 or less
-			m_state->getEnemy()->m_gameover = true; // game over
+	if (this->isCollidingPlayerEnemy && mouse.button_left_pressed) {
+		this->m_enemy_health -= 1; // enemy loses 2hp
+		if (this->m_enemy_health <= 0) { // if player's health is 0 or less
+			this->m_gameover = true; // game over
+			this->m_isDeactivating = true;
 		}
-
 	}
 }

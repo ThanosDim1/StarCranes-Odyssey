@@ -7,6 +7,7 @@
 #include <sgg/graphics.h>
 #include "player.h"
 #include "enemy.h"
+#include <memory>
 
 
 class Level : public GameObject
@@ -27,20 +28,15 @@ public:
 	// add some collidable blocks
 	std::vector<CollisionObject> m_blocks;
 	std::vector<std::string> m_block_names;
+	std::vector<std::unique_ptr<Enemy>> enemies;
 	const float m_block_size = 1.0f;
 	graphics::Brush m_block_brush;
 	graphics::Brush m_block_brush_debug;
 
 	float m_center_x = 5.0f;
 	float m_center_y = 5.0f;
-	bool isCollidingSideways = false;
-	bool isCollidingDown = false;
-	bool isCollidingUp = false;	
-	bool isCollidingSidewaysEnemy = false;
-	bool isCollidingDownEnemy = false;
-	bool isCollidingPlayerEnemy = false;
 	float animationtimerforhealthsystem = 0.0f;
-	
+
 
 
 	// dedicated method to draw a block
@@ -51,15 +47,12 @@ public:
 	void checkCollisionsForEnemy();
 
 	void checkCollisionsMovingObjects();
-	
+
 
 public:
 	void update(float dt) override;
 	void draw() override;
 	void init() override;
-
-	bool getCollSideways() { return isCollidingSideways; }
-	bool getCollDown() { return isCollidingDown; }
 
 	Level(const std::string& name = "Level0");
 	~Level() override;

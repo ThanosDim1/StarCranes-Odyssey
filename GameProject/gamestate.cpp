@@ -25,6 +25,7 @@ GameState* GameState::getInstance()
 	return m_unique_instance;
 }
 
+
 bool GameState::init()
 {
 	m_current_level = new Level("1.lvl");
@@ -32,9 +33,7 @@ bool GameState::init()
 
 	m_player = new Player("Player");
 	m_player->init();
-	
-	m_enemy = new Enemy("Enemy");
-	m_enemy->init();
+
 
 	graphics::preloadBitmaps(getAssetDir());
 

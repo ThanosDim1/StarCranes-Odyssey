@@ -1,5 +1,4 @@
 #include <sgg/graphics.h>
-
 #include "gamestate.h"
 
 void draw()
@@ -11,7 +10,6 @@ void update(float dt)
 {
     GameState::getInstance()->update(dt);
 }
-
 
 int main(int argc, char** argv)
 {
@@ -28,4 +26,3 @@ int main(int argc, char** argv)
     graphics::startMessageLoop();
     return 0;
 }
-
