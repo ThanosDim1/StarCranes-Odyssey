@@ -65,7 +65,7 @@ struct CollisionObject
         else
             return std::min<float>(0.0f, other.m_pos_x - (other.m_width / 2.0f) - m_pos_x - (m_width / 2.0f));
     }*/
- 
+
     /** Default ctor
     */
     CollisionObject() {}

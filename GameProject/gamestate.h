@@ -14,9 +14,12 @@ private:
 
 	class Level* m_current_level = 0;
 	class Player* m_player = 0;
-	class Enemy* m_enemy = 0;
+
 
 	GameState();
+
+protected:
+	bool m_active = true;
 
 public:
 	float m_global_offset_x = 0.0f;
@@ -24,9 +27,12 @@ public:
 
 	bool m_debugging = false;
 
+
 public:
 	~GameState();
 	static GameState* getInstance();
+
+	void EnemyPush();
 
 	bool init();
 	void draw();
@@ -40,6 +46,6 @@ public:
 
 	class Player* getPlayer() { return m_player; }
 	class Level* getLevel() { return m_current_level; }
-	class Enemy* getEnemy() { return m_enemy; }
+	void setActive(bool a) { m_active = a; }
 
 };
