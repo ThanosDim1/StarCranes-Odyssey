@@ -41,7 +41,7 @@ void Enemy::update(float dt)
 
 void Enemy::draw()
 {
-	animationtimer += 0.08f;
+	animationtimer += 0.13f;
 
 	if (this->m_isDeactivating || this->m_gameover) {
 		// Draw the current deactivation sprite
@@ -55,11 +55,14 @@ void Enemy::draw()
 			// Player is to the right, draw the right attack sprite
 			int spritesrightattack = (int)fmod(animationtimer, m_spritesrightattack.size());
 			m_brush_enemy.texture = m_spritesrightattack[spritesrightattack];
+			//graphics::playSound(m_state->getFullAssetPath("minecraft_hit_soundmp3converter.wav"), 0.08f);
+			
 		}
 		else {
 			// Player is to the left, draw the left attack sprite
 			int spritesleftattack = (int)fmod(animationtimer, m_spritesleftattack.size());
 			m_brush_enemy.texture = m_spritesleftattack[spritesleftattack];
+			//graphics::playSound(m_state->getFullAssetPath("minecraft_hit_soundmp3converter.wav"), 0.08f);
 		}
 	}
 	else {
@@ -135,7 +138,7 @@ void Enemy::debugDraw()
 }
 
 void Enemy::hurtEnemy() {
-	if (this->isCollidingPlayerEnemy && mouse.button_left_pressed) {
+	if (this->isCollidingPlayerEnemy && mouse.button_left_pressed && !graphics::getKeyState(graphics::SCANCODE_A) && !graphics::getKeyState(graphics::SCANCODE_D)) {
 		this->m_enemy_health -= 1; // enemy loses 2hp
 		if (this->m_enemy_health <= 0) { // if player's health is 0 or less
 			this->m_gameover = true; // game over

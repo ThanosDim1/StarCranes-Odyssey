@@ -153,6 +153,7 @@
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
     <ClInclude Include="level.h" />
+    <ClInclude Include="NonCollisionObject.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="util.h" />
