@@ -13,7 +13,7 @@ public:
 	void update(float dt) override;
 	void draw(float add);
 	void init() override;
-	saw(std::vector<std::string> m_saw_sprites, float m_pos_x, float m_pos_y) : AnimatedObjects(m_saw_sprites, m_pos_x, m_pos_y) {}
+	saw(float m_pos_x, float m_pos_y) : AnimatedObjects(m_pos_x, m_pos_y) {}
 
 };
 

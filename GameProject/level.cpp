@@ -48,6 +48,10 @@ void Level::drawNonCollisionBlock(int i)
 void Level::update(float dt)
 
 {
+	if (mn_saw->isActive()) {
+		mn_saw->update(dt);
+	}
+	
 	if (m_state->getPlayer()->isActive())
 		m_state->getPlayer()->update(dt);
 
@@ -57,7 +61,6 @@ void Level::update(float dt)
 			enemies[i]->update(dt);
 		}
 	}
-
 
 	checkCollisionsForEnemy();
 	checkCollisions();
@@ -90,6 +93,7 @@ void Level::draw()
 		drawNonCollisionBlock(i);
 	}
 
+	mn_saw->draw(0.8f);
 
 	for (int i = 0; i < enemies.size(); i++)
 	{
@@ -124,6 +128,8 @@ void Level::draw()
 	}
 
 	graphics::drawRect(1.3, 1.1, 1.8, 0.5, m_brush_health_system);
+
+	
 }
 
 Level::Level(const std::string& name)
@@ -334,6 +340,7 @@ void Level::init()
 	
 	};
 
+
 	for (int x = 0; x < 14; x++) {
 		for (int y = 0; y < 74; y++) {
 			if (non_coll1[x][y] != "0") {
@@ -342,8 +349,10 @@ void Level::init()
 			}
 		}
 	}
-	 
-	 for (int i = 0; i <= 2; i++) {
+
+	mn_saw->init();
+	
+	for (int i = 0; i <= 2; i++) {
 		enemies.push_back(std::make_unique<Enemy>("Enemy" + std::to_string(i), 5.0f * (i + 1), 6.0f));
 		enemies[i]->init();
 	}

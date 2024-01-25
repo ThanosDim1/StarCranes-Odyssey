@@ -9,6 +9,8 @@
 #include "enemy.h"
 #include <memory>
 #include "NonCollisionObject.h"
+#include "AnimatedObjects.h"
+#include "saw.h"
 
 
 
@@ -34,6 +36,9 @@ public:
 	//add some non collidable blocks
 	std::vector<NonCollisionObject> m_non_collidable_blocks;
 	std::vector<std::string> m_non_collidable_block_names;
+
+	AnimatedObjects* m_saw = new saw(5.0f,6.0f);
+	saw* mn_saw = dynamic_cast<saw*>(m_saw);
 
 	//add some enemies
 	std::vector<std::unique_ptr<Enemy>> enemies;

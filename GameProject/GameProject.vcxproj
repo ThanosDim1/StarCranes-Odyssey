@@ -139,15 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedObjects.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="saw.cpp" />
     <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedObjects.h" />
     <ClInclude Include="CollisionObject.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="gameobject.h" />
@@ -155,6 +158,7 @@
     <ClInclude Include="level.h" />
     <ClInclude Include="NonCollisionObject.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="saw.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>

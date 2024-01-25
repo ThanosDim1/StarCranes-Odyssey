@@ -11,7 +11,7 @@ void saw::update(float dt)
 void saw::draw(float add)
 {
 	add = 0.5f;
-	AnimatedObjects::draw(add);
+	AnimatedObjects::draw(add,m_sprites_saw);
 }
 
 void saw::init()
