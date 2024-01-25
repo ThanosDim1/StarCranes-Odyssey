@@ -8,6 +8,8 @@
 #include "player.h"
 #include "enemy.h"
 #include <memory>
+#include "NonCollisionObject.h"
+
 
 
 class Level : public GameObject
@@ -28,6 +30,12 @@ public:
 	// add some collidable blocks
 	std::vector<CollisionObject> m_blocks;
 	std::vector<std::string> m_block_names;
+
+	//add some non collidable blocks
+	std::vector<NonCollisionObject> m_non_collidable_blocks;
+	std::vector<std::string> m_non_collidable_block_names;
+
+	//add some enemies
 	std::vector<std::unique_ptr<Enemy>> enemies;
 	const float m_block_size = 1.0f;
 	graphics::Brush m_block_brush;
@@ -41,6 +49,7 @@ public:
 
 	// dedicated method to draw a block
 	void drawBlock(int i);
+	void drawNonCollisionBlock(int i);
 
 	// detect collisions
 	void checkCollisions();

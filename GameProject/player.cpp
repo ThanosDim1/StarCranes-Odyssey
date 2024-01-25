@@ -22,6 +22,7 @@ void Player::update(float dt)
 	if (mouse.button_left_pressed && !isAnimationPlaying && !graphics::getKeyState(graphics::SCANCODE_A) && !graphics::getKeyState(graphics::SCANCODE_D)) {
 		isAnimationPlaying = true;
 		animationtimerforattackwithknife = 0; // Reset the animation timer
+		graphics::playSound(m_state->getFullAssetPath("slashkut-108175.wav"), 0.24f);
 	}
 
 	if (m_gameover) {
@@ -95,7 +96,7 @@ void Player::draw()
 				}
 
 				// Increment the animation timer
-				animationtimerforattackwithknife += 0.1f;
+				animationtimerforattackwithknife += 0.05f;
 
 				// If the animation has finished, reset the isAnimationPlaying variable
 				if (animationtimerforattackwithknife >= std::max(m_spritesattackwithkniferight.size(), m_spritesattackwithknifeleft.size())) {
@@ -112,7 +113,7 @@ void Player::init()
 {
 	// stage 1
 	m_pos_x = -6.0f;
-	m_pos_y = 0.0f;
+	m_pos_y = 5.2f;
 
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
 	m_state->m_global_offset_y = m_state->getCanvasHeight() / 2.0f - m_pos_y;
@@ -232,9 +233,10 @@ void Player::hurtPlayer(Enemy* enemy) {
 	static float timer = 0.0f;
 
 	if (enemy->isCollidingPlayerEnemy) {
-		timer += 0.5f;
+		timer += 0.17f;
 		if (timer >= 30.0f) {
 			m_player_health -= 1;
+			graphics::playSound(m_state->getFullAssetPath("classic_hurt.wav"), 0.4f);
 			if (m_player_health <= 0) {
 				m_state->getPlayer()->m_gameover = true;
 			}
