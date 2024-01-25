@@ -7,18 +7,16 @@
 
 class AnimatedObjects : public GameObject, public CollisionObject {
 
-    std::vector<std::string> m_spritesanimatedobjects;
     float animationtimer = 0.0f;
     graphics::Brush m_brush_animatedobjects;
 
     public:
         void update(float dt) override;
-        void draw(float add);
+        void draw(float add, std::vector<std::string> m_spritesanimatedobjects);
         void init() override;
-        AnimatedObjects(std::vector<std::string> m_spritesanimatedobjects, float m_pos_x, float m_pos_y) {
+        AnimatedObjects(float m_pos_x, float m_pos_y) {
             this->m_pos_x = m_pos_x;
             this->m_pos_y = m_pos_y;
-            this->m_spritesanimatedobjects = m_spritesanimatedobjects;
         }
 
     protected:
