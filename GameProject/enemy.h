@@ -21,6 +21,7 @@ class Enemy : public CollisionObject, public GameObject
 	const float m_gravity = 12.0f;
 	int m_enemy_health = 1;
 	bool m_gameover = false;
+	
 
 public:
 	float m_vx = 2.0f;
@@ -29,6 +30,8 @@ public:
 	bool isCollidingSidewaysEnemy = false;
 	bool isCollidingDownEnemy = false;
 	bool isCollidingPlayerEnemy = false;
+	
+	//float collisionStartTime = 0.0f;
 
 public:
 	void update(float dt) override;
@@ -44,6 +47,7 @@ public:
 protected:
 	void debugDraw();
 	void hurtEnemy();
+	//void moveEnemy(float dt);
 
 };
 

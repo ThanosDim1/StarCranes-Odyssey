@@ -39,20 +39,27 @@ public:
 	bool isCollidingSideways = false;
 	bool isCollidingDown = false;
 	bool isCollidingUp = false;
+	bool playanimation = false;
 
 public:
 	void update(float dt) override;
 	void draw() override;
 	void init() override;
 	Player(std::string name) : GameObject(name) {}
-
+	bool openDoor();
 protected:
+
 	void debugDraw();
 
 	// dynamic motion control
 	void movePlayer(float dt);
-	void hurtPlayer(Enemy* enemy);
-	//dynamic health control
+
+	//damage control
 	void attackEnemy();
+
+	//health control
+	void hurtPlayer(Enemy* enemy);
+
+	
 
 };

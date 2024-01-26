@@ -11,6 +11,7 @@
 #include "NonCollisionObject.h"
 #include "AnimatedObjects.h"
 #include "saw.h"
+#include "LevelDoor1.h"
 
 
 
@@ -37,8 +38,20 @@ public:
 	std::vector<NonCollisionObject> m_non_collidable_blocks;
 	std::vector<std::string> m_non_collidable_block_names;
 
-	AnimatedObjects* m_saw = new saw(5.0f,6.0f);
-	saw* mn_saw = dynamic_cast<saw*>(m_saw);
+	AnimatedObjects* m_saw1 = new saw(7.0f,9.0f);
+	saw* mn_saw1 = dynamic_cast<saw*>(m_saw1);
+
+	AnimatedObjects* m_saw2 = new saw(8.0f, 9.0f);
+	saw* mn_saw2 = dynamic_cast<saw*>(m_saw2);
+
+	AnimatedObjects* m_saw3 = new saw(9.0f, 9.0f);
+	saw* mn_saw3 = dynamic_cast<saw*>(m_saw3);
+
+	AnimatedObjects* m_saw4 = new saw(6.0f, 9.0f);
+	saw* mn_saw4 = dynamic_cast<saw*>(m_saw4);
+
+	AnimatedObjects* m_leveldoor1= new LevelDoor1(45.0f, 5.0f);
+	LevelDoor1* mn_leveldoor1 = dynamic_cast<LevelDoor1*>(m_leveldoor1);
 
 	//add some enemies
 	std::vector<std::unique_ptr<Enemy>> enemies;
@@ -49,7 +62,8 @@ public:
 	float m_center_x = 5.0f;
 	float m_center_y = 5.0f;
 	float animationtimerforhealthsystem = 0.0f;
-
+	bool isCollidingLevelDoor1 = false;
+	bool isCollidingSaw = false;
 
 
 	// dedicated method to draw a block
@@ -59,6 +73,8 @@ public:
 	// detect collisions
 	void checkCollisions();
 	void checkCollisionsForEnemy();
+	void checkCollisionPlayerDoor();
+	void checkCollisionPlayerSaw();
 
 	void checkCollisionsMovingObjects();
 
