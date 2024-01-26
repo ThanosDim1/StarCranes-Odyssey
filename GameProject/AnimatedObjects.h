@@ -18,9 +18,4 @@ class AnimatedObjects : public GameObject, public CollisionObject {
             this->m_pos_x = m_pos_x;
             this->m_pos_y = m_pos_y;
         }
-
-    protected:
-        void hurtPlayer();
-        void debugDraw();
-
 };

@@ -143,6 +143,7 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="level.cpp" />
+    <ClCompile Include="LevelDoor1.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="player.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
     <ClInclude Include="level.h" />
+    <ClInclude Include="LevelDoor1.h" />
     <ClInclude Include="NonCollisionObject.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="saw.h" />

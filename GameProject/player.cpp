@@ -104,16 +104,17 @@ void Player::draw()
 				}
 			}
 		}
-		if (m_state->m_debugging)
-			debugDraw();
+		
 	}
+	if (m_state->m_debugging)
+			debugDraw();
 }
 
 void Player::init()
 {
 	// stage 1
-	m_pos_x = -6.0f;
-	m_pos_y = 5.2f;
+	m_pos_x = -10.0f;
+	m_pos_y = 12.0f;
 
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
 	m_state->m_global_offset_y = m_state->getCanvasHeight() / 2.0f - m_pos_y;
@@ -177,13 +178,13 @@ void Player::init()
 void Player::debugDraw()
 {
 	graphics::Brush debug_brush;
-	SETCOLOR(debug_brush.fill_color, 1, 0.3f, 0);
+	SETCOLOR(debug_brush.fill_color, 1, 0, 0);
 	SETCOLOR(debug_brush.outline_color, 1, 0.1f, 0);
 	debug_brush.fill_opacity = 0.1f;
 	debug_brush.outline_opacity = 1.0f;
-	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, m_width, m_height, debug_brush);
-
+	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, m_width+0.2f, m_height, debug_brush);
 }
+
 
 void Player::movePlayer(float dt)
 {
@@ -225,12 +226,19 @@ void Player::movePlayer(float dt)
 
 	m_pos_y += delta_time * m_vy;
 
-	std::cout << m_vy << "\n";
 
 }
 
 void Player::hurtPlayer(Enemy* enemy) {
+	
 	static float timer = 0.0f;
+	
+	if (m_state->getLevel()->isCollidingSaw) {
+
+		m_player_health -= 5;
+		graphics::playSound(m_state->getFullAssetPath("SawElectHandCutti PE1067201 (mp3cut.net).wav"), 0.15f);
+		m_state->getPlayer()->m_gameover = true;
+	}
 
 	if (enemy->isCollidingPlayerEnemy) {
 		timer += 0.17f;
@@ -244,4 +252,13 @@ void Player::hurtPlayer(Enemy* enemy) {
 		}
 	}
 	// The unique_ptr will automatically clean up the enemy object when it goes out of scope
+}
+
+bool Player::openDoor() {
+	if (m_state->getLevel()->isCollidingLevelDoor1) {
+		if (graphics::getKeyState(graphics::SCANCODE_E)) {
+			return true;
+		}
+	}
+	return false;
 }

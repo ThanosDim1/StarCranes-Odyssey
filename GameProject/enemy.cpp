@@ -7,9 +7,11 @@
 
 void Enemy::update(float dt)
 {
-
-	hurtEnemy();
 	float delta_time = dt / 1000.0f;
+	hurtEnemy();
+	
+	//moveEnemy(dt);
+	
 	graphics::getMouseState(mouse);
 
 	if (this->m_isDeactivating || this->m_gameover)
@@ -146,3 +148,15 @@ void Enemy::hurtEnemy() {
 		}
 	}
 }
+
+/* Jumping System For Enemy when hes colliding
+void Enemy::moveEnemy(float dt) {
+	float delta_time = dt / 1000.0f;
+
+	if (this->isCollidingSidewaysEnemy) {
+		this->m_vy = 2.0f;
+	}
+	this->m_vy += delta_time * m_gravity;
+	this->m_pos_y += delta_time * m_vy;
+}
+*/
