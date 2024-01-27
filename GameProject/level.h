@@ -12,6 +12,7 @@
 #include "AnimatedObjects.h"
 #include "saw.h"
 #include "LevelDoor1.h"
+#include "KeyLevel.h"
 
 
 
@@ -41,6 +42,10 @@ public:
 	AnimatedObjects* m_leveldoor1= new LevelDoor1(45.0f, 5.0f);
 	LevelDoor1* mn_leveldoor1 = dynamic_cast<LevelDoor1*>(m_leveldoor1);
 
+	//add some keys
+	AnimatedObjects* m_keylevel = new KeyLevel(43.0f, 9.0f);
+	KeyLevel* mn_keylevel = dynamic_cast<KeyLevel*>(m_keylevel);
+
 	//add some enemies
 	std::vector<std::unique_ptr<Enemy>> enemies;
 	std::vector<std::unique_ptr<saw>> saws;
@@ -64,7 +69,7 @@ public:
 	void checkCollisionsForEnemy();
 	void checkCollisionPlayerDoor();
 	void checkCollisionPlayerSaw();
-
+	void checkCollisionPlayerKey();
 	void checkCollisionsMovingObjects();
 
 
