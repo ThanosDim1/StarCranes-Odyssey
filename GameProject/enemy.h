@@ -7,6 +7,7 @@
 class Enemy : public CollisionObject, public GameObject
 {
 	std::vector<std::string> m_spritesenemy1;
+	std::vector<std::string> m_spritesenemy2;
 	std::vector<std::string> m_spritesdeactivation;
 	std::vector<std::string> m_spritesleftattack;
 	std::vector<std::string> m_spritesrightattack;
@@ -22,7 +23,8 @@ class Enemy : public CollisionObject, public GameObject
 	const float m_gravity = 12.0f;
 	int m_enemy_health = 1;
 	bool m_enemygameover = false;
-	bool m_enemyrun = false;
+	bool m_enemyrunleft = false;
+	bool m_enemyrunright = false;
 	float animationtimeridle = 0.0f;
 
 public:
@@ -48,7 +50,8 @@ public:
 protected:
 	void debugDraw();
 	void hurtEnemy();
-	bool enemysight(float player_x,float player_y,float enemy_x, float enemy_y);
+	bool enemysightleft(float player_x,float player_y,float enemy_x, float enemy_y);
+	bool enemysightright(float player_x, float player_y, float enemy_x, float enemy_y);
 	//void moveEnemy(float dt);
 
 };

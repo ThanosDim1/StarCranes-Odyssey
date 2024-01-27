@@ -5,8 +5,13 @@
 #include <iostream>
 
 
-bool Enemy::enemysight(float player_x, float player_y, float enemy_x, float enemy_y) {
-	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)player_y + 2 && (int)player_x < (int)enemy_x ;
+
+bool Enemy::enemysightleft(float player_x, float player_y, float enemy_x, float enemy_y) {
+	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)enemy_y + 2 && (int)player_x > (int)enemy_x - 7 && (int)player_x < (int)enemy_x;
+}
+
+bool Enemy::enemysightright(float player_x, float player_y, float enemy_x, float enemy_y) {
+	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)enemy_y + 2 && (int)player_x < (int)enemy_x + 7 && (int)player_x > (int)enemy_x;
 }
 
 void Enemy::update(float dt)
@@ -18,7 +23,7 @@ void Enemy::update(float dt)
 
 	if (this->m_isDeactivating || this->m_enemygameover)
 	{
-		this->m_enemyrun = false;
+		this->m_enemyrunleft = false;
 
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the enemy
 		if (animationtimerfordeath >= 5)
@@ -29,9 +34,10 @@ void Enemy::update(float dt)
 	}
 	else
 	{
-		this->m_enemyrun = false;
-		if ((int)m_state->getPlayer()->m_pos_y > ((int)this->m_pos_y - 2) && (int)m_state->getPlayer()->m_pos_y < ((int)this->m_pos_y + 2) && (int)m_state->getPlayer()->m_pos_x < (int)this->m_pos_x) {
-			m_enemyrun = true;
+		this->m_enemyrunleft = false;
+		this->m_enemyrunright = false;
+		if (enemysightleft(m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y, this->m_pos_x, this->m_pos_y)) {
+			this->m_enemyrunleft = true;
 			// Move left at a constant speed
 			this->m_pos_x -= (this->m_vx * delta_time);
 
@@ -40,10 +46,19 @@ void Enemy::update(float dt)
 			this->m_vy += m_gravity * delta_time;
 			this->m_pos_y += this->m_vy * delta_time;
 		}
-		
-	GameObject::update(dt);
+		else if (enemysightright(m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y, this->m_pos_x, this->m_pos_y)) {
+			this->m_enemyrunright = true;
+			// Move left at a constant speed
+			this->m_pos_x += (this->m_vx * delta_time);
 
-	}
+
+			//Stimulate gravity
+			this->m_vy += m_gravity * delta_time;
+			this->m_pos_y += this->m_vy * delta_time;
+		}
+			
+	}	
+	GameObject::update(dt);
 }
 
 
@@ -74,10 +89,14 @@ void Enemy::draw()
 		}
 	}
 	else {
-		if (m_enemyrun) {
+		if (m_enemyrunleft) {
 			// Draw the current enemy sprite
 			int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 4.0f, m_spritesenemy1.size());
 			m_brush_enemy.texture = m_spritesenemy1[spritesenemy1];
+		}
+		else if(m_enemyrunright){
+			int spritesenemy2 = (int)fmod(100.0f - m_pos_x * 4.0f, m_spritesenemy2.size());
+			m_brush_enemy.texture = m_spritesenemy2[spritesenemy2];
 		}
 		else {
 			int spritesidle = (int)fmod(animationtimeridle, m_spritesidle.size());
@@ -103,11 +122,18 @@ void Enemy::init()
 	m_brush_enemy.fill_opacity = 1.0f;
 	m_brush_enemy.outline_opacity = 0.0f;
 
-	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_run1.png"));
-	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_run2.png"));
-	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_run3.png"));
-	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_run4.png"));
-	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_run5.png"));
+	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_runleft1.png"));
+	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_runleft2.png"));
+	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_runleft3.png"));
+	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_runleft4.png"));
+	m_spritesenemy1.push_back(m_state->getFullAssetPath("Punk_runleft5.png"));
+
+	m_spritesenemy2.push_back(m_state->getFullAssetPath("Punk_runright1.png"));
+	m_spritesenemy2.push_back(m_state->getFullAssetPath("Punk_runright2.png"));
+	m_spritesenemy2.push_back(m_state->getFullAssetPath("Punk_runright3.png"));
+	m_spritesenemy2.push_back(m_state->getFullAssetPath("Punk_runright4.png"));
+	m_spritesenemy2.push_back(m_state->getFullAssetPath("Punk_runright5.png"));
+	m_spritesenemy2.push_back(m_state->getFullAssetPath("Punk_runright6.png"));
 
 	m_spritesdeactivation.push_back(m_state->getFullAssetPath("PunkDeath1.png"));
 	m_spritesdeactivation.push_back(m_state->getFullAssetPath("PunkDeath2.png"));
