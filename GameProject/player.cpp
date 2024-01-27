@@ -238,7 +238,7 @@ void Player::hurtPlayer(Enemy* enemy) {
 	if (m_state->getLevel()->isCollidingSaw) {
 
 		m_player_health -= 5;
-		graphics::playSound(m_state->getFullAssetPath("SawElectHandCutti PE1067201 (mp3cut.net).wav"), 0.15f);
+		graphics::playSound(m_state->getFullAssetPath("SawElectHandCutti PE1067201 (mp3cut.net).wav"), 0.04f);
 		m_gameover = true;
 	}
 

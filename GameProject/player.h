@@ -27,6 +27,7 @@ class Player : public CollisionObject, public GameObject
 	float animationtimerforafk = 0.0f;
 	float animationtimerforattackwithknife = 0.0f;
 	bool isAnimationPlaying = false;
+	
 
 
 
@@ -40,7 +41,7 @@ public:
 	bool isCollidingDown = false;
 	bool isCollidingUp = false;
 	bool playanimation = false;
-
+	bool m_player_has_key = false;
 public:
 	void update(float dt) override;
 	void draw() override;
