@@ -10,6 +10,7 @@ class Enemy : public CollisionObject, public GameObject
 	std::vector<std::string> m_spritesdeactivation;
 	std::vector<std::string> m_spritesleftattack;
 	std::vector<std::string> m_spritesrightattack;
+	std::vector<std::string> m_spritesidle;
 	int m_currentDeactivationSprite = 0;
 	float animationtimerfordeath = 0.0f;
 	float animationtimer = 0.0f;
@@ -20,8 +21,9 @@ class Enemy : public CollisionObject, public GameObject
 	const float m_max_velocity = 2.0f;
 	const float m_gravity = 12.0f;
 	int m_enemy_health = 1;
-	bool m_gameover = false;
-	
+	bool m_enemygameover = false;
+	bool m_enemyrun = false;
+	float animationtimeridle = 0.0f;
 
 public:
 	float m_vx = 2.0f;
@@ -34,6 +36,7 @@ public:
 	//float collisionStartTime = 0.0f;
 
 public:
+	
 	void update(float dt) override;
 	void draw() override;
 	void init() override;
@@ -42,11 +45,10 @@ public:
 		this->m_pos_y = m_pos_y;
 	}
 
-
-
 protected:
 	void debugDraw();
 	void hurtEnemy();
+	bool enemysight(float player_x,float player_y,float enemy_x, float enemy_y);
 	//void moveEnemy(float dt);
 
 };

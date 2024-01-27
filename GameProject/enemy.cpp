@@ -5,17 +5,20 @@
 #include <iostream>
 
 
+bool Enemy::enemysight(float player_x, float player_y, float enemy_x, float enemy_y) {
+	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)player_y + 2 && (int)player_x < (int)enemy_x ;
+}
+
 void Enemy::update(float dt)
 {
 	float delta_time = dt / 1000.0f;
 	hurtEnemy();
 	
-	//moveEnemy(dt);
-	
 	graphics::getMouseState(mouse);
 
-	if (this->m_isDeactivating || this->m_gameover)
+	if (this->m_isDeactivating || this->m_enemygameover)
 	{
+		this->m_enemyrun = false;
 
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the enemy
 		if (animationtimerfordeath >= 5)
@@ -24,18 +27,21 @@ void Enemy::update(float dt)
 			this->setActive(false);
 		}
 	}
-
 	else
 	{
-		// Move left at a constant speed
-		this->m_pos_x -= (this->m_vx * delta_time);
+		this->m_enemyrun = false;
+		if ((int)m_state->getPlayer()->m_pos_y > ((int)this->m_pos_y - 2) && (int)m_state->getPlayer()->m_pos_y < ((int)this->m_pos_y + 2) && (int)m_state->getPlayer()->m_pos_x < (int)this->m_pos_x) {
+			m_enemyrun = true;
+			// Move left at a constant speed
+			this->m_pos_x -= (this->m_vx * delta_time);
 
 
-		//Stimulate gravity
-		this->m_vy += m_gravity * delta_time;
-		this->m_pos_y += this->m_vy * delta_time;
-
-		GameObject::update(dt);
+			//Stimulate gravity
+			this->m_vy += m_gravity * delta_time;
+			this->m_pos_y += this->m_vy * delta_time;
+		}
+		
+	GameObject::update(dt);
 
 	}
 }
@@ -45,7 +51,7 @@ void Enemy::draw()
 {
 	animationtimer += 0.13f;
 
-	if (this->m_isDeactivating || this->m_gameover) {
+	if (this->m_isDeactivating || this->m_enemygameover) {
 		// Draw the current deactivation sprite
 		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
 		m_brush_enemy.texture = m_spritesdeactivation[spritesdeactivation];
@@ -68,10 +74,18 @@ void Enemy::draw()
 		}
 	}
 	else {
-		// Draw the current enemy sprite
-		int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 4.0f, m_spritesenemy1.size());
-		m_brush_enemy.texture = m_spritesenemy1[spritesenemy1];
+		if (m_enemyrun) {
+			// Draw the current enemy sprite
+			int spritesenemy1 = (int)fmod(100.0f - m_pos_x * 4.0f, m_spritesenemy1.size());
+			m_brush_enemy.texture = m_spritesenemy1[spritesenemy1];
+		}
+		else {
+			int spritesidle = (int)fmod(animationtimeridle, m_spritesidle.size());
+			m_brush_enemy.texture = m_spritesidle[spritesidle];
+		}
 	}
+
+	animationtimeridle += 0.05f;
 
 	// Draw the enemy
 	float offset_x = m_state->m_global_offset_x;
@@ -101,6 +115,11 @@ void Enemy::init()
 	m_spritesdeactivation.push_back(m_state->getFullAssetPath("PunkDeath4.png"));
 	m_spritesdeactivation.push_back(m_state->getFullAssetPath("PunkDeath5.png"));
 
+	m_spritesidle.push_back(m_state->getFullAssetPath("idlepunk1.png"));
+	m_spritesidle.push_back(m_state->getFullAssetPath("idlepunk2.png"));
+	m_spritesidle.push_back(m_state->getFullAssetPath("idlepunk3.png"));
+	m_spritesidle.push_back(m_state->getFullAssetPath("idlepunk4.png"));
+
 	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy1LookingLeft.png"));
 	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy2LookingLeft.png"));
 	m_spritesleftattack.push_back(m_state->getFullAssetPath("Enemy3LookingLeft.png"));
@@ -122,7 +141,7 @@ void Enemy::init()
 
 	// Adjust width for finer collision detection
 	m_width = 0.7f;
-	m_height = 1.05f;
+	m_height = 1.0f;
 }
 
 
@@ -143,7 +162,7 @@ void Enemy::hurtEnemy() {
 	if (this->isCollidingPlayerEnemy && mouse.button_left_pressed && !graphics::getKeyState(graphics::SCANCODE_A) && !graphics::getKeyState(graphics::SCANCODE_D)) {
 		this->m_enemy_health -= 1; // enemy loses 2hp
 		if (this->m_enemy_health <= 0) { // if player's health is 0 or less
-			this->m_gameover = true; // game over
+			this->m_enemygameover = true; // game over
 			this->m_isDeactivating = true;
 		}
 	}
