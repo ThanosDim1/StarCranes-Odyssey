@@ -10,6 +10,8 @@ void Player::update(float dt)
 {
 	float delta_time = dt / 1000.0f;
 
+	std::cout << m_pos_x << "\n";
+
 	movePlayer(dt);
 
 	for (int i = 0; i < m_state->getLevel()->enemies.size(); i++) {
@@ -237,7 +239,7 @@ void Player::hurtPlayer(Enemy* enemy) {
 
 		m_player_health -= 5;
 		graphics::playSound(m_state->getFullAssetPath("SawElectHandCutti PE1067201 (mp3cut.net).wav"), 0.15f);
-		m_state->getPlayer()->m_gameover = true;
+		m_gameover = true;
 	}
 
 	if (enemy->isCollidingPlayerEnemy) {
@@ -246,7 +248,7 @@ void Player::hurtPlayer(Enemy* enemy) {
 			m_player_health -= 1;
 			graphics::playSound(m_state->getFullAssetPath("classic_hurt.wav"), 0.4f);
 			if (m_player_health <= 0) {
-				m_state->getPlayer()->m_gameover = true;
+				m_gameover = true;
 			}
 			timer = 0.0f;
 		}
@@ -255,9 +257,11 @@ void Player::hurtPlayer(Enemy* enemy) {
 }
 
 bool Player::openDoor() {
-	if (m_state->getLevel()->isCollidingLevelDoor1) {
-		if (graphics::getKeyState(graphics::SCANCODE_E)) {
-			return true;
+	if (this->m_active) {
+		if (m_state->getLevel()->isCollidingLevelDoor1) {
+			if (graphics::getKeyState(graphics::SCANCODE_E)) {
+				return true;
+			}
 		}
 	}
 	return false;
