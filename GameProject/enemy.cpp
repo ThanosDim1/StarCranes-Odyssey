@@ -7,11 +7,11 @@
 
 
 bool Enemy::enemysightleft(float player_x, float player_y, float enemy_x, float enemy_y) {
-	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)enemy_y + 2 && (int)player_x > (int)enemy_x - 7 && (int)player_x < (int)enemy_x;
+	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)enemy_y + 2 && (int)player_x >= (int)enemy_x - 7 && (int)player_x <= (int)enemy_x;
 }
 
 bool Enemy::enemysightright(float player_x, float player_y, float enemy_x, float enemy_y) {
-	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)enemy_y + 2 && (int)player_x < (int)enemy_x + 7 && (int)player_x > (int)enemy_x;
+	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)enemy_y + 2 && (int)player_x <= (int)enemy_x + 7 && (int)player_x >= (int)enemy_x;
 }
 
 void Enemy::update(float dt)
@@ -185,11 +185,13 @@ void Enemy::debugDraw()
 }
 
 void Enemy::hurtEnemy() {
-	if (this->isCollidingPlayerEnemy && mouse.button_left_pressed && !graphics::getKeyState(graphics::SCANCODE_A) && !graphics::getKeyState(graphics::SCANCODE_D)) {
-		this->m_enemy_health -= 1; // enemy loses 2hp
-		if (this->m_enemy_health <= 0) { // if player's health is 0 or less
-			this->m_enemygameover = true; // game over
-			this->m_isDeactivating = true;
+	if (this->isActive()) {
+		if (this->isCollidingPlayerEnemy && mouse.button_left_pressed && !graphics::getKeyState(graphics::SCANCODE_A) && !graphics::getKeyState(graphics::SCANCODE_D)) {
+			this->m_enemy_health -= 1; // enemy loses 2hp
+			if (this->m_enemy_health <= 0) { // if player's health is 0 or less
+				this->m_enemygameover = true; // game over
+				this->m_isDeactivating = true;
+			}
 		}
 	}
 }

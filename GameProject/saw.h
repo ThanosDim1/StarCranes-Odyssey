@@ -5,7 +5,7 @@
 class saw : public AnimatedObjects {
 	std::vector<std::string> m_sprites_saw;
 
-	
+
 
 public:
 	void update(float dt) override;
@@ -17,5 +17,3 @@ protected:
 	void debugDraw();
 
 };
-
-

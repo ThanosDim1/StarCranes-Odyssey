@@ -10,7 +10,7 @@ void saw::update(float dt)
 
 void saw::draw(float add)
 {
-	AnimatedObjects::draw(add,m_sprites_saw);
+	AnimatedObjects::draw(add, m_sprites_saw);
 
 	if (m_state->m_debugging)
 		debugDraw();
@@ -18,7 +18,7 @@ void saw::draw(float add)
 
 void saw::init()
 {
-	
+
 	m_sprites_saw.push_back(m_state->getFullAssetPath("rotating_saw_01.png"));
 	m_sprites_saw.push_back(m_state->getFullAssetPath("rotating_saw_02.png"));
 	m_sprites_saw.push_back(m_state->getFullAssetPath("rotating_saw_03.png"));

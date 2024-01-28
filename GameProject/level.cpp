@@ -64,6 +64,7 @@ void Level::update(float dt)
 			enemies[i]->update(dt);
 		}
 	}
+
 	checkCollisionPlayerKey();
 	checkCollisionPlayerDoor();
 	checkCollisionsForEnemy();
@@ -165,31 +166,38 @@ Level::~Level()
 }
 
 void Level::checkCollisionPlayerSaw() {
-		for (int i = 0; i < saws.size(); i++)
-		{
-			CollisionObject& saw = *saws[i];
-			if (m_state->getPlayer()->intersectDown(saw)) {
-				isCollidingSaw = true;
-				break;
-			}
-			else {
-				isCollidingSaw = false;
-			}
+	for (int i = 0; i < saws.size(); i++)
+	{
+		CollisionObject& saw = *saws[i];
+		if (m_state->getPlayer()->intersectDown(saw)) {
+			isCollidingSaw = true;
+			break;
 		}
+		else {
+			isCollidingSaw = false;
+		}
+	}
 }
 
 void Level::checkCollisionPlayerKey() {
 	if (m_state->getPlayer()->intersect(*m_keylevel)) {
-		graphics::playSound(m_state->getFullAssetPath("keys_pickup.wav"), 0.4f);
-		m_state->getPlayer()->m_player_has_key = true;
-		mn_keylevel->m_KeyisDeactivating = true;
-		delete mn_keylevel;
+		if (m_keylevel->isActive()) {
+			graphics::playSound(m_state->getFullAssetPath("keys_pickup.wav"), 0.4f);
+			m_state->getPlayer()->m_player_has_key = true;
+			mn_keylevel->m_KeyisDeactivating = true;
+			m_keylevel->setActive(false);
+		}
 	}
 }
 
 void Level::checkCollisionPlayerDoor() {
 	if (m_state->getPlayer()->intersect( *m_leveldoor1 )) {
 		isCollidingLevelDoor1 =true;
+		if (!m_state->getPlayer()->m_player_has_key) {
+			if (graphics::getKeyState(graphics::SCANCODE_E)) {
+				graphics::playSound(m_state->getFullAssetPath("door-lock-43124.wav"), 0.3f);
+			}
+		}
 	}
 	else {
 		isCollidingLevelDoor1 = false;
@@ -322,22 +330,30 @@ void Level::checkCollisionsForEnemy()
 void Level::checkCollisionsMovingObjects() {
 
 	for (int i = 0; i < enemies.size(); i++) {
-		if (enemies[i] != nullptr) {
 			CollisionObject& enemy = *enemies[i];
-			if (m_state->getPlayer()->intersectSideways(enemy)) {
+			if (enemies[i]->isActive()) {
+				if (m_state->getPlayer()->intersectSideways(enemy)) {
 
-				float delta_time = graphics::getDeltaTime() / 1000.0f;
-				enemies[i]->m_vx = 0.0f;
-				// Set isCollidingPlayerEnemy to true
-				enemies[i]->isCollidingPlayerEnemy = true;
-				// Apply deceleration force to player's velocity
-				if (graphics::getKeyState(graphics::SCANCODE_A)) {
-					m_state->getPlayer()->m_vx = 3.0f;
+					float delta_time = graphics::getDeltaTime() / 1000.0f;
+					enemies[i]->m_vx = 0.0f;
+					// Set isCollidingPlayerEnemy to true
+					enemies[i]->isCollidingPlayerEnemy = true;
+					// Apply deceleration force to player's velocity
+					if (graphics::getKeyState(graphics::SCANCODE_A)) {
+						m_state->getPlayer()->m_vx = 3.0f;
+					}
+					else if (graphics::getKeyState(graphics::SCANCODE_D)) {
+						m_state->getPlayer()->m_vx = 2.0f;
+					}
+					break;
 				}
-				else if (graphics::getKeyState(graphics::SCANCODE_D)) {
-					m_state->getPlayer()->m_vx = 2.0f;
+				else {
+					m_state->getPlayer()->m_vx = 5.0f;
+					enemies[i]->m_vx = 2.0f;
+					enemies[i]->isCollidingSidewaysEnemy = false;
+					// Set isCollidingPlayerEnemy to false
+					enemies[i]->isCollidingPlayerEnemy = false;
 				}
-				break;
 			}
 			else {
 				m_state->getPlayer()->m_vx = 5.0f;
@@ -346,7 +362,6 @@ void Level::checkCollisionsMovingObjects() {
 				// Set isCollidingPlayerEnemy to false
 				enemies[i]->isCollidingPlayerEnemy = false;
 			}
-		}
 	}
 }
 
@@ -439,6 +454,11 @@ void Level::init()
 	SETCOLOR(m_block_brush_debug.fill_color, 0.1f, 1.0f, 0.1f);
 	SETCOLOR(m_block_brush_debug.outline_color, 0.3f, 1.0f, 0.2f);
 
+	spitesinit();
+
+}
+
+void Level::spitesinit() {
 	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full1.png"));
 	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full2.png"));
 	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full3.png"));
@@ -497,5 +517,5 @@ void Level::init()
 
 	m_spriteshealthsystemdeath.push_back(m_state->getFullAssetPath("death1.png"));
 	m_spriteshealthsystemdeath.push_back(m_state->getFullAssetPath("death2.png"));
-
 }
+
