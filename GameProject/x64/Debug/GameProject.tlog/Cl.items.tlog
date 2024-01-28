@@ -1,7 +1,11 @@
+C:\C++\PlatformGame\GameProject\AnimatedObjects.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\AnimatedObjects.obj
 C:\C++\PlatformGame\GameProject\enemy.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\enemy.obj
 C:\C++\PlatformGame\GameProject\gamestate.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\gamestate.obj
+C:\C++\PlatformGame\GameProject\KeyLevel.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\KeyLevel.obj
 C:\C++\PlatformGame\GameProject\level.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\level.obj
+C:\C++\PlatformGame\GameProject\LevelDoor1.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\LevelDoor1.obj
 C:\C++\PlatformGame\GameProject\main.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\main.obj
 C:\C++\PlatformGame\GameProject\gameobject.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\gameobject.obj
 C:\C++\PlatformGame\GameProject\player.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\player.obj
+C:\C++\PlatformGame\GameProject\saw.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\saw.obj
 C:\C++\PlatformGame\GameProject\timer.cpp;C:\C++\PlatformGame\GameProject\x64\Debug\timer.obj
