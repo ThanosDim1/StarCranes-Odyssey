@@ -12,18 +12,20 @@ void KeyLevel::update(float dt)
 
 void KeyLevel::draw(float add)
 {
-	if (m_state->getPlayer()->m_player_has_key)
-	{
-		m_KeyisDeactivating = true;
-		setActive(false);
-	}
-	else {
-		AnimatedObjects::draw(add, m_sprites_keylevel);
-	}
-	
+	if (!this->m_KeyisDeactivating) {
+		if (m_state->getPlayer()->m_player_has_key)
+		{
+			m_KeyisDeactivating = true;
+			delete this;
+			setActive(false);
+		}
+		else {
+			AnimatedObjects::draw(add, m_sprites_keylevel);
+		}
 
-	if (m_state->m_debugging)
-		debugDraw();
+		if (m_state->m_debugging)
+			debugDraw();
+	}
 }
 
 void KeyLevel::init()

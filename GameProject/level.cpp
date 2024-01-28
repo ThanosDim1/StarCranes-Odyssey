@@ -64,11 +64,11 @@ void Level::update(float dt)
 			enemies[i]->update(dt);
 		}
 	}
+	checkCollisionPlayerKey();
 	checkCollisionPlayerDoor();
 	checkCollisionsForEnemy();
 	checkCollisions();
 	checkCollisionPlayerSaw();
-	checkCollisionPlayerKey();
 	checkCollisionsMovingObjects();
 	GameObject::update(dt);
 }
@@ -180,9 +180,10 @@ void Level::checkCollisionPlayerSaw() {
 
 void Level::checkCollisionPlayerKey() {
 	if (m_state->getPlayer()->intersect(*m_keylevel)) {
+		graphics::playSound(m_state->getFullAssetPath("keys_pickup.wav"), 0.4f);
 		m_state->getPlayer()->m_player_has_key = true;
-		graphics::playSound(m_state->getFullAssetPath("keys_pickup-27204.wav"), 6.0f);
 		mn_keylevel->m_KeyisDeactivating = true;
+		delete mn_keylevel;
 	}
 }
 
