@@ -28,7 +28,6 @@ void Enemy::update(float dt)
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the enemy
 		if (animationtimerfordeath >= 5)
 		{
-			delete this;
 			this->setActive(false);
 		}
 	}

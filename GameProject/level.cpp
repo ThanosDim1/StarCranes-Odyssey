@@ -108,7 +108,10 @@ void Level::draw()
 
 	mn_leveldoor1->draw(0.5f);
 
-	mn_keylevel->draw(0.5f);
+	if (m_keylevel != nullptr) {
+		mn_keylevel->draw(0.5f);
+	}
+	
 
 	for (int i = 0; i < enemies.size(); i++)
 	{
@@ -186,6 +189,7 @@ void Level::checkCollisionPlayerKey() {
 			m_state->getPlayer()->m_player_has_key = true;
 			mn_keylevel->m_KeyisDeactivating = true;
 			m_keylevel->setActive(false);
+			delete m_keylevel;
 		}
 	}
 }

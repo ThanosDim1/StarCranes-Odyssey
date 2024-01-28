@@ -16,7 +16,6 @@ void KeyLevel::draw(float add)
 		if (m_state->getPlayer()->m_player_has_key)
 		{
 			m_KeyisDeactivating = true;
-			delete this;
 			setActive(false);
 		}
 		else {
