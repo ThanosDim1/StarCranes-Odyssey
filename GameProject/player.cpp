@@ -260,13 +260,13 @@ bool Player::openDoor() {
 	if (this->m_active) {
 		if (m_state->getLevel()->isCollidingLevelDoor1 && m_state->getPlayer()->m_player_has_key) {
 			if (graphics::getKeyState(graphics::SCANCODE_E)) {
-				graphics::playSound(m_state->getFullAssetPath("level-up-bonus-sequence-3-186892.mp3"), 0.15f);
+				graphics::playSound(m_state->getFullAssetPath("level-up-bonus-sequence-3-186892.wav"), 0.15f);
 				return true;
 			}
 		}
 		else {
 			if (graphics::getKeyState(graphics::SCANCODE_E)) {
-				graphics::playSound(m_state->getFullAssetPath("door-lock-43124.mp3"), 0.3f);
+				graphics::playSound(m_state->getFullAssetPath("door-lock-43124.wav"), 0.3f);
 			}
 		}
 	}

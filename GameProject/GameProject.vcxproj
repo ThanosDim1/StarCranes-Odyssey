@@ -142,6 +142,7 @@
     <ClCompile Include="AnimatedObjects.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="gamestate.cpp" />
+    <ClCompile Include="KeyLevel.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="LevelDoor1.cpp" />
     <ClCompile Include="main.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
+    <ClInclude Include="KeyLevel.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="LevelDoor1.h" />
     <ClInclude Include="NonCollisionObject.h" />
