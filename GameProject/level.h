@@ -78,6 +78,8 @@ public:
 	void draw() override;
 	void init() override;
 
+	void spitesinit();
+
 	Level(const std::string& name = "Level0");
 	~Level() override;
 };
