@@ -43,6 +43,7 @@ public:
 	bool playanimation = false;
 	bool m_player_has_key = false;
 	int m_player_has_star = 0;
+	float timer = 0.0f;
 
 public:
 	void update(float dt) override;

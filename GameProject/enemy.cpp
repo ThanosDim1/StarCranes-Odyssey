@@ -39,11 +39,7 @@ void Enemy::update(float dt)
 			this->m_enemyrunleft = true;
 			// Move left at a constant speed
 			this->m_pos_x -= (this->m_vx * delta_time);
-
-
-			//Stimulate gravity
-			this->m_vy += m_gravity * delta_time;
-			this->m_pos_y += this->m_vy * delta_time;
+			
 		}
 		else if (enemysightright(m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y, this->m_pos_x, this->m_pos_y)) {
 			this->m_enemyrunright = true;
@@ -51,10 +47,10 @@ void Enemy::update(float dt)
 			this->m_pos_x += (this->m_vx * delta_time);
 
 
-			//Stimulate gravity
-			this->m_vy += m_gravity * delta_time;
-			this->m_pos_y += this->m_vy * delta_time;
 		}
+		//Stimulate gravity
+		this->m_vy += m_gravity * delta_time;
+		this->m_pos_y += this->m_vy * delta_time;
 			
 	}	
 	GameObject::update(dt);

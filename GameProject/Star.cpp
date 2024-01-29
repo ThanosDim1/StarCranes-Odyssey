@@ -12,19 +12,8 @@ void Star::update(float dt)
 
 void Star::draw(float add)
 {
-	if (!this->m_StarisDeactivating) {
-		if (m_state->getPlayer()->m_player_has_key)
-		{
-			m_StarisDeactivating = true;
-			setActive(false);
-		}
-		else {
-			AnimatedObjects::draw(add, m_sprites_star);
-		}
-
-		if (m_state->m_debugging)
-			debugDraw();
-	}
+	AnimatedObjects::draw(add, m_sprites_star);
+	
 }
 
 void Star::init()

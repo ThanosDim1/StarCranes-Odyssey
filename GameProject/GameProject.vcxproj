@@ -149,6 +149,8 @@
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="saw.cpp" />
+    <ClCompile Include="Spikes.cpp" />
+    <ClCompile Include="Star.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedObjects.h" />
@@ -162,6 +164,8 @@
     <ClInclude Include="NonCollisionObject.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="saw.h" />
+    <ClInclude Include="Spikes.h" />
+    <ClInclude Include="Star.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
