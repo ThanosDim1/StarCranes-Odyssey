@@ -24,14 +24,14 @@ protected:
 public:
 	float m_global_offset_x = 0.0f;
 	float m_global_offset_y = 0.0f;
-
+	
 	bool m_debugging = false;
-
+	
 
 public:
 	~GameState();
 	static GameState* getInstance();
-
+	
 	void EnemyPush();
 
 	bool init();

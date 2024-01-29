@@ -13,6 +13,7 @@
 #include "saw.h"
 #include "LevelDoor1.h"
 #include "KeyLevel.h"
+#include "Star.h"
 
 
 
@@ -21,6 +22,8 @@ class Level : public GameObject
 public:
 	graphics::Brush m_brush_background;
 	graphics::Brush m_brush_health_system;
+	graphics::Brush m_brush_star_system;
+	graphics::Brush m_brush_key_system;
 
 
 	std::vector<GameObject*> m_static_objects;
@@ -30,6 +33,8 @@ public:
 	std::vector<std::string> m_spriteshealthsystemhalf;
 	std::vector<std::string> m_spriteshealthsystemlastlife;
 	std::vector<std::string> m_spriteshealthsystemdeath;
+	std::vector<std::string> m_spritesstarsystem;
+	std::vector<std::string> m_spriteskeycollected;
 
 	// add some collidable blocks
 	std::vector<CollisionObject> m_blocks;
@@ -45,6 +50,20 @@ public:
 	//add some keys
 	AnimatedObjects* m_keylevel = new KeyLevel(43.0f, 9.0f);
 	KeyLevel* mn_keylevel = dynamic_cast<KeyLevel*>(m_keylevel);
+
+
+	//add some stars
+	AnimatedObjects* m_star1 = new Star(10.0f, 11.0f);
+	Star* mn_star1 = dynamic_cast<Star*>(m_star1);
+
+	AnimatedObjects* m_star2 = new Star(8.0f,5.0f);
+	Star* mn_star2 = dynamic_cast<Star*>(m_star2);
+
+	AnimatedObjects* m_star3 = new Star(20.0f, 5.0f);
+	Star* mn_star3 = dynamic_cast<Star*>(m_star3);
+
+	bool soundPlayed = false;
+
 
 	//add some enemies
 	std::vector<std::unique_ptr<Enemy>> enemies;
@@ -69,6 +88,7 @@ public:
 	void checkCollisionsForEnemy();
 	void checkCollisionPlayerDoor();
 	void checkCollisionPlayerSaw();
+	void checkCollisionPlayerStar();
 	void checkCollisionPlayerKey();
 	void checkCollisionsMovingObjects();
 
