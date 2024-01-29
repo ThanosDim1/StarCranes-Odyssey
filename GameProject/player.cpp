@@ -231,30 +231,43 @@ void Player::movePlayer(float dt)
 }
 
 void Player::hurtPlayer(Enemy* enemy) {
-	
-	static float timer = 0.0f;
+
+	if (m_state->getLevel()->isCollidingSaw) {
+
+		m_player_health -= 5;
+		graphics::playSound(m_state->getFullAssetPath("SawElectHandCutti PE1067201 (mp3cut.net).wav"), 0.04f);
+		m_gameover = true;
+	}
+
+	static float timerenemy = 0.0f;
 	if (enemy->isActive()) {
-		if (m_state->getLevel()->isCollidingSaw) {
-
-			m_player_health -= 5;
-			graphics::playSound(m_state->getFullAssetPath("SawElectHandCutti PE1067201 (mp3cut.net).wav"), 0.04f);
-			m_gameover = true;
-		}
-
 		if (enemy->isCollidingPlayerEnemy) {
-			timer += 0.32f;
-			if (timer >= 30.0f) {
+			timerenemy += 0.32f;
+			if (timerenemy >= 30.0f) {
 				m_player_health -= 1;
 				graphics::playSound(m_state->getFullAssetPath("classic_hurt.wav"), 0.4f);
 				if (m_player_health <= 0) {
 					m_gameover = true;
 				}
-				timer = 0.0f;
+				timerenemy = 0.0f;
 			}
 		}
 	}
-	// The unique_ptr will automatically clean up the enemy object when it goes out of scope
+
+	static float timerspike = 0.0f;
+	if (m_state->getLevel()->isCollidingSpike) {
+		timerspike += 0.32f;
+		if (timerspike >= 100.0f) {
+			m_player_health -= 1;
+			graphics::playSound(m_state->getFullAssetPath("classic_hurt.wav"), 0.4f);
+			if (m_player_health <= 0) {
+				m_gameover = true;
+			}
+			timerspike = 0.0f;
+		}
+	}
 }
+	// The unique_ptr will automatically clean up the enemy object when it goes out of scope
 
 bool Player::openDoor() {
 	static bool soundPlayed = false;

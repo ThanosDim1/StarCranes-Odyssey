@@ -14,6 +14,7 @@
 #include "LevelDoor1.h"
 #include "KeyLevel.h"
 #include "Star.h"
+#include "Spikes.h"
 
 
 
@@ -51,23 +52,14 @@ public:
 	AnimatedObjects* m_keylevel = new KeyLevel(43.0f, 9.0f);
 	KeyLevel* mn_keylevel = dynamic_cast<KeyLevel*>(m_keylevel);
 
-
-	//add some stars
-	AnimatedObjects* m_star1 = new Star(10.0f, 11.0f);
-	Star* mn_star1 = dynamic_cast<Star*>(m_star1);
-
-	AnimatedObjects* m_star2 = new Star(8.0f,5.0f);
-	Star* mn_star2 = dynamic_cast<Star*>(m_star2);
-
-	AnimatedObjects* m_star3 = new Star(20.0f, 5.0f);
-	Star* mn_star3 = dynamic_cast<Star*>(m_star3);
-
 	bool soundPlayed = false;
 
 
 	//add some enemies
 	std::vector<std::unique_ptr<Enemy>> enemies;
 	std::vector<std::unique_ptr<saw>> saws;
+	std::vector<std::unique_ptr<Star>> stars;
+	std::vector<std::unique_ptr<Spikes>> spikes;
 	const float m_block_size = 1.0f;
 	graphics::Brush m_block_brush;
 	graphics::Brush m_block_brush_debug;
@@ -77,6 +69,7 @@ public:
 	float animationtimerforhealthsystem = 0.0f;
 	bool isCollidingLevelDoor1 = false;
 	bool isCollidingSaw = false;
+	bool isCollidingSpike = false;
 
 
 	// dedicated method to draw a block
@@ -91,6 +84,7 @@ public:
 	void checkCollisionPlayerStar();
 	void checkCollisionPlayerKey();
 	void checkCollisionsMovingObjects();
+	void checkCollisionPlayerSpike();
 
 
 public:
@@ -103,3 +97,5 @@ public:
 	Level(const std::string& name = "Level0");
 	~Level() override;
 };
+
+
