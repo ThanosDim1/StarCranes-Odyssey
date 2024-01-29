@@ -10,7 +10,6 @@ void Player::update(float dt)
 {
 	float delta_time = dt / 1000.0f;
 
-	std::cout << m_pos_x << "\n";
 
 	movePlayer(dt);
 
@@ -88,7 +87,7 @@ void Player::draw()
 	if (isAnimationPlaying) {
 		for (int i = 0; i < m_state->getLevel()->enemies.size(); i++) {
 			if (m_state->getLevel()->enemies[i] != nullptr) {
-				if (m_state->getPlayer()->m_pos_x > m_state->getLevel()->enemies[i]->m_pos_x) {
+				if (m_state->getPlayer()->m_pos_x >= m_state->getLevel()->enemies[i]->m_pos_x) {
 					int spritesattackwithknifeleft = (int)fmod(animationtimerforattackwithknife, m_spritesattackwithknifeleft.size());
 					m_brush_player.texture = m_spritesattackwithknifeleft[spritesattackwithknifeleft];
 				}
@@ -116,7 +115,7 @@ void Player::init()
 {
 	// stage 1
 	m_pos_x = -10.0f;
-	m_pos_y = 12.0f;
+	m_pos_y = 11.0f;
 
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
 	m_state->m_global_offset_y = m_state->getCanvasHeight() / 2.0f - m_pos_y;
@@ -243,7 +242,7 @@ void Player::hurtPlayer(Enemy* enemy) {
 		}
 
 		if (enemy->isCollidingPlayerEnemy) {
-			timer += 0.17f;
+			timer += 0.32f;
 			if (timer >= 30.0f) {
 				m_player_health -= 1;
 				graphics::playSound(m_state->getFullAssetPath("classic_hurt.wav"), 0.4f);
@@ -258,14 +257,18 @@ void Player::hurtPlayer(Enemy* enemy) {
 }
 
 bool Player::openDoor() {
+	static bool soundPlayed = false;
+
 	if (this->m_active) {
 		if (m_state->getLevel()->isCollidingLevelDoor1 && m_state->getPlayer()->m_player_has_key) {
 			if (graphics::getKeyState(graphics::SCANCODE_E)) {
-				graphics::playSound(m_state->getFullAssetPath("level-up-bonus-sequence-3-186892.wav"), 0.15f);
+				if (!soundPlayed) {
+					graphics::playSound(m_state->getFullAssetPath("level-up-bonus-sequence-3-186892.wav"), 0.15f);
+					soundPlayed = true;
+				}
 				return true;
 			}
 		}
 	}
 	return false;
-}	
-	
+}

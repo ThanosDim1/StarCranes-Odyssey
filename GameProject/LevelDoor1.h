@@ -4,7 +4,8 @@
 
 class LevelDoor1 : public AnimatedObjects {
 	std::vector<std::string> m_sprites_leveldoor1;
-
+	bool animationPlayed = false;
+	float animationtimerfordoor = 0.0f;
 public:
 	void update(float dt) override;
 	void draw(float add);

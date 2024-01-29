@@ -42,6 +42,8 @@ public:
 	bool isCollidingUp = false;
 	bool playanimation = false;
 	bool m_player_has_key = false;
+	int m_player_has_star = 0;
+
 public:
 	void update(float dt) override;
 	void draw() override;
