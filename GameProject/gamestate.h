@@ -12,6 +12,7 @@ private:
 	const float m_canvas_width = 16.0f;
 	const float m_canvas_height = 10.0f;
 
+	class Menu* m_menu = 0;
 	class Level* m_current_level = 0;
 	class Player* m_player = 0;
 
@@ -31,8 +32,6 @@ public:
 public:
 	~GameState();
 	static GameState* getInstance();
-	
-	void EnemyPush();
 
 	bool init();
 	void draw();

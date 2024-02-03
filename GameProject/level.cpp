@@ -197,7 +197,6 @@ void Level:: checkCollisionPlayerSpike() {
 		CollisionObject& spike = *spikes[i];
 		if (m_state->getPlayer()->intersect(spike)) {
 			isCollidingSpike = true;
-			m_state->getPlayer()->m_vx -= 2.0f;
 			break;
 		}
 		else {

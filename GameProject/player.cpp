@@ -117,11 +117,13 @@ void Player::init()
 	m_pos_x = -10.0f;
 	m_pos_y = 11.0f;
 
+
 	m_state->m_global_offset_x = m_state->getCanvasWidth() / 2.0f - m_pos_x;
 	m_state->m_global_offset_y = m_state->getCanvasHeight() / 2.0f - m_pos_y;
 
 	m_brush_player.fill_opacity = 1.0f;
 	m_brush_player.outline_opacity = 0.0f;
+
 
 	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run1.png"));
 	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run2.png"));
@@ -214,6 +216,10 @@ void Player::movePlayer(float dt)
 			}
 		}
 		offsetmvy = 0.0f;
+	}
+
+	if (m_state->getLevel()->isCollidingSpike) {
+		m_vx = 3.0f;
 	}
 
 	if (graphics::getKeyState(graphics::SCANCODE_A)) {
