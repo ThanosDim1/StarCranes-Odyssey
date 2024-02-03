@@ -51,6 +51,7 @@ C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,21): warning C4
   Star.cpp
   Generating code
   Previous IPDB not found, fall back to full compilation.
-  All 713 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+C:\Users\thana\source\repos\PlatformGame\GameProject\menu.h(28): warning C4715: 'Menu::option_locked': not all control paths return a value
+  All 774 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   GameProject.vcxproj -> C:\Users\thana\source\repos\PlatformGame\bin\GameProject.exe

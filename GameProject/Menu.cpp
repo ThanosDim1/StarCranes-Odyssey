@@ -59,6 +59,7 @@ void Menu::update(float dt) {
 		else {
 			m_selected = 3;
 		}
+		graphics::playSound(m_state->getFullAssetPath("option.wav"), 0.5f);
 		std::cout << m_selected << std::endl;  // Print the selected value
 		lastKeyPressTime = currentTime;  // Update the last key press time
 	}
@@ -69,7 +70,12 @@ void Menu::update(float dt) {
 		else {
 			m_selected = 1;
 		}
+		graphics::playSound(m_state->getFullAssetPath("option.wav"), 0.5f);
 		std::cout << m_selected << std::endl;  // Print the selected value
 		lastKeyPressTime = currentTime;  // Update the last key press time
+	}
+
+	if (graphics::getKeyState(graphics::SCANCODE_RETURN)) {
+		m_option_locked = m_selected;
 	}
 }

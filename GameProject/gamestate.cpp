@@ -5,6 +5,7 @@
 #include "menu.h"
 #include <thread>
 #include <chrono>
+#include <iostream>
 using namespace std::chrono_literals;
 
 GameState::GameState()
@@ -31,14 +32,7 @@ bool GameState::init()
 {
 	m_menu = new Menu();
 	m_menu->init();
-
-	//m_current_level = new Level("1.lvl");
-	//m_current_level->init();
-
-	//m_player = new Player("Player");
-	//m_player->init();
-
-
+	
 	graphics::preloadBitmaps(getAssetDir());
 
 	return true;
@@ -46,13 +40,14 @@ bool GameState::init()
 
 void GameState::draw()
 {
-	m_menu->draw();
 
-	/*if (!m_current_level)
-		return;
-	m_current_level->draw();*/
-
-
+	if (m_menu) {
+		m_menu->draw();
+	}
+	
+	if (m_current_level) {
+		m_current_level->draw();
+	}
 }
 
 void GameState::update(float dt)
@@ -69,13 +64,31 @@ void GameState::update(float dt)
 		std::this_thread::sleep_for(std::chrono::duration<float, std::milli>(sleep_time));
 	}
 
-	//if (!m_current_level)
-		//return;
+	if (m_menu) {
+		m_menu->update(dt);
+		if (m_menu->option_locked() == 1) {
 
-	m_menu->update(dt);
-	//m_current_level->update(dt);
+			delete m_menu;
+			m_menu = nullptr;
+
+			m_current_level = new Level("1.lvl");
+			m_current_level->init();
+
+			m_player = new Player("Player");
+			m_player->init();
+
+		}
+	}
+
+	if (m_current_level) {
+		m_current_level->update(dt);
+	}
 
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);
+
+	if (m_menu->option_locked() == 3) {
+		graphics::stopMessageLoop();
+	}
 
 }
 
