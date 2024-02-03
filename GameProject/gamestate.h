@@ -16,7 +16,6 @@ private:
 	class Level* m_current_level = 0;
 	class Player* m_player = 0;
 
-
 	GameState();
 
 protected:

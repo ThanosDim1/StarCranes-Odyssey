@@ -1,41 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  AnimatedObjects.cpp
-C:\Users\thana\source\repos\PlatformGame\GameProject\AnimatedObjects.cpp(14,87): warning C4244: 'argument': conversion from 'unsigned __int64' to 'double', possible loss of data
-  enemy.cpp
-  gamestate.cpp
-  KeyLevel.cpp
-  level.cpp
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(155,31): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(155,26): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(155,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(162,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(162,33): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(162,28): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(162,22): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(169,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(169,33): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(169,28): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(174,39): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(174,34): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(174,28): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(475,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(475,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(516,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(516,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244:         with
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244:         [
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244:             _Ty=int
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244:         ]
-  (compiling source file 'level.cpp')
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56):
-  the template instantiation context (the oldest one first) is
-  	C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(460,29):
-  	see reference to function template instantiation 'std::unique_ptr<Enemy,std::default_delete<Enemy>> std::make_unique<Enemy,std::basic_string<char,std::char_traits<char>,std::allocator<char>>,int,int,0>(std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,int &&,int &&)' being compiled
-  
-  LevelDoor1.cpp
-  main.cpp
-  gameobject.cpp
   Menu.cpp
 C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(9,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(10,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
@@ -45,16 +8,4 @@ C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,48): warning C4
 C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  player.cpp
-  saw.cpp
-  Spikes.cpp
-  Star.cpp
-  Generating Code...
-sggd.lib(graphics.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(graphics.obj)' or at ''; linking object as if no debug info
-sggd.lib(GLbackend.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(GLbackend.obj)' or at ''; linking object as if no debug info
-sggd.lib(shader.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(shader.obj)' or at ''; linking object as if no debug info
-sggd.lib(fonts.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(fonts.obj)' or at ''; linking object as if no debug info
-sggd.lib(texture.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(texture.obj)' or at ''; linking object as if no debug info
-sggd.lib(AudioManager.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(AudioManager.obj)' or at ''; linking object as if no debug info
-sggd.lib(lodepng.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(lodepng.obj)' or at ''; linking object as if no debug info
   GameProject.vcxproj -> C:\Users\thana\source\repos\PlatformGame\bin\GameProject.exe
