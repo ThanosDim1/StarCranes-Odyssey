@@ -26,5 +26,5 @@ private:
     int m_height;
     int m_pos_x;
     int m_pos_y;
-    int m_selected;
+    int m_selected = 1;
 };
