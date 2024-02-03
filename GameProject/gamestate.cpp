@@ -2,6 +2,7 @@
 #include "level.h"
 #include "player.h"
 #include "enemy.h"
+#include "menu.h"
 #include <thread>
 #include <chrono>
 using namespace std::chrono_literals;
@@ -28,11 +29,14 @@ GameState* GameState::getInstance()
 
 bool GameState::init()
 {
-	m_current_level = new Level("1.lvl");
-	m_current_level->init();
+	m_menu = new Menu();
+	m_menu->init();
 
-	m_player = new Player("Player");
-	m_player->init();
+	//m_current_level = new Level("1.lvl");
+	//m_current_level->init();
+
+	//m_player = new Player("Player");
+	//m_player->init();
 
 
 	graphics::preloadBitmaps(getAssetDir());
@@ -42,6 +46,7 @@ bool GameState::init()
 
 void GameState::draw()
 {
+	m_menu->draw();
 	if (!m_current_level)
 		return;
 
@@ -67,6 +72,7 @@ void GameState::update(float dt)
 	if (!m_current_level)
 		return;
 
+	m_menu->update(dt);
 	m_current_level->update(dt);
 
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);
