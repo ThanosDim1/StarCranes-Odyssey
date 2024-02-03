@@ -47,10 +47,10 @@ bool GameState::init()
 void GameState::draw()
 {
 	m_menu->draw();
-	if (!m_current_level)
-		return;
 
-	m_current_level->draw();
+	/*if (!m_current_level)
+		return;
+	m_current_level->draw();*/
 
 
 }
@@ -69,11 +69,11 @@ void GameState::update(float dt)
 		std::this_thread::sleep_for(std::chrono::duration<float, std::milli>(sleep_time));
 	}
 
-	if (!m_current_level)
-		return;
+	//if (!m_current_level)
+		//return;
 
 	m_menu->update(dt);
-	m_current_level->update(dt);
+	//m_current_level->update(dt);
 
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);
 
