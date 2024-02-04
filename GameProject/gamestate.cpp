@@ -2,6 +2,7 @@
 #include "level.h"
 #include "player.h"
 #include "enemy.h"
+#include "util.h"
 #include "menu.h"
 #include <thread>
 #include <chrono>
@@ -78,18 +79,37 @@ void GameState::update(float dt)
 			m_player->init();
 
 		}
+		if (m_menu->option_locked() == 3) {
+			graphics::stopMessageLoop();
+		}
 	}
 
 	if (m_current_level) {
 		m_current_level->update(dt);
 	}
+ 
 
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);
 
-	if (m_menu->option_locked() == 3) {
-		graphics::stopMessageLoop();
-	}
+	
+	if (m_dead) {
+		delete m_current_level;
+		m_current_level = nullptr;
+		m_player = nullptr;
 
+		float m_pos_x = m_canvas_width / 2.0f;
+		float m_pos_y = m_canvas_height / 2.0f;
+
+		SETCOLOR(brush_background_dead.fill_color, 0.0f, 0.0f, 0.0f);
+		graphics::drawRect(m_pos_x, m_pos_y, m_canvas_width, m_canvas_height, brush_background_dead);
+		graphics::setFont(getFullAssetPath("Aerologica.ttf"));
+		SETCOLOR(brush_dead.fill_color, 1.f, 0, 0);
+		graphics::drawText(4.0f, 5.5f, 2, "YOU DIED", brush_dead);
+
+		m_dead = false;
+		m_menu = new Menu();
+		m_menu->init();
+	}
 }
 
 std::string GameState::getFullAssetPath(const std::string& asset)

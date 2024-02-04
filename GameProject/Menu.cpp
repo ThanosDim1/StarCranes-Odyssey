@@ -77,5 +77,6 @@ void Menu::update(float dt) {
 
 	if (graphics::getKeyState(graphics::SCANCODE_RETURN)) {
 		m_option_locked = m_selected;
+		graphics::playSound(m_state->getFullAssetPath("optionselected.wav"), 0.5f);
 	}
 }
