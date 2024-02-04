@@ -30,6 +30,7 @@ void Player::update(float dt)
 		// If the current deactivation sprite reaches the number of deactivation sprites, deactivate the player
 		if (animationtimerfordeath >= 6)
 		{
+			m_state->m_dead = true;
 			delete m_state->getPlayer();
 			setActive(false);
 		}

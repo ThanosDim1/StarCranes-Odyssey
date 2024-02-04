@@ -1,11 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  Menu.cpp
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(9,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(10,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(11,55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(12,56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  gamestate.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\menu.h(28): warning C4715: 'Menu::option_locked': not all control paths return a value
   GameProject.vcxproj -> C:\Users\thana\source\repos\PlatformGame\bin\GameProject.exe

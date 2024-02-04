@@ -1,5 +1,5 @@
 #pragma once
-
+#include "sgg/graphics.h"
 #include <string>
 
 class GameState
@@ -16,6 +16,9 @@ private:
 	class Level* m_current_level = 0;
 	class Player* m_player = 0;
 
+	graphics::Brush brush_background_dead;
+	graphics::Brush brush_dead;
+
 	GameState();
 
 protected:
@@ -26,7 +29,7 @@ public:
 	float m_global_offset_y = 0.0f;
 	
 	bool m_debugging = false;
-	
+	bool m_dead = false;
 
 public:
 	~GameState();

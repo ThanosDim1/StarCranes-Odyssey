@@ -1,10 +1,209 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   AnimatedObjects.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'AnimatedObjects.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'AnimatedObjects.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'AnimatedObjects.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'AnimatedObjects.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'AnimatedObjects.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'AnimatedObjects.cpp')
+  
 C:\Users\thana\source\repos\PlatformGame\GameProject\AnimatedObjects.cpp(14,87): warning C4244: 'argument': conversion from 'unsigned __int64' to 'double', possible loss of data
-  enemy.cpp
-  gamestate.cpp
   KeyLevel.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'KeyLevel.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'KeyLevel.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'KeyLevel.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'KeyLevel.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'KeyLevel.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'KeyLevel.cpp')
+  
+  LevelDoor1.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'LevelDoor1.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'LevelDoor1.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'LevelDoor1.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'LevelDoor1.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'LevelDoor1.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'LevelDoor1.cpp')
+  
+  Menu.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Menu.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(9,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(10,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(11,55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(12,56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Spikes.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'Spikes.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'Spikes.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Spikes.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'Spikes.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'Spikes.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Spikes.cpp')
+  
+  Star.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'Star.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'Star.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Star.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'Star.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'Star.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Star.cpp')
+  
+  enemy.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'enemy.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'enemy.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'enemy.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'enemy.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'enemy.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'enemy.cpp')
+  
+  gameobject.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'gameobject.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'gameobject.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'gameobject.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'gameobject.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'gameobject.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'gameobject.cpp')
+  
+  gamestate.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'gamestate.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'gamestate.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'gamestate.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'gamestate.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'gamestate.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'gamestate.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.cpp(103,3): error C2065: 'brush_background_dead': undeclared identifier
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.cpp(104,73): error C2065: 'brush_background_dead': undeclared identifier
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.cpp(106,3): error C2065: 'brush_dead': undeclared identifier
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.cpp(107,49): error C2065: 'brush_dead': undeclared identifier
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.cpp(119,74): error C2065: 'brush_background_dead': undeclared identifier
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.cpp(121,50): error C2065: 'brush_dead': undeclared identifier
   level.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'level.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'level.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'level.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'level.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'level.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'level.cpp')
+  
 C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(155,31): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(155,26): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(155,21): warning C4305: 'argument': truncation from 'double' to 'float'
@@ -22,36 +221,42 @@ C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(475,51): warning 
 C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(475,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(516,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(516,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244:         with
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244:         [
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244:             _Ty=int
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56): warning C4244:         ]
-  (compiling source file 'level.cpp')
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56):
-  the template instantiation context (the oldest one first) is
-  	C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(460,29):
-  	see reference to function template instantiation 'std::unique_ptr<Enemy,std::default_delete<Enemy>> std::make_unique<Enemy,std::basic_string<char,std::char_traits<char>,std::allocator<char>>,int,int,0>(std::basic_string<char,std::char_traits<char>,std::allocator<char>> &&,int &&,int &&)' being compiled
-  
-  LevelDoor1.cpp
   main.cpp
-  gameobject.cpp
-  Menu.cpp
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(9,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(10,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(11,55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(12,56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(21,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   player.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'player.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'player.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'player.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'player.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'player.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'player.cpp')
+  
   saw.cpp
-  Spikes.cpp
-  Star.cpp
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-C:\Users\thana\source\repos\PlatformGame\GameProject\menu.h(28): warning C4715: 'Menu::option_locked': not all control paths return a value
-  All 774 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  GameProject.vcxproj -> C:\Users\thana\source\repos\PlatformGame\bin\GameProject.exe
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'saw.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,18): error C3646: 'brush_background_dead': unknown override specifier
+  (compiling source file 'saw.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(19,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'saw.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,2): error C2653: 'graphics': is not a class or namespace name
+  (compiling source file 'saw.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,18): error C3646: 'brush_dead': unknown override specifier
+  (compiling source file 'saw.cpp')
+  
+C:\Users\thana\source\repos\PlatformGame\GameProject\gamestate.h(20,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'saw.cpp')
+  
