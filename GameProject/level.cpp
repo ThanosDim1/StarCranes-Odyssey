@@ -42,7 +42,13 @@ void Level::drawNonCollisionBlock(int i)
 
 void Level::update(float dt)
 {
-	
+	/*
+	if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE)) {
+		m_state->pause();
+		m_state->switchToMenu();
+	}
+	*/
+
 	if (m_state->getPlayer()->isActive())
 		m_state->getPlayer()->update(dt);
 

@@ -10,6 +10,7 @@ class Menu : public GameObject
     graphics::Brush brush_play;
     graphics::Brush brush_about;
     graphics::Brush brush_exit;
+    graphics::Brush brush_instructions;
 
 public:
     Menu();
