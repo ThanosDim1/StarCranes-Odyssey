@@ -21,7 +21,7 @@ void Menu::draw() {
 	graphics::drawRect(m_pos_x, m_pos_y, m_width, m_height, brush_background_menu);
 	graphics::setFont(m_state->getFullAssetPath("Aerologica.ttf"));
 	SETCOLOR(brush_menu.fill_color, 0, 0, 0);
-	graphics::drawText(4.0f , 2.0f , 1 , "PLATFORM GAME", brush_menu);
+	graphics::drawText(3.0f , 2.0f , 0.8f , "STARCHASER'S ODYSSEY", brush_menu);
 	if (m_selected == 1) {
 		SETCOLOR(brush_play.fill_color, 1.f, 1.f, 0.f);
 		SETCOLOR(brush_about.fill_color, 1.f, 1.f, 1.f);
@@ -40,16 +40,22 @@ void Menu::draw() {
 	graphics::drawText(7.0f , 6.0f, 1 , "PLAY", brush_play);
 	graphics::drawText(6.6f, 7.0f, 1, "ABOUT", brush_about);
 	graphics::drawText(7.0f, 8.0f, 1, "EXIT", brush_exit);
+	graphics::setFont(m_state->getFullAssetPath("ThaleahFat.ttf"));
+	graphics::drawText(2.3f, 9.5f, 0.5f, "Use the arrow keys to navigate and press ENTER to select", brush_instructions);
+
+
 }
 
 void Menu::update(float dt) {
 	static std::chrono::steady_clock::time_point lastKeyPressTime = std::chrono::steady_clock::now();
-
+	// Play the intro sound
+	
+	
 	// Check if enough time has passed since the last key press
 	auto currentTime = std::chrono::steady_clock::now();
 	auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastKeyPressTime).count();
-	if (elapsedTime < 500) {  // Adjust the pause duration (500 milliseconds in this example)
-		return;  // Pause for 500 milliseconds
+	if (elapsedTime < 100) {  
+		return; 
 	}
 
 	if (graphics::getKeyState(graphics::SCANCODE_UP)) {
@@ -60,8 +66,8 @@ void Menu::update(float dt) {
 			m_selected = 3;
 		}
 		graphics::playSound(m_state->getFullAssetPath("option.wav"), 0.5f);
-		std::cout << m_selected << std::endl;  // Print the selected value
-		lastKeyPressTime = currentTime;  // Update the last key press time
+		std::cout << m_selected << std::endl; 
+		lastKeyPressTime = currentTime;  
 	}
 	else if (graphics::getKeyState(graphics::SCANCODE_DOWN)) {
 		if (m_selected != 3) {
@@ -69,6 +75,7 @@ void Menu::update(float dt) {
 		}
 		else {
 			m_selected = 1;
+			
 		}
 		graphics::playSound(m_state->getFullAssetPath("option.wav"), 0.5f);
 		std::cout << m_selected << std::endl;  // Print the selected value

@@ -53,7 +53,7 @@ void Player::draw()
 		// Draw the current deactivation sprite
 		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
 		m_brush_player.texture = m_spritesdeactivation[spritesdeactivation];
-		animationtimerfordeath += 0.05f;
+		animationtimerfordeath += 0.08f;
 	}
 	else {
 		if (graphics::getKeyState(graphics::SCANCODE_W)) {
@@ -126,11 +126,11 @@ void Player::init()
 	m_brush_player.outline_opacity = 0.0f;
 
 
-	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run1.png"));
-	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run2.png"));
-	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run3.png"));
-	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run4.png"));
 	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run5.png"));
+	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run4.png"));
+	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run3.png"));
+	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run2.png"));
+	m_spritesright.push_back(m_state->getFullAssetPath("Biker_run1.png"));
 
 	m_spritesidle.push_back(m_state->getFullAssetPath("Biker_idle2.png"));
 	m_spritesidle.push_back(m_state->getFullAssetPath("Biker_idle3.png"));
@@ -242,7 +242,7 @@ void Player::hurtPlayer(Enemy* enemy) {
 	if (m_state->getLevel()->isCollidingSaw) {
 
 		m_player_health -= 5;
-		graphics::playSound(m_state->getFullAssetPath("SawElectHandCutti PE1067201 (mp3cut.net).wav"), 0.04f);
+		graphics::playSound(m_state->getFullAssetPath("ElectricSaw.wav"), 0.04f,false);
 		m_gameover = true;
 	}
 

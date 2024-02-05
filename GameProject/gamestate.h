@@ -14,6 +14,7 @@ private:
 
 	class Menu* m_menu = 0;
 	class Level* m_current_level = 0;
+	class AboutPage* m_about_page = 0;
 	class Player* m_player = 0;
 
 	graphics::Brush brush_background_dead;
@@ -23,6 +24,7 @@ private:
 
 protected:
 	bool m_active = true;
+	float deathtimer = 0.0f;
 
 public:
 	float m_global_offset_x = 0.0f;
@@ -30,7 +32,9 @@ public:
 	
 	bool m_debugging = false;
 	bool m_dead = false;
-
+	//bool m_paused = false;
+	
+	
 public:
 	~GameState();
 	static GameState* getInstance();
@@ -49,4 +53,10 @@ public:
 	class Level* getLevel() { return m_current_level; }
 	void setActive(bool a) { m_active = a; }
 
+	void switchToMenu();
+	
+	/*bool isPaused() const;
+	void pause();
+	void resume();
+	*/
 };

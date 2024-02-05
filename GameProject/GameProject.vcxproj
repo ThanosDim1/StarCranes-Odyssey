@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AboutPage.cpp" />
     <ClCompile Include="AnimatedObjects.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="gamestate.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Star.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AboutPage.h" />
     <ClInclude Include="AnimatedObjects.h" />
     <ClInclude Include="CollisionObject.h" />
     <ClInclude Include="enemy.h" />

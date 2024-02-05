@@ -4,10 +4,11 @@
 #include "enemy.h"
 #include "util.h"
 #include "menu.h"
+#include "aboutpage.h"
 #include <thread>
 #include <chrono>
 #include <iostream>
-using namespace std::chrono_literals;
+
 
 GameState::GameState()
 {
@@ -45,7 +46,9 @@ void GameState::draw()
 	if (m_menu) {
 		m_menu->draw();
 	}
-	
+	if (m_about_page) {
+		m_about_page->draw();
+	}
 	if (m_current_level) {
 		m_current_level->draw();
 	}
@@ -64,11 +67,20 @@ void GameState::update(float dt)
 	{
 		std::this_thread::sleep_for(std::chrono::duration<float, std::milli>(sleep_time));
 	}
+	
+	/*if (isPaused()) {
+		return;
+		if (m_menu->option_locked() == 1) {
+			resume();
+			m_menu->update(dt);
+		}
+	}*/
 
 	if (m_menu) {
 		m_menu->update(dt);
-		if (m_menu->option_locked() == 1) {
-
+		switch (m_menu->option_locked())
+		{
+		case 1:
 			delete m_menu;
 			m_menu = nullptr;
 
@@ -77,11 +89,24 @@ void GameState::update(float dt)
 
 			m_player = new Player("Player");
 			m_player->init();
+			break;
+		case 2:
+			delete m_menu;
+			m_menu = nullptr;
 
-		}
-		if (m_menu->option_locked() == 3) {
+			m_about_page = new AboutPage();
+			m_about_page->init();
+			break;
+		case 3:
 			graphics::stopMessageLoop();
+			break;
+		default:
+			break;
 		}
+	}
+
+	if (m_about_page) {
+		m_about_page->update(dt);
 	}
 
 	if (m_current_level) {
@@ -92,24 +117,37 @@ void GameState::update(float dt)
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);
 
 	
-	if (m_dead) {
+	if (m_dead && deathtimer<2300) {
+		graphics::playSound(getFullAssetPath("kyriakos.wav"), 0.07f);
 		delete m_current_level;
 		m_current_level = nullptr;
 		m_player = nullptr;
+		
 
 		float m_pos_x = m_canvas_width / 2.0f;
 		float m_pos_y = m_canvas_height / 2.0f;
-
+		
 		SETCOLOR(brush_background_dead.fill_color, 0.0f, 0.0f, 0.0f);
 		graphics::drawRect(m_pos_x, m_pos_y, m_canvas_width, m_canvas_height, brush_background_dead);
 		graphics::setFont(getFullAssetPath("Aerologica.ttf"));
 		SETCOLOR(brush_dead.fill_color, 1.f, 0, 0);
 		graphics::drawText(4.0f, 5.5f, 2, "YOU DIED", brush_dead);
+		
+		
+		
+		deathtimer += dt;
 
+	}else{
+		if (m_dead) {
+			m_menu = new Menu();
+			m_menu->init();
+		}
 		m_dead = false;
-		m_menu = new Menu();
-		m_menu->init();
+		deathtimer = 0.0f;
+		
 	}
+	
+	
 }
 
 std::string GameState::getFullAssetPath(const std::string& asset)
@@ -122,5 +160,27 @@ std::string GameState::getAssetDir()
 	return m_asset_path;
 }
 
+void GameState::switchToMenu() {
+	if (m_about_page) {
+		delete m_about_page;
+		m_about_page = nullptr;
+	}
+
+	m_menu = new Menu();
+	m_menu->init();
+}
+
+/*void GameState::pause() {
+	m_paused = true;
+}
+
+bool GameState::isPaused() const {
+	return m_paused;
+}
+
+void GameState::resume() {
+	m_paused = false;
+}
+*/
 
 GameState* GameState::m_unique_instance = nullptr;
