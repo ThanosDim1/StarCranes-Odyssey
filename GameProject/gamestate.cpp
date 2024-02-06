@@ -42,6 +42,7 @@ bool GameState::init()
 
 void GameState::draw()
 {
+	
 
 	if (m_menu) {
 		m_menu->draw();
@@ -89,6 +90,7 @@ void GameState::update(float dt)
 
 			m_player = new Player("Player");
 			m_player->init();
+			
 			break;
 		case 2:
 			delete m_menu;

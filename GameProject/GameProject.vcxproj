@@ -145,6 +145,7 @@
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="KeyLevel.cpp" />
     <ClCompile Include="level.cpp" />
+    <ClCompile Include="Level2.cpp" />
     <ClCompile Include="LevelDoor1.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="gameobject.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="gamestate.h" />
     <ClInclude Include="KeyLevel.h" />
     <ClInclude Include="level.h" />
+    <ClInclude Include="Level2.h" />
     <ClInclude Include="LevelDoor1.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="NonCollisionObject.h" />

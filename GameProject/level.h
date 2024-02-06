@@ -56,10 +56,10 @@ public:
 
 
 	//add some enemies
-	std::vector<std::unique_ptr<Enemy>> enemies;
-	std::vector<std::unique_ptr<saw>> saws;
-	std::vector<std::unique_ptr<Star>> stars;
-	std::vector<std::unique_ptr<Spikes>> spikes;
+	std::vector<Enemy*> enemies;
+	std::vector<saw*> saws;
+	std::vector<Star*> stars;
+	std::vector<Spikes*> spikes;
 	const float m_block_size = 1.0f;
 	graphics::Brush m_block_brush;
 	graphics::Brush m_block_brush_debug;
@@ -73,29 +73,45 @@ public:
 
 
 	// dedicated method to draw a block
-	void drawBlock(int i);
-	void drawNonCollisionBlock(int i);
+	void drawBlock(int i, std::vector<CollisionObject> m_blocks);
+	void drawNonCollisionBlock(int i, std::vector<NonCollisionObject> m_non_collidable_blocks);
+
+	
 
 	// detect collisions
-	void checkCollisions();
-	void checkCollisionsForEnemy();
-	void checkCollisionPlayerDoor();
-	void checkCollisionPlayerSaw();
-	void checkCollisionPlayerStar();
-	void checkCollisionPlayerKey();
-	void checkCollisionsMovingObjects();
+	void EnemiesCheck(float dt, std::vector<Enemy*> enemies);
+	void ArrayCheck(const char* lvl1[20][74], const char* non_coll1[20][74]);
+	
 	void checkCollisionPlayerSpike();
+
+	void checkCollisionPlayerSaw(std::vector<saw*> saws);
+
+	void checkCollisionPlayerStar(std::vector<Star*> stars);
+
+	void checkCollisionPlayerKey();
+
+	void checkCollisionPlayerDoor();
+
+	void checkCollisions(std::vector<CollisionObject> m_blocks);
+
+	void checkCollisionsForEnemy(std::vector<CollisionObject> m_blocks, std::vector<Enemy*> enemies);
+
+	void checkCollisionsMovingObjects(std::vector<Enemy*> enemies);
 
 
 public:
-	void update(float dt) override;
-	void draw() override;
-	void init() override;
+	void update(float dt);
+	void draw();
+	void drawKey();
+	void drawStar();
+	void drawHealthSystem();
+	void init();
 
 	void spitesinit();
 
 	Level(const std::string& name = "Level0");
 	~Level() override;
+	
 };
 
 
