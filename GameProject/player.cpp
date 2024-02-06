@@ -15,7 +15,7 @@ void Player::update(float dt)
 
 	for (int i = 0; i < m_state->getLevel()->enemies.size(); i++) {
 		if (m_state->getLevel()->enemies[i] != nullptr) {
-			hurtPlayer(m_state->getLevel()->enemies[i].get());  // Pass the Enemy object
+			hurtPlayer(m_state->getLevel()->enemies[i]);  // Pass the Enemy object
 		}
 	}
 	graphics::getMouseState(mouse);
