@@ -98,6 +98,7 @@ void GameState::update(float dt)
 			m_about_page->init();
 			break;
 		case 3:
+			delete m_menu;
 			graphics::stopMessageLoop();
 			break;
 		default:
@@ -143,11 +144,8 @@ void GameState::update(float dt)
 			m_menu->init();
 		}
 		m_dead = false;
-		deathtimer = 0.0f;
-		
+		deathtimer = 0.0f;	
 	}
-	
-	
 }
 
 std::string GameState::getFullAssetPath(const std::string& asset)
@@ -169,18 +167,5 @@ void GameState::switchToMenu() {
 	m_menu = new Menu();
 	m_menu->init();
 }
-
-/*void GameState::pause() {
-	m_paused = true;
-}
-
-bool GameState::isPaused() const {
-	return m_paused;
-}
-
-void GameState::resume() {
-	m_paused = false;
-}
-*/
 
 GameState* GameState::m_unique_instance = nullptr;
