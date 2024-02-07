@@ -82,7 +82,7 @@ public:
 	void EnemiesCheck(float dt, std::vector<Enemy*> enemies);
 	void ArrayCheck(const char* lvl1[20][74], const char* non_coll1[20][74]);
 	
-	void checkCollisionPlayerSpike();
+	void checkCollisionPlayerSpike(std::vector<Spikes*> spikes);
 
 	void checkCollisionPlayerSaw(std::vector<saw*> saws);
 
@@ -100,6 +100,7 @@ public:
 
 
 public:
+	
 	void update(float dt);
 	void draw();
 	void drawKey();
@@ -111,6 +112,8 @@ public:
 
 	Level(const std::string& name = "Level0");
 	~Level() override;
+
+	
 	
 };
 
