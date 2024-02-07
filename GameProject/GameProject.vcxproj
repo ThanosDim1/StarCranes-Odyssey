@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="AboutPage.cpp" />
     <ClCompile Include="AnimatedObjects.cpp" />
+    <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="KeyLevel.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="AboutPage.h" />
     <ClInclude Include="AnimatedObjects.h" />
     <ClInclude Include="CollisionObject.h" />
+    <ClInclude Include="EndScreen.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />

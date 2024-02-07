@@ -54,7 +54,7 @@ void Level::update(float dt)
 
 	EnemiesCheck(dt, enemies);
 
-	checkCollisionPlayerSpike();
+	checkCollisionPlayerSpike(spikes);
 	checkCollisionPlayerKey();
 	checkCollisionPlayerDoor();
 	checkCollisionsForEnemy(m_blocks,enemies);
@@ -205,7 +205,7 @@ Level::~Level()
 	
 }
 
-void Level:: checkCollisionPlayerSpike() {
+void Level:: checkCollisionPlayerSpike(std::vector<Spikes*> spikes) {
 	for (int i = 0; i < spikes.size(); i++)
 	{
 		CollisionObject& spike = *spikes[i];
@@ -276,7 +276,6 @@ void Level::checkCollisionPlayerDoor() {
 	else {
 		isCollidingLevelDoor1 = false;
 	}
-
 }
 
 

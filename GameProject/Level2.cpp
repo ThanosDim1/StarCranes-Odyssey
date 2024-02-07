@@ -9,21 +9,21 @@ void Level2::update(float dt)
 	if (Level::m_state->getPlayer()->isActive())
 		Level::m_state->getPlayer()->update(dt);
 
-	for (int i = 0; i < enemies.size(); i++)
+	for (int i = 0; i < enemies2.size(); i++)
 	{
-		if (enemies[i]->isActive()) {
-			enemies[i]->update(dt);
+		if (enemies2[i]->isActive()) {
+			enemies2[i]->update(dt);
 		}
 	}
 
 	checkCollisionPlayerSpike();
 	checkCollisionPlayerKey();
 	checkCollisionPlayerDoor();
-	checkCollisionsForEnemy();
-	checkCollisions();
-	checkCollisionPlayerSaw();
-	checkCollisionPlayerStar();
-	checkCollisionsMovingObjects();
+	checkCollisionsForEnemy(m_blocks2, enemies2);
+	checkCollisions(m_blocks2);
+	checkCollisionPlayerSaw(saws2);
+	checkCollisionPlayerStar(stars2);
+	checkCollisionsMovingObjects(enemies2);
 	GameObject::update(dt);
 }
 
@@ -39,47 +39,47 @@ void Level2::draw()
 	graphics::drawRect(offset_x, offset_y + 2.0f, 6.0f * w, 3.0f * h, m_brush_background);
 
 	// draw static blocks
-	for (int i = 0; i < m_blocks.size(); i++)
+	for (int i = 0; i < m_blocks2.size(); i++)
 	{
-		drawBlock(i);
+		drawBlock(i, m_blocks2);
 	}
 
 	// draw non collidable blocks
-	for (int i = 0; i < m_non_collidable_blocks.size(); i++)
+	for (int i = 0; i < m_non_collidable_blocks2.size(); i++)
 	{
-		drawNonCollisionBlock(i);
+		drawNonCollisionBlock(i, m_non_collidable_blocks2);
 	}
 
-	for (int i = 0; i < saws.size(); i++)
+	for (int i = 0; i < saws2.size(); i++)
 	{
-		if (saws[i]->isActive()) {
-			saws[i]->draw(0.5f);
+		if (saws2[i]->isActive()) {
+			saws2[i]->draw(0.5f);
 		}
 	}
 
 	// draw stars
-	for (int i = 0; i < stars.size(); i++) {
-		if (stars[i]->isActive()) {
-			stars[i]->draw(0.2f);
+	for (int i = 0; i < stars2.size(); i++) {
+		if (stars2[i]->isActive()) {
+			stars2[i]->draw(0.2f);
 		}
 	}
 
-	for (int i = 0; i < spikes.size(); i++) {
-		if (spikes[i]->isActive()) {
-			spikes[i]->draw(0.0f);
+	for (int i = 0; i < spikes2.size(); i++) {
+		if (spikes2[i]->isActive()) {
+			spikes2[i]->draw(0.0f);
 		}
 	}
 
-	mn_leveldoor1->draw(0.5f);
+	mn_leveldoor2->draw(0.5f);
 
-	if (m_keylevel != nullptr) {
-		mn_keylevel->draw(0.5f);
+	if (m_keylevel2 != nullptr) {
+		mn_keylevel2->draw(0.5f);
 	}
 
-	for (int i = 0; i < enemies.size(); i++)
+	for (int i = 0; i < enemies2.size(); i++)
 	{
-		if (enemies[i]->isActive())
-			enemies[i]->draw();
+		if (enemies2[i]->isActive())
+			enemies2[i]->draw();
 	}
 
 	// draw player
@@ -144,6 +144,59 @@ void Level2::init()
 	SETCOLOR(m_block_brush_debug.outline_color, 0.3f, 1.0f, 0.2f);
 
 	spitesinit();
+}
+
+void Level2::ArrayCheck(const char* lvl[20][74], const char* non_coll[20][74])
+{
+	int sawctr = 0;
+	int enemyctr = 0;
+	int spikesctr = 0;
+	for (int x = 0; x < 20; x++) {
+		for (int y = 0; y < 74; y++) {
+			if (lvl[x][y] != "0") {
+				switch (std::stoi(lvl[x][y])) {
+				case 110:
+					enemies2.push_back(new Enemy("Enemy" + std::to_string(enemyctr), y - 19, x - 2));
+					enemies2[enemyctr]->init();
+					enemyctr++;
+					break;
+				case 111:
+					spikes2.push_back(new Spikes(y - 19, x - 2));
+					spikes2[spikesctr]->init();
+					spikesctr++;
+					break;
+				case 101:
+					saws2.push_back(new saw(y - 19, x - 2));
+					saws2[sawctr]->init();
+					sawctr++;
+					break;
+				default:
+					m_blocks2.push_back(CollisionObject(y - 19, x - 2, 1, 1));
+					m_block_names2.push_back("IndustrialTile_" + std::string(lvl[x][y]) + ".png");
+					break;
+				}
+			}
+		}
+	}
+
+	int starctr = 0;
+	for (int x = 0; x < 20; x++) {
+		for (int y = 0; y < 74; y++) {
+			if (non_coll[x][y] != "0") {
+				switch (std::stoi(non_coll[x][y])) {
+				case 102:
+					stars2.push_back(new Star(y - 19, x - 2));
+					stars2[starctr]->init();
+					starctr++;
+					break;
+				default:
+					m_non_collidable_blocks2.push_back(NonCollisionObject(y - 19, x - 2, 1, 1));
+					m_non_collidable_block_names2.push_back("NonCollidableTile_" + std::string(non_coll[x][y]) + ".png");
+					break;
+				}
+			}
+		}
+	}
 }
 
 Level2::Level2(const std::string& name)
