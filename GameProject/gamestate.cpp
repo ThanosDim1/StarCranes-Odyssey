@@ -113,12 +113,29 @@ void GameState::update(float dt)
 	}
 
 	if (m_current_level) {
+		if (m_current_level->lvl1_finished && init_lvl2 == false) {
+			delete m_current_level;
+			delete m_player;
+			m_current_level = new Level("2.lvl");
+			m_player = new Player("Player");
+			m_current_level -> lvl1_finished = true;
+			m_current_level->init();
+			m_player->init();
+			init_lvl2 = true;
+		}
+
+		if (m_current_level->lvl2_finished) {
+			delete m_current_level;
+			m_current_level = nullptr;
+			delete m_player;
+			m_player = nullptr;
+			m_menu = new Menu();
+			m_menu->init();
+		}
 		m_current_level->update(dt);
 	}
  
-
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);
-
 	
 	if (m_dead && deathtimer<2300) {
 		graphics::playSound(getFullAssetPath("kyriakos.wav"), 0.07f);
