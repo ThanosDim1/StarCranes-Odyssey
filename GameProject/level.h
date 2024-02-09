@@ -48,9 +48,12 @@ public:
 	AnimatedObjects* m_leveldoor1= new LevelDoor1(45.0f, 5.0f);
 	LevelDoor1* mn_leveldoor1 = dynamic_cast<LevelDoor1*>(m_leveldoor1);
 
+	//AnimatedObjects* m_leveldoor2 = new LevelDoor1(45.0f, 5.0f);
+	//LevelDoor1* mn_leveldoor2 = dynamic_cast<LevelDoor1*>(m_leveldoor2);
+
 	//add some keys
-	AnimatedObjects* m_keylevel = new KeyLevel(43.0f, 9.0f);
-	KeyLevel* mn_keylevel = dynamic_cast<KeyLevel*>(m_keylevel);
+	AnimatedObjects* m_keylevel1 = new KeyLevel(43.0f, 9.0f);
+	KeyLevel* mn_keylevel1 = dynamic_cast<KeyLevel*>(m_keylevel1);
 
 	bool soundPlayed = false;
 
@@ -70,13 +73,14 @@ public:
 	bool isCollidingLevelDoor1 = false;
 	bool isCollidingSaw = false;
 	bool isCollidingSpike = false;
+	bool lvl1_finished = false;
+	bool lvl2_finished = false;
 
 
 	// dedicated method to draw a block
 	void drawBlock(int i, std::vector<CollisionObject> m_blocks);
 	void drawNonCollisionBlock(int i, std::vector<NonCollisionObject> m_non_collidable_blocks);
 
-	
 
 	// detect collisions
 	void EnemiesCheck(float dt, std::vector<Enemy*> enemies);
@@ -88,7 +92,7 @@ public:
 
 	void checkCollisionPlayerStar(std::vector<Star*> stars);
 
-	void checkCollisionPlayerKey();
+	void checkCollisionPlayerKey(AnimatedObjects* m_keylevel, KeyLevel* mn_keylevel);
 
 	void checkCollisionPlayerDoor();
 

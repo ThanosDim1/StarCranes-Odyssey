@@ -32,6 +32,7 @@ public:
 	
 	bool m_debugging = false;
 	bool m_dead = false;
+	bool init_lvl2 = false;
 	//bool m_paused = false;
 	
 	
