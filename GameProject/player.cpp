@@ -276,16 +276,20 @@ void Player::hurtPlayer(Enemy* enemy) {
 	// The unique_ptr will automatically clean up the enemy object when it goes out of scope
 
 bool Player::openDoor() {
-	static bool soundPlayed = false;
-
+	bool soundPlayed = false;
+	
 	if (this->m_active) {
 		if (m_state->getLevel()->isCollidingLevelDoor1 && m_player_has_key) {
 			if (graphics::getKeyState(graphics::SCANCODE_E)) {
 				if (!soundPlayed) {
 					graphics::playSound(m_state->getFullAssetPath("level-up-bonus-sequence-3-186892.wav"), 0.15f);
 					soundPlayed = true;
-					m_state->getLevel()->lvl1_finished = true;
 				}
+				if (m_state->getLevel()->lvl1_finished == true) {
+					m_state->getLevel()->lvl2_finished = true;
+					return true;
+				}
+				m_state->getLevel()->lvl1_finished = true;
 				return true;
 			}
 		}

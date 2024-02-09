@@ -124,6 +124,8 @@ void GameState::update(float dt)
 			init_lvl2 = true;
 		}
 
+		m_current_level->update(dt);
+
 		if (m_current_level->lvl2_finished) {
 			delete m_current_level;
 			m_current_level = nullptr;
@@ -132,7 +134,6 @@ void GameState::update(float dt)
 			m_menu = new Menu();
 			m_menu->init();
 		}
-		m_current_level->update(dt);
 	}
  
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);

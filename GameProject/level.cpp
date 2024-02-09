@@ -63,6 +63,7 @@ void Level::update(float dt)
 	checkCollisionsMovingObjects(enemies);
 
 	checkCollisionPlayerKey(m_keylevel1, mn_keylevel1);
+	std::cout << isCollidingLevelDoor1;
 	GameObject::update(dt);
 }
 
