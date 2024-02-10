@@ -1,4 +1,7 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  gamestate.cpp
-C:\Users\thana\source\repos\PlatformGame\GameProject\menu.h(33): warning C4715: 'Menu::option_locked': not all control paths return a value
+  EndScreen.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.cpp(14,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.cpp(15,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.cpp(16,55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.cpp(17,56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   GameProject.vcxproj -> C:\Users\thana\source\repos\PlatformGame\bin\GameProject.exe

@@ -31,7 +31,8 @@ public:
             return m_option_locked;
         }
     }
-    int set_option_locked(int option) {
+
+    void set_option_locked(int option) {
         this->m_option_locked = option;
     }
 private:

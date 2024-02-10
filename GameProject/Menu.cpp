@@ -98,10 +98,9 @@ void Menu::update(float dt) {
 			m_selected = 3;
 		}
 		graphics::playSound(m_state->getFullAssetPath("option.wav"), 0.5f);
-		std::cout << m_selected << std::endl;
 		lastKeyPressTime = currentTime;
 	}
-	else if (graphics::getKeyState(graphics::SCANCODE_DOWN)) {
+	if (graphics::getKeyState(graphics::SCANCODE_DOWN)) {
 		if (m_selected != 3) {
 			m_selected++;
 		}
@@ -110,7 +109,6 @@ void Menu::update(float dt) {
 
 		}
 		graphics::playSound(m_state->getFullAssetPath("option.wav"), 0.5f);
-		std::cout << m_selected << std::endl;  // Print the selected value
 		lastKeyPressTime = currentTime;  // Update the last key press time
 	}
 

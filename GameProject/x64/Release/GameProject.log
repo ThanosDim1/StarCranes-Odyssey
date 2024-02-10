@@ -1,35 +1,81 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  AboutPage.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(11,55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(12,57): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(13,58): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(14,59): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(48,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(49,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(50,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(51,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(52,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(52,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(52,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(52,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(57,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(61,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(62,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(65,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(66,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(67,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(68,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\AboutPage.cpp(69,36): warning C4305: 'argument': truncation from 'double' to 'float'
+  AnimatedObjects.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\AnimatedObjects.cpp(14,87): warning C4244: 'argument': conversion from 'unsigned __int64' to 'double', possible loss of data
+  EndScreen.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.cpp(14,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.cpp(15,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.cpp(16,55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.cpp(17,56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  KeyLevel.cpp
+  LevelDoor1.cpp
+  Menu.cpp
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(9,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(10,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(11,55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(12,56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(38,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(38,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(38,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\Menu.cpp(38,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Spikes.cpp
+  Star.cpp
+  enemy.cpp
+  gameobject.cpp
   gamestate.cpp
   level.cpp
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(148,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(148,33): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(148,28): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(153,39): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(153,34): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(153,28): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(162,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(162,33): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(162,28): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(162,22): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(193,31): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(193,26): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(193,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(444,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(444,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(449,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(449,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(454,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(454,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(459,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(459,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(473,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(473,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(478,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(478,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(147,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(147,33): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(147,28): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(152,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(152,34): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(152,28): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(161,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(161,33): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(161,28): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(161,22): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(192,31): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(192,26): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(192,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(443,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(443,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(448,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(448,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(453,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(453,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(458,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(458,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(472,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(472,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(477,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\thana\source\repos\PlatformGame\GameProject\level.cpp(477,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
   player.cpp
+  saw.cpp
   Generating code
-  5 of 822 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    9 functions had inline decision re-evaluated but remain unchanged
+  Compiler switch has changed, fall back to full compilation.
+C:\Users\thana\source\repos\PlatformGame\GameProject\menu.h(33): warning C4715: 'Menu::option_locked': not all control paths return a value
+C:\Users\thana\source\repos\PlatformGame\GameProject\EndScreen.h(23): warning C4715: 'EndScreen::option_locked': not all control paths return a value
+  All 832 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   GameProject.vcxproj -> C:\Users\thana\source\repos\PlatformGame\bin\GameProject.exe

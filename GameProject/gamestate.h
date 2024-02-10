@@ -16,6 +16,7 @@ private:
 	class Level* m_current_level = 0;
 	class AboutPage* m_about_page = 0;
 	class Player* m_player = 0;
+	class EndScreen* m_endscreen = 0;
 
 	graphics::Brush brush_background_dead;
 	graphics::Brush brush_dead;
@@ -33,6 +34,10 @@ public:
 	bool m_debugging = false;
 	bool m_dead = false;
 	bool init_lvl2 = false;
+	bool endscreen_init = false;
+	bool return_to_menu = false;
+	
+	int temp_stars;
 	//bool m_paused = false;
 	
 	

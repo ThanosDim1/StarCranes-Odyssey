@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 #include "gameobject.h"
 #include "sgg/graphics.h"
 
@@ -8,7 +8,9 @@ class EndScreen : public GameObject {
 public:
 	EndScreen();
 	void init() override;
-	void draw() override;
+	void StarShow1(int stars);
+	void StarShow2(int stars);
+	void draw(int stars);
 	void update(float dt) override;
 
 	int option_selected() {
@@ -26,7 +28,6 @@ public:
 private:
 	graphics::Brush brush_gui;
 	graphics::Brush brush_menu;
-	graphics::Brush brush_replay;
 	graphics::Brush brush_next;
 
 	int m_width;
@@ -38,4 +39,4 @@ private:
 	int m_option_locked;
 
 
-};*/
+};

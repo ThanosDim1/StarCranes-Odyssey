@@ -5,6 +5,7 @@
 #include "util.h"
 #include "menu.h"
 #include "aboutpage.h"
+#include "endscreen.h"
 #include <thread>
 #include <chrono>
 #include <iostream>
@@ -53,6 +54,9 @@ void GameState::draw()
 	if (m_current_level) {
 		m_current_level->draw();
 	}
+	if (m_endscreen) {
+		m_endscreen->draw(temp_stars);
+	}
 }
 
 void GameState::update(float dt)
@@ -77,65 +81,127 @@ void GameState::update(float dt)
 		}
 	}*/
 
+	if (m_endscreen) {
+		m_endscreen->update(dt);
+		if (m_current_level->lvl1_finished) {
+			switch (m_endscreen->option_locked())
+			{
+			case 1:
+				delete m_endscreen;
+				m_endscreen = nullptr;
+				delete m_current_level;
+				endscreen_init = false;
+				m_current_level = nullptr;
+				delete m_player;
+				m_player = nullptr;
+				m_menu = new Menu();
+				m_menu->init();
+				break;
+			case 2:
+				delete m_endscreen;
+				m_endscreen = nullptr;
+				endscreen_init = false;
+				delete m_current_level;
+				init_lvl2 = true;
+				m_current_level = new Level("2.lvl");
+				m_current_level->lvl1_finished = true;
+				m_current_level->init();
+				delete m_player;
+				m_player = new Player("Player");
+				m_player->init();
+				break;
+			}
+		}
+		else if(m_current_level->lvl2_finished){
+			switch (m_endscreen->option_locked())
+			{
+			case 1:
+				delete m_endscreen;
+				m_endscreen = nullptr;
+				delete m_current_level;
+				endscreen_init = false;
+				m_current_level = nullptr;
+				delete m_player;
+				m_player = nullptr;
+				init_lvl2 = false;
+				m_menu = new Menu();
+				m_menu->init();
+				break;
+			case 2:
+				delete m_endscreen;
+				m_endscreen = nullptr;
+				delete m_current_level;
+				endscreen_init = false;
+				m_current_level = nullptr;
+				delete m_player;
+				m_player = nullptr;
+				init_lvl2 = false;
+				m_menu = new Menu();
+				m_menu->init();
+			}
+		}
+		
+	}
+
+
+	if (m_current_level) {
+		if (m_current_level->lvl1_finished && init_lvl2 == false) {
+			if (!endscreen_init) {
+				m_endscreen = new EndScreen();
+				m_endscreen->init();
+				temp_stars = m_player->m_player_has_star;
+				endscreen_init = true;
+			}
+		}
+		else if (m_current_level->lvl2_finished) {
+			if (!endscreen_init) {
+				m_endscreen = new EndScreen();
+				m_endscreen->init();
+				temp_stars = m_player->m_player_has_star;
+				endscreen_init = true;
+			}
+		}
+		m_current_level->update(dt);
+	}
+
 	if (m_menu) {
 		m_menu->update(dt);
 		switch (m_menu->option_locked())
 		{
-		case 1:
-			delete m_menu;
-			m_menu = nullptr;
+			case 1:
 
-			m_current_level = new Level("1.lvl");
-			m_current_level->init();
+				delete m_menu;
+				m_menu = nullptr;
 
-			m_player = new Player("Player");
-			m_player->init();
+				m_current_level = new Level("1.lvl");
+				m_current_level->init();
+
+				m_player = new Player("Player");
+				m_player->init();
 			
-			break;
-		case 2:
-			delete m_menu;
-			m_menu = nullptr;
+				break;
+			case 2:
+				delete m_menu;
+				m_menu = nullptr;
 
-			m_about_page = new AboutPage();
-			m_about_page->init();
-			break;
-		case 3:
-			delete m_menu;
-			graphics::stopMessageLoop();
-			break;
-		default:
-			break;
+				m_about_page = new AboutPage();
+				m_about_page->init();
+				break;
+			case 3:
+				delete m_menu;
+				m_menu = nullptr;
+				graphics::stopMessageLoop();
+				break;
+			default:
+				break;
 		}
+		
 	}
 
 	if (m_about_page) {
 		m_about_page->update(dt);
 	}
 
-	if (m_current_level) {
-		if (m_current_level->lvl1_finished && init_lvl2 == false) {
-			delete m_current_level;
-			delete m_player;
-			m_current_level = new Level("2.lvl");
-			m_player = new Player("Player");
-			m_current_level -> lvl1_finished = true;
-			m_current_level->init();
-			m_player->init();
-			init_lvl2 = true;
-		}
-
-		m_current_level->update(dt);
-
-		if (m_current_level->lvl2_finished) {
-			delete m_current_level;
-			m_current_level = nullptr;
-			delete m_player;
-			m_player = nullptr;
-			m_menu = new Menu();
-			m_menu->init();
-		}
-	}
- 
 	m_debugging = graphics::getKeyState(graphics::SCANCODE_0);
 	
 	if (m_dead && deathtimer<2300) {

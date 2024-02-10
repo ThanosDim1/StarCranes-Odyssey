@@ -287,6 +287,7 @@ bool Player::openDoor() {
 				}
 				if (m_state->getLevel()->lvl1_finished == true) {
 					m_state->getLevel()->lvl2_finished = true;
+					m_state->getLevel()->lvl1_finished = false;
 					return true;
 				}
 				m_state->getLevel()->lvl1_finished = true;
