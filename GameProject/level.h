@@ -25,6 +25,7 @@ public:
 	graphics::Brush m_brush_health_system;
 	graphics::Brush m_brush_star_system;
 	graphics::Brush m_brush_key_system;
+	graphics::Brush brush_text;
 
 
 	std::vector<GameObject*> m_static_objects;
@@ -45,7 +46,7 @@ public:
 	std::vector<NonCollisionObject> m_non_collidable_blocks;
 	std::vector<std::string> m_non_collidable_block_names;
 
-	AnimatedObjects* m_leveldoor1= new LevelDoor1(45.0f, 5.0f);
+	AnimatedObjects* m_leveldoor1 = new LevelDoor1(45.0f, 5.0f);
 	LevelDoor1* mn_leveldoor1 = dynamic_cast<LevelDoor1*>(m_leveldoor1);
 
 	//AnimatedObjects* m_leveldoor2 = new LevelDoor1(45.0f, 5.0f);
@@ -75,6 +76,7 @@ public:
 	bool isCollidingSpike = false;
 	bool lvl1_finished = false;
 	bool lvl2_finished = false;
+	bool text_showed = false;
 
 
 	// dedicated method to draw a block
@@ -85,7 +87,7 @@ public:
 	// detect collisions
 	void EnemiesCheck(float dt, std::vector<Enemy*> enemies);
 	void ArrayCheck(const char* lvl1[20][74], const char* non_coll1[20][74]);
-	
+
 	void checkCollisionPlayerSpike(std::vector<Spikes*> spikes);
 
 	void checkCollisionPlayerSaw(std::vector<saw*> saws);
@@ -104,7 +106,7 @@ public:
 
 
 public:
-	
+
 	void update(float dt);
 	void draw();
 	void drawKey();
@@ -117,8 +119,6 @@ public:
 	Level(const std::string& name = "Level0");
 	~Level() override;
 
-	
-	
+
+
 };
-
-

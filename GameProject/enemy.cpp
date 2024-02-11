@@ -5,19 +5,21 @@
 #include <iostream>
 
 
-
+// Check if the player is within sight to the left of the enemy
 bool Enemy::enemysightleft(float player_x, float player_y, float enemy_x, float enemy_y) {
 	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)enemy_y + 2 && (int)player_x >= (int)enemy_x - 7 && (int)player_x <= (int)enemy_x;
 }
 
+// Check if the player is within sight to the right of the enemy
 bool Enemy::enemysightright(float player_x, float player_y, float enemy_x, float enemy_y) {
 	return (int)player_y > (int)enemy_y - 2 && (int)player_y < (int)enemy_y + 2 && (int)player_x <= (int)enemy_x + 7 && (int)player_x >= (int)enemy_x;
 }
 
+
 void Enemy::update(float dt)
 {
 	float delta_time = dt / 1000.0f;
-	hurtEnemy();
+	hurtEnemy(); // Check if the enemy is hurt by the player
 	
 	graphics::getMouseState(mouse);
 
@@ -35,12 +37,14 @@ void Enemy::update(float dt)
 	{
 		this->m_enemyrunleft = false;
 		this->m_enemyrunright = false;
+		// Check if the player is within sight to the left, then move left
 		if (enemysightleft(m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y, this->m_pos_x, this->m_pos_y)) {
 			this->m_enemyrunleft = true;
 			// Move left at a constant speed
 			this->m_pos_x -= (this->m_vx * delta_time);
 			
 		}
+		// Check if the player is within sight to the right, then move right
 		else if (enemysightright(m_state->getPlayer()->m_pos_x, m_state->getPlayer()->m_pos_y, this->m_pos_x, this->m_pos_y)) {
 			this->m_enemyrunright = true;
 			// Move left at a constant speed
@@ -48,7 +52,7 @@ void Enemy::update(float dt)
 
 
 		}
-		//Stimulate gravity
+		//Simulate gravity
 		this->m_vy += m_gravity * delta_time;
 		this->m_pos_y += this->m_vy * delta_time;
 			
@@ -56,7 +60,7 @@ void Enemy::update(float dt)
 	GameObject::update(dt);
 }
 
-
+// Draw the enemy
 void Enemy::draw()
 {
 	animationtimer += 0.07f;
@@ -111,6 +115,7 @@ void Enemy::draw()
 }
 
 
+// Initialize the enemy
 void Enemy::init()
 {
 
@@ -166,7 +171,7 @@ void Enemy::init()
 }
 
 
-
+// Draw debug information for the enemy
 void Enemy::debugDraw()
 {
 	graphics::Brush debug_brush;
@@ -179,6 +184,7 @@ void Enemy::debugDraw()
 	graphics::drawRect(m_pos_x + offset_x, m_pos_y + offset_y, m_width, m_height, debug_brush);
 }
 
+// Check if the enemy is hurt by the player
 void Enemy::hurtEnemy() {
 	if (this->isActive()) {
 		if (this->isCollidingPlayerEnemy && mouse.button_left_pressed && !graphics::getKeyState(graphics::SCANCODE_A) && !graphics::getKeyState(graphics::SCANCODE_D)) {
