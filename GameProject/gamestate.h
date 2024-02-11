@@ -61,8 +61,4 @@ public:
 
 	void switchToMenu();
 	
-	/*bool isPaused() const;
-	void pause();
-	void resume();
-	*/
 };
