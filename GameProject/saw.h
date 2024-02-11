@@ -2,18 +2,26 @@
 
 #include "AnimatedObjects.h" 
 
+// Saw class derived from AnimatedObjects class
 class saw : public AnimatedObjects {
-	std::vector<std::string> m_sprites_saw;
-
-
+    // Vector to store paths of sprite frames for the saw animation
+    std::vector<std::string> m_sprites_saw;
 
 public:
-	void update(float dt) override;
-	void draw(float add);
-	void init() override;
-	saw(float m_pos_x, float m_pos_y) : AnimatedObjects(m_pos_x, m_pos_y) {}
+    // Override the update function from the base class
+    void update(float dt) override;
+
+    // Draw function for the saw animation
+    void draw(float add);
+
+    // Override the initialization function from the base class
+    void init() override;
+
+    // Constructor for the saw class, initializing base class with position parameters
+    saw(float m_pos_x, float m_pos_y) : AnimatedObjects(m_pos_x, m_pos_y) {}
 
 protected:
-	void debugDraw();
-
+    // Function for debugging purposes to draw outlines
+    void debugDraw();
 };
+
