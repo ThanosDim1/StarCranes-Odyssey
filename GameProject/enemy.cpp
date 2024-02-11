@@ -59,7 +59,7 @@ void Enemy::update(float dt)
 
 void Enemy::draw()
 {
-	animationtimer += 0.13f;
+	animationtimer += 0.07f;
 
 	if (this->m_isDeactivating || this->m_enemygameover) {
 		// Draw the current deactivation sprite

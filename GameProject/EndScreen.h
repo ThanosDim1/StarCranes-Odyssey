@@ -29,6 +29,7 @@ private:
 	graphics::Brush brush_gui;
 	graphics::Brush brush_menu;
 	graphics::Brush brush_next;
+	graphics::Brush brush_text;
 
 	int m_width;
 	int m_height;

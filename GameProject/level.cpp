@@ -103,14 +103,14 @@ void Level::draw()
 	for (int i = 0; i < saws.size(); i++)
 	{
 		if (saws[i]->isActive()) {
-			saws[i]->draw(0.5f);
+			saws[i]->draw(0.30f);
 		}
 	}
 
 	// draw stars
 	for (int i = 0; i < stars.size(); i++) {
 		if (stars[i]->isActive()) {
-			stars[i]->draw(0.2f);
+			stars[i]->draw(0.17f);
 		}
 	}
 
@@ -120,10 +120,10 @@ void Level::draw()
 		}
 	}
 
-	mn_leveldoor1->draw(0.5f);
+	mn_leveldoor1->draw(0.12f);
 
 	if (m_keylevel1 != nullptr) {
-		mn_keylevel1->draw(0.5f);
+		mn_keylevel1->draw(0.25f);
 	}
 
 	for (int i = 0; i < enemies.size(); i++)
@@ -596,7 +596,7 @@ void Level::init()
 		mn_keylevel1->init();
 	}
 	
-	//VIASTIS->ESI();
+	
 
 	m_block_brush.outline_opacity = 0.0f;
 	m_block_brush_debug.fill_opacity = 0.1f;
