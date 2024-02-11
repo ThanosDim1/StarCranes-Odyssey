@@ -5,13 +5,12 @@
 #include <iostream>
 #include <memory>
 
-
 void Player::update(float dt)
 {
 	float delta_time = dt / 1000.0f;
 
 
-	movePlayer(dt);
+	movePlayer(dt); // Move the player
 
 	for (int i = 0; i < m_state->getLevel()->enemies.size(); i++) {
 		if (m_state->getLevel()->enemies[i] != nullptr) {
@@ -54,6 +53,7 @@ void Player::draw()
 		m_brush_player.texture = m_spritesdeactivation[spritesdeactivation];
 		animationtimerfordeath += 0.08f;
 	}
+	//Draw the according sprites for each movement
 	else {
 		if (graphics::getKeyState(graphics::SCANCODE_W)) {
 			if (graphics::getKeyState(graphics::SCANCODE_D) && !graphics::getKeyState(graphics::SCANCODE_A)) {
@@ -79,20 +79,17 @@ void Player::draw()
 		}
 	}
 
+	animationtimerforafk += 0.05f; // Increment the animation timer for afk
 
-	//Draw Player
-
-	animationtimerforafk += 0.05f;
-
-	if (isAnimationPlaying) {
+	if (isAnimationPlaying) {	
 		for (int i = 0; i < m_state->getLevel()->enemies.size(); i++) {
 			if (m_state->getLevel()->enemies[i] != nullptr) {
-				if (m_state->getPlayer()->m_pos_x >= m_state->getLevel()->enemies[i]->m_pos_x) {
+				if (m_state->getPlayer()->m_pos_x >= m_state->getLevel()->enemies[i]->m_pos_x) { // If the player is to the right of the enemy, attack with the right attack sprite
 					int spritesattackwithknifeleft = (int)fmod(animationtimerforattackwithknife, m_spritesattackwithknifeleft.size());
 					m_brush_player.texture = m_spritesattackwithknifeleft[spritesattackwithknifeleft];
 				}
 				else {
-					int spritesattackwithkniferight = (int)fmod(animationtimerforattackwithknife, m_spritesattackwithkniferight.size());
+					int spritesattackwithkniferight = (int)fmod(animationtimerforattackwithknife, m_spritesattackwithkniferight.size()); // If the player is to the left of the enemy, attack with the left attack sprite
 					m_brush_player.texture = m_spritesattackwithkniferight[spritesattackwithkniferight];
 				}
 
@@ -105,10 +102,10 @@ void Player::draw()
 				}
 			}
 		}
-		
+
 	}
 	if (m_state->m_debugging)
-			debugDraw();
+		debugDraw();
 }
 
 void Player::init()
@@ -177,7 +174,7 @@ void Player::init()
 	m_height = 1.0f;
 }
 
-
+// Draw debug information for the player
 void Player::debugDraw()
 {
 	graphics::Brush debug_brush;
@@ -185,72 +182,73 @@ void Player::debugDraw()
 	SETCOLOR(debug_brush.outline_color, 1, 0.1f, 0);
 	debug_brush.fill_opacity = 0.1f;
 	debug_brush.outline_opacity = 1.0f;
-	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, m_width+0.2f, m_height, debug_brush);
+	graphics::drawRect(m_state->getCanvasWidth() * 0.5f, m_state->getCanvasHeight() * 0.5f, m_width + 0.2f, m_height, debug_brush);
 }
 
-
+// Move the player
 void Player::movePlayer(float dt)
 {
-	float delta_time = dt / 1000.0f;
+	if (m_active) {
+		float delta_time = dt / 1000.0f;
 
-	if (m_gameover) {
-		m_vx = 0.0f;
-		m_vy = 0.0f;
-	}
-
-	if (graphics::getKeyState(graphics::SCANCODE_A) && graphics::getKeyState(graphics::SCANCODE_D)) {
-		m_vx = 0.0f;
-	}
-
-	if (graphics::getKeyState(graphics::SCANCODE_W)) {
-		if (isCollidingDown) {
-			graphics::playSound(m_state->getFullAssetPath("jumps.wav"), 0.3f);
-			if (offsetmvy == 2) {
-				m_vy -= 5.0f;
-			}
-			else if (offsetmvy == 1) {
-				m_vy -= 2.0f;
-			}
-			else {
-				m_vy -= 7.0f;
-			}
+		if (m_gameover) {
+			m_vx = 0.0f;
+			m_vy = 0.0f;
 		}
-		offsetmvy = 0.0f;
+
+		if (graphics::getKeyState(graphics::SCANCODE_A) && graphics::getKeyState(graphics::SCANCODE_D)) {
+			m_vx = 0.0f;
+		}
+
+		if (graphics::getKeyState(graphics::SCANCODE_W)) {
+			if (isCollidingDown) {
+				graphics::playSound(m_state->getFullAssetPath("jumps.wav"), 0.3f);
+				if (offsetmvy == 2) {
+					m_vy -= 5.0f;
+				}
+				else if (offsetmvy == 1) {
+					m_vy -= 2.0f;
+				}
+				else {
+					m_vy -= 7.0f;
+				}
+			}
+			offsetmvy = 0.0f;
+		}
+
+		if (m_state->getLevel()->isCollidingSpike) {
+			m_vx = 3.0f;
+		}
+
+		if (graphics::getKeyState(graphics::SCANCODE_A)) {
+			m_pos_x -= (delta_time * m_vx);
+		}
+		else if (graphics::getKeyState(graphics::SCANCODE_D)) {
+			m_pos_x += (delta_time * m_vx);
+		}
+
+		m_vy += delta_time * m_gravity;
+
+		m_pos_y += delta_time * m_vy;
 	}
-
-	if (m_state->getLevel()->isCollidingSpike) {
-		m_vx = 3.0f;
-	}
-
-	if (graphics::getKeyState(graphics::SCANCODE_A)) {
-		m_pos_x -= (delta_time * m_vx);
-	}
-	else if (graphics::getKeyState(graphics::SCANCODE_D)) {
-		m_pos_x += (delta_time * m_vx);
-	}
-
-	m_vy += delta_time * m_gravity;
-
-	m_pos_y += delta_time * m_vy;
-
-
 }
 
+// Check if the player is hurt by the enemy
 void Player::hurtPlayer(Enemy* enemy) {
 
 	if (m_state->getLevel()->isCollidingSaw) {
 
 		m_player_health -= 5;
-		graphics::playSound(m_state->getFullAssetPath("ElectricSaw.wav"), 0.04f,false);
+		graphics::playSound(m_state->getFullAssetPath("ElectricSaw.wav"), 0.04f, false);
 		m_gameover = true;
 	}
 
 	static float timerenemy = 0.0f;
 	if (enemy->isActive()) {
 		if (enemy->isCollidingPlayerEnemy) {
-			timerenemy += 0.32f;
+			timerenemy += 0.32f; // Increment the timer, on how fast the player can get hurt
 			if (timerenemy >= 30.0f) {
-				m_player_health -= 1;
+				m_player_health -= 1; // Decrement the player's health
 				graphics::playSound(m_state->getFullAssetPath("classic_hurt.wav"), 0.4f);
 				if (m_player_health <= 0) {
 					m_gameover = true;
@@ -262,9 +260,9 @@ void Player::hurtPlayer(Enemy* enemy) {
 
 	static float timerspike = 0.0f;
 	if (m_state->getLevel()->isCollidingSpike) {
-		timerspike += 0.32f;
+		timerspike += 0.32f; // Increment the timer, on how fast the player can get hurt
 		if (timerspike >= 100.0f) {
-			m_player_health -= 1;
+			m_player_health -= 1; // Decrement the player's health
 			graphics::playSound(m_state->getFullAssetPath("classic_hurt.wav"), 0.4f);
 			if (m_player_health <= 0) {
 				m_gameover = true;
@@ -273,25 +271,29 @@ void Player::hurtPlayer(Enemy* enemy) {
 		}
 	}
 }
-	// The unique_ptr will automatically clean up the enemy object when it goes out of scope
 
+// Check if the player is trying to open the door
 bool Player::openDoor() {
 	bool soundPlayed = false;
-	
+
 	if (this->m_active) {
-		if (m_state->getLevel()->isCollidingLevelDoor1 && m_player_has_key) {
-			if (graphics::getKeyState(graphics::SCANCODE_E)) {
-				if (!soundPlayed) {
-					graphics::playSound(m_state->getFullAssetPath("level-up-bonus-sequence-3-186892.wav"), 0.15f);
-					soundPlayed = true;
-				}
-				if (m_state->getLevel()->lvl1_finished == true) {
-					m_state->getLevel()->lvl2_finished = true;
-					m_state->getLevel()->lvl1_finished = false;
+		if (m_state->getLevel()->isCollidingLevelDoor1 && m_player_has_key) { // Check if the player is colliding with the door and has the key
+			if (dooropen == false) { // Check if the door is already open
+				if (graphics::getKeyState(graphics::SCANCODE_E)) { // Check if the player is pressing the E key
+					if (!soundPlayed) {
+						graphics::playSound(m_state->getFullAssetPath("level-up-bonus-sequence-3-186892.wav"), 0.15f);
+						soundPlayed = true;
+					}
+					if (m_state->getLevel()->lvl1_finished == true) { // Check if the player has finished the first level
+						m_state->getLevel()->lvl2_finished = true; // Set the second level to be finished
+						m_state->getLevel()->lvl1_finished = false; 
+						dooropen = true; // Set the door to be open
+						return true;
+					}
+					m_state->getLevel()->lvl1_finished = true; 
+					dooropen = true;
 					return true;
 				}
-				m_state->getLevel()->lvl1_finished = true;
-				return true;
 			}
 		}
 	}

@@ -3,13 +3,14 @@
 #include "KeyLevel.h"
 #include "player.h"
 
-
+// Function to update the KeyLevel object
 void KeyLevel::update(float dt)
 {
 	
 	AnimatedObjects::update(dt);
 }
 
+// Function to draw the KeyLevel object
 void KeyLevel::draw(float add)
 {
 	if (!this->m_KeyisDeactivating) {
@@ -27,6 +28,7 @@ void KeyLevel::draw(float add)
 	}
 }
 
+// Function to initialize the KeyLevel object
 void KeyLevel::init()
 {
 
@@ -59,6 +61,7 @@ void KeyLevel::init()
 	AnimatedObjects::init();
 }
 
+// Function to draw debug information for KeyLevel object
 void KeyLevel::debugDraw()
 {
 	graphics::Brush debug_brush;

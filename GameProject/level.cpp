@@ -5,6 +5,8 @@
 #include "util.h"
 #include <iostream>
 
+
+// Draw a block
 void Level::drawBlock(int i, std::vector<CollisionObject> m_blocks)
 {
 	CollisionObject& CollisionObject = m_blocks[i];
@@ -23,6 +25,7 @@ void Level::drawBlock(int i, std::vector<CollisionObject> m_blocks)
 
 }
 
+// Draw non-collidable blocks
 void Level::drawNonCollisionBlock(int i,  std::vector<NonCollisionObject> m_non_collidable_blocks)
 {
 	NonCollisionObject& NonCollisionObject = m_non_collidable_blocks[i];
@@ -49,11 +52,15 @@ void Level::update(float dt)
 	}
 	*/
 
+	// Update the player
 	if (m_state->getPlayer()->isActive())
 		m_state->getPlayer()->update(dt);
-
+	
+	// Update the enemies
 	EnemiesCheck(dt, enemies);
+	
 
+	// Check various collisions
 	checkCollisionPlayerSpike(spikes);
 	checkCollisionPlayerDoor();
 	checkCollisionsForEnemy(m_blocks,enemies);
@@ -78,7 +85,7 @@ void Level::EnemiesCheck(float dt, std::vector<Enemy*> enemies) {
 
 void Level::draw()
 {
-
+	
 	float w = m_state->getCanvasWidth();
 	float h = m_state->getCanvasHeight();
 
@@ -100,6 +107,7 @@ void Level::draw()
 		drawNonCollisionBlock(i , m_non_collidable_blocks);
 	}
 
+	// draw saws
 	for (int i = 0; i < saws.size(); i++)
 	{
 		if (saws[i]->isActive()) {
@@ -113,19 +121,23 @@ void Level::draw()
 			stars[i]->draw(0.17f);
 		}
 	}
-
+	
+	// draw spikes
 	for (int i = 0; i < spikes.size(); i++) {
 		if (spikes[i]->isActive()) {
 			spikes[i]->draw(0.0f);
 		}
 	}
 
+	// draw door
 	mn_leveldoor1->draw(0.12f);
 
+	// draw key
 	if (m_keylevel1 != nullptr) {
 		mn_keylevel1->draw(0.25f);
 	}
 
+	// draw enemies
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		if (enemies[i]->isActive())
@@ -141,6 +153,7 @@ void Level::draw()
 	drawStar();
 }
 
+//Draw the key
 void Level::drawKey() {
 	if (m_state->getPlayer()->m_player_has_key) {
 		m_brush_key_system.texture = m_spriteskeycollected[1];
@@ -155,6 +168,7 @@ void Level::drawKey() {
 	}
 }
 
+//Draw the star
 void Level::drawStar() {
 	if (m_state->getPlayer()->m_player_has_star >= 0 && m_state->getPlayer()->m_player_has_star < m_spritesstarsystem.size()) {
 		m_brush_star_system.texture = m_spritesstarsystem[m_state->getPlayer()->m_player_has_star];
@@ -163,9 +177,10 @@ void Level::drawStar() {
 	}
 }
 
+//Draw the health system
 void Level::drawHealthSystem() {
-	//draw health system
 
+	//animation for health system
 	animationtimerforhealthsystem += 0.05f;
 
 	if (m_state->getPlayer()->m_player_health == 5) {
@@ -193,19 +208,27 @@ void Level::drawHealthSystem() {
 	m_brush_health_system.outline_opacity = 0.0f;
 }
 
+//Constructor
 Level::Level(const std::string& name)
 	: GameObject(name)
 {
-	m_brush_background.outline_opacity = 0.0f;
-	m_brush_background.texture = m_state->getFullAssetPath("background7.png");
-
+	if (name == "1.lvl") {
+		m_brush_background.outline_opacity = 0.0f;
+		m_brush_background.texture = m_state->getFullAssetPath("background7.png");
+	}
+	else if (name == "2.lvl") {
+		m_brush_background.outline_opacity = 0.0f;
+		m_brush_background.texture = m_state->getFullAssetPath("background2.png");
+	}
 }
 
+//Destructor
 Level::~Level()
 {
 	
 }
 
+//Check collision between player and spikes
 void Level:: checkCollisionPlayerSpike(std::vector<Spikes*> spikes) {
 	for (int i = 0; i < spikes.size(); i++)
 	{
@@ -220,6 +243,7 @@ void Level:: checkCollisionPlayerSpike(std::vector<Spikes*> spikes) {
 	}
 }
 
+//Check collision between player and saws
 void Level::checkCollisionPlayerSaw(std::vector<saw*> saws) {
 	for (int i = 0; i < saws.size(); i++)
 	{
@@ -234,17 +258,19 @@ void Level::checkCollisionPlayerSaw(std::vector<saw*> saws) {
 	}
 }
 
+//Check collision between player and stars
 void Level::checkCollisionPlayerStar(std::vector<Star*> stars) {
 	for (int i = 0; i < stars.size(); i++) {
 		if (m_state->getPlayer()->intersect(*stars[i])) {
 			if (stars[i]->isActive()) {
 				graphics::playSound(m_state->getFullAssetPath("sound-effect-twinklesparkle-115095.wav"), 0.4f);
-				m_state->getPlayer()->m_player_has_star += 1;
+				m_state->getPlayer()->m_player_has_star += 1; // Increase player's stars by 1
 				stars[i]->setActive(false);
 			}
 		}
 	}
 
+	//play sound when player has 3 stars
 	if (m_state->getPlayer()->m_player_has_star == 3 && !soundPlayed) {
 		graphics::playSound(m_state->getFullAssetPath("ntolmadakia.wav"), 0.5f);
 		soundPlayed = true;
@@ -252,26 +278,31 @@ void Level::checkCollisionPlayerStar(std::vector<Star*> stars) {
 
 }
 
-
+//Check collision between player and key
 void Level::checkCollisionPlayerKey(AnimatedObjects* m_keylevel, KeyLevel* mn_keylevel) {
 	if (m_state->getPlayer()->intersect(*m_keylevel)) {
 		if (m_keylevel->isActive()) {
 			graphics::playSound(m_state->getFullAssetPath("keys_pickup-27204 .wav"), 0.4f);
-			m_state->getPlayer()->m_player_has_key = true;
-			mn_keylevel->m_KeyisDeactivating = true;
+			m_state->getPlayer()->m_player_has_key = true; // Set player's has key to true, to be able to unlock the door
+			mn_keylevel->m_KeyisDeactivating = true; // Deactivate the key
 			m_keylevel->setActive(false);
 			delete m_keylevel;
 		}
 	}
 }
 
+//Check collision between player and door
 void Level::checkCollisionPlayerDoor() {
-	if (m_state->getPlayer()->intersect( *m_leveldoor1 )) {
-		isCollidingLevelDoor1 =true;
+	if (m_state->getPlayer()->intersect(*m_leveldoor1)) {
+		isCollidingLevelDoor1 = true;
 		if (!m_state->getPlayer()->m_player_has_key) {
 			if (graphics::getKeyState(graphics::SCANCODE_E)) {
 				graphics::playSound(m_state->getFullAssetPath("door-lock-43124.wav"), 0.3f);
 			}
+		}
+		if (!text_showed) {
+			graphics::setFont(m_state->getFullAssetPath("ThaleahFat.ttf"));
+			graphics::drawText(6.5f, 8.9f, 0.7f, "Press E to open door", brush_text);
 		}
 	}
 	else {
@@ -279,7 +310,7 @@ void Level::checkCollisionPlayerDoor() {
 	}
 }
 
-
+//Check collision between player and enemies
 void Level::checkCollisions(std::vector<CollisionObject> m_blocks)
 {
 
@@ -289,8 +320,8 @@ void Level::checkCollisions(std::vector<CollisionObject> m_blocks)
 		if (offset = m_state->getPlayer()->intersectSideways(block))
 		{
 			m_state->getPlayer()->isCollidingSideways = true;
-			m_state->getPlayer()->m_pos_x += offset;
-			m_state->getPlayer()->m_vx = 0.0f;
+			m_state->getPlayer()->m_pos_x += offset; 
+			m_state->getPlayer()->m_vx = 0.0f; // Set player's velocity to 0
 
 
 			break;
@@ -307,14 +338,14 @@ void Level::checkCollisions(std::vector<CollisionObject> m_blocks)
 				graphics::playSound(m_state->getFullAssetPath("land.wav"), 0.2f);
 
 			m_state->getPlayer()->isCollidingDown = true;
-			m_state->getPlayer()->m_vy = 0.0f;
+			m_state->getPlayer()->m_vy = 0.0f;	// Set player's vertical velocity to 0
 
 			if ((m_state->getPlayer()->m_vy == 0 || !m_state->getPlayer()->isCollidingSideways) && m_state->getPlayer()->isCollidingDown)
 			{
 				if (m_state->getPlayer()->isCollidingSideways)
 				{
-					m_state->getPlayer()->m_vx = 0.0f;
-					m_state->getPlayer()->m_vy = 0.0f;
+					m_state->getPlayer()->m_vx = 0.0f; // Set player's horizontal velocity to 0
+					m_state->getPlayer()->m_vy = 0.0f; // Set player's vertical velocity to 0
 					m_state->getPlayer()->isCollidingSideways = false;
 
 				}
@@ -340,6 +371,7 @@ void Level::checkCollisions(std::vector<CollisionObject> m_blocks)
 	}
 }
 
+//Check collision between enemies and blocks
 void Level::checkCollisionsForEnemy(std::vector<CollisionObject> m_blocks, std::vector<Enemy*> enemies)
 {
 	for (auto& block : m_blocks)
@@ -351,10 +383,8 @@ void Level::checkCollisionsForEnemy(std::vector<CollisionObject> m_blocks, std::
 			{
 				enemies[i]->isCollidingSidewaysEnemy = true;
 				enemies[i]->m_pos_x += offset;
-				enemies[i]->m_vx = 0.0f;
+				enemies[i]->m_vx = 0.0f; // Set enemy's horizontal velocity to 0
 				
-				
-				enemies[i]->m_isDeactivating = true;
 				break;
 
 			}
@@ -374,8 +404,8 @@ void Level::checkCollisionsForEnemy(std::vector<CollisionObject> m_blocks, std::
 				{
 					if (enemies[i]->isCollidingSidewaysEnemy)
 					{
-						enemies[i]->m_vx = 0.0f;
-						enemies[i]->m_vy = 0.0f;
+						enemies[i]->m_vx = 0.0f;	
+						enemies[i]->m_vy = 0.0f;	
 						enemies[i]->isCollidingSidewaysEnemy = false;
 
 					}
@@ -392,6 +422,7 @@ void Level::checkCollisionsForEnemy(std::vector<CollisionObject> m_blocks, std::
 	}
 }
 
+//Check collision between player and moving objects
 void Level::checkCollisionsMovingObjects(std::vector<Enemy*> enemies) {
 
 	for (int i = 0; i < enemies.size(); i++) {
@@ -401,37 +432,35 @@ void Level::checkCollisionsMovingObjects(std::vector<Enemy*> enemies) {
 
 					float delta_time = graphics::getDeltaTime() / 1000.0f;
 					enemies[i]->m_vx = 0.0f;
-					// Set isCollidingPlayerEnemy to true
-					enemies[i]->isCollidingPlayerEnemy = true;
-					// Apply deceleration force to player's velocity
+					enemies[i]->isCollidingPlayerEnemy = true; // Set isCollidingPlayerEnemy to true
 					if (graphics::getKeyState(graphics::SCANCODE_A)) {
-						m_state->getPlayer()->m_vx = 3.0f;
+						m_state->getPlayer()->m_vx = 3.0f;   // Apply deceleration force to player's velocity
 					}
 					else if (graphics::getKeyState(graphics::SCANCODE_D)) {
-						m_state->getPlayer()->m_vx = 2.0f;
+						m_state->getPlayer()->m_vx = 2.0f;   // Apply deceleration force to player's velocity
 					}
 					break;
 				}
 				else {
-					m_state->getPlayer()->m_vx = 5.0f;
-					enemies[i]->m_vx = 2.0f;
+					m_state->getPlayer()->m_vx = 5.0f;	//reset player's velocity
+					enemies[i]->m_vx = 2.0f; //reset enemy's velocity
 					enemies[i]->isCollidingSidewaysEnemy = false;
-					// Set isCollidingPlayerEnemy to false
-					enemies[i]->isCollidingPlayerEnemy = false;
+					enemies[i]->isCollidingPlayerEnemy = false; // Set isCollidingPlayerEnemy to false
 				}
 			}
 			else {
 				m_state->getPlayer()->m_vx = 5.0f;
 				enemies[i]->m_vx = 2.0f;
 				enemies[i]->isCollidingSidewaysEnemy = false;
-				// Set isCollidingPlayerEnemy to false
-				enemies[i]->isCollidingPlayerEnemy = false;
+				enemies[i]->isCollidingPlayerEnemy = false;  // Set isCollidingPlayerEnemy to false
 			}
 	}
 }
 
+//Check block and object placement
 void Level::ArrayCheck(const char* lvl1[20][74], const char* non_coll1[20][74]) {
-
+	
+	// Create the collidable blocks
 	int sawctr = 0;
 	int enemyctr = 0;
 	int spikesctr = 0;
@@ -463,6 +492,7 @@ void Level::ArrayCheck(const char* lvl1[20][74], const char* non_coll1[20][74]) 
 		}
 	}
 
+	// Create the non-collidable blocks
 	int starctr = 0;
 	for (int x = 0; x < 20; x++) {
 		for (int y = 0; y < 74; y++) {
@@ -483,11 +513,11 @@ void Level::ArrayCheck(const char* lvl1[20][74], const char* non_coll1[20][74]) 
 	}
 }
 
-
+//Initialize the level
 void Level::init()
 {
 	if (!lvl1_finished) {
-
+		//Level 1 Bit-Map Collidable Blocks
 		const char* lvl1[20][74]{
 		{ "10", "04", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05",  "05", "05",  "05",  "05",  "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "06"},
 		{ "01", "13", "03", "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",   "0",  "0",   "0",   "0",   "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "03", "03", "03", "03", "03", "03", "03", "03", "15"},
@@ -512,6 +542,7 @@ void Level::init()
 
 		};
 
+		//Level 1 Bit-Map Non-Collidable Blocks
 		const char* non_coll1[20][74]{
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
@@ -535,7 +566,8 @@ void Level::init()
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"}
 
 		};
-
+		
+		//Call the function to make the according block and object placements
 		ArrayCheck(lvl1, non_coll1);
 
 		mn_leveldoor1->init();
@@ -543,10 +575,11 @@ void Level::init()
 
 	}else {
 
+		//Level 2 Bit-Map Collidable Blocks
 		const char* lvl2[20][74]{
 		{ "10", "04", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05",  "05", "05",  "05",  "05",  "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "05", "06"},
 		{ "01", "13", "03", "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",   "0",  "0",   "0",   "0",   "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "03", "03", "03", "03", "03", "03", "03", "03", "15"},
-		{ "01", "13", "03", "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "110",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "110",  "0",  "0",  "0",  "0",  "0",   "0",  "77",   "78",   "79",   "78",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "64", "03", "03", "03", "55", "56", "57", "10", "15"},
+		{ "01", "13", "03", "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "110",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "110",  "0",  "0",  "0",  "0",  "0",   "0",  "77",   "78",   "79",   "78",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "64", "03", "03", "03", "55", "56", "57", "10", "15"},
 		{ "01", "13", "03", "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "04",  "05",  "05",  "0",  "0",  "0",  "58",  "59",  "59",  "59",  "59",  "59",  "60",  "60",  "0",  "0",  "0",  "55",  "56",  "57",  "0",  "0",  "0",  "0",  "0",   "0",  "0",   "0",   "0",   "0",  "0",  "101",  "71",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "65", "03", "03", "03", "55", "56", "57", "01", "15"},
 		{ "01", "13", "03", "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "04",  "05",  "05",  "05",  "05",  "17",  "0",  "0",  "0",  "0",  "0",  "69",  "69",  "69",  "69",  "69",  "69",  "68",  "68",  "0",  "0",  "0",  "55",  "56",  "57",  "64",  "64",  "0",  "0",  "0",   "0",  "0",   "0",   "0",   "0",  "0",  "101",  "71",  "0",  "0",  "101",  "37",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "65", "73", "64", "64", "34", "50", "35", "01", "15"},
 		{ "01", "13", "03", "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "04",  "17",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "68",  "68",  "0",  "0",  "0",  "0",  "0",  "0",  "65",  "65",  "0",  "0",  "0",   "0",  "0",   "0",   "0",   "0",  "0",  "0",  "0",  "0",  "0",  "101",  "37",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "0",  "65", "73", "65", "65", "42", "69", "40", "19", "15"},
@@ -567,11 +600,12 @@ void Level::init()
 
 		};
 
+		//Level 2 Bit-Map Non-Collidable Blocks
 		const char* non_coll2[20][74]{
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
-		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
-		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "27", "0", "21", "21", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "21", "21", "0", "0", "0", "0", "0", "0", "0", "0", "0", "32", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "102", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "27", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "19", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "102", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "18", "0", "0", "0", "0", "0", "0", "0", "30", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "18", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
@@ -579,7 +613,7 @@ void Level::init()
 		{ "0", "0", "0", "21", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "10", "11", "11", "11", "12", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "32", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
-		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "16", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "33", "102", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "16", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "33", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "0", "0", "0", "0", "13", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "14", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "18", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "19", "20", "0", "0", "0", "6", "7", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
@@ -590,6 +624,7 @@ void Level::init()
 		{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"}
 		};
 
+		//Call the function to make the according block and object placements
 		ArrayCheck(lvl2, non_coll2);
 
 		mn_leveldoor1->init();
@@ -602,7 +637,7 @@ void Level::init()
 	m_block_brush_debug.fill_opacity = 0.1f;
 	SETCOLOR(m_block_brush_debug.fill_color, 0.1f, 1.0f, 0.1f);
 	SETCOLOR(m_block_brush_debug.outline_color, 0.3f, 1.0f, 0.2f);
-
+	
 	spitesinit();
 
 }
