@@ -95,14 +95,7 @@ void GameState::update(float dt)
             switch (m_endscreen->option_locked())
             {
             case 1:
-                // Go back to menu
-                delete m_endscreen;
-                m_endscreen = nullptr;
-                delete m_current_level;
-                endscreen_init = false;
-                m_current_level = nullptr;
-                delete m_player;
-                m_player = nullptr;
+                switchToMenu();
                 m_menu = new Menu();
                 m_menu->init();
                 break;
@@ -127,27 +120,15 @@ void GameState::update(float dt)
             switch (m_endscreen->option_locked())
             {
             case 1:
-                // Go back to menu
-                delete m_endscreen;
-                m_endscreen = nullptr;
-                delete m_current_level;
+                switchToMenu();
                 endscreen_init = false;
-                m_current_level = nullptr;
-                delete m_player;
-                m_player = nullptr;
                 init_lvl2 = false;
                 m_menu = new Menu();
                 m_menu->init();
                 break;
             case 2:
-                // Go back to menu
-                delete m_endscreen;
-                m_endscreen = nullptr;
-                delete m_current_level;
+                switchToMenu();
                 endscreen_init = false;
-                m_current_level = nullptr;
-                delete m_player;
-                m_player = nullptr;
                 init_lvl2 = false;
                 m_menu = new Menu();
                 m_menu->init();
@@ -285,6 +266,25 @@ void GameState::switchToMenu()
         delete m_about_page;
         m_about_page = nullptr;
     }
+
+    // Cleanup end screen if exists
+    if (m_endscreen) {
+		delete m_endscreen;
+		m_endscreen = nullptr;
+	}
+
+    // Cleanup current level if exists
+    if (m_current_level) {
+		delete m_current_level;
+		m_current_level = nullptr;
+	}
+
+    // Cleanup player if exists
+    if (m_player) {
+        delete m_player;
+        m_player = nullptr;
+    }
+
 
     // Initialize and switch to the main menu
     m_menu = new Menu();
