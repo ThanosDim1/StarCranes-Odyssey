@@ -77,11 +77,9 @@ void AboutPage::draw() {
 
 // Update method
 void AboutPage::update(float dt) {
-    std::cout << "AboutPage::update called\n";
 
     // Check if the backspace key is pressed to go back to the main menu
     if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE)) {
-        std::cout << "Backspace key pressed\n";
         graphics::playSound(m_state->getFullAssetPath("optionselected.wav"), 0.5f);
         GameState::getInstance()->switchToMenu();
     }

@@ -53,7 +53,7 @@ void Player::draw()
 		// Draw the current deactivation sprite
 		int spritesdeactivation = (int)fmod(animationtimerfordeath, m_spritesdeactivation.size());
 		m_brush_player.texture = m_spritesdeactivation[spritesdeactivation];
-		animationtimerfordeath += 0.08f;
+		animationtimerfordeath += 0.05f;
 	}
 	//Draw the according sprites for each movement
 	else {
