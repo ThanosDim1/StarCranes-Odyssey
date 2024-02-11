@@ -1,4 +1,5 @@
 
+![Screenshot (42)](https://github.com/AndreasLampos/StarCranes-Odyssey/assets/17687288/2fd129c0-b660-4d1f-93ef-fb2b9a16d010)
 
 
 ### <p align="center"> ◻️ :shipit: Embark on a cosmic adventure in "Starcrane's Odyssey," a straightforward platform game where you step into the shoes of a Biker navigating through two levels of challenges. Your mission: find the key 🗝️ hidden in the cosmic expanse.</p>
