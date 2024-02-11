@@ -25,6 +25,8 @@ void EndScreen::init() {
 	brush_next.texture = m_state->getFullAssetPath("Play_BTNinactive.png");
 	brush_next.outline_opacity = 0.0f;
 
+	brush_text.outline_opacity = 0.0f;
+
 	m_spritesgui.push_back("level1stars0.png");
 	m_spritesgui.push_back("level1stars1.png");
 	m_spritesgui.push_back("level1stars2.png");
@@ -39,14 +41,14 @@ void EndScreen::StarShow1(int stars) {
 	graphics::Brush br;
 	br.texture = m_state->getFullAssetPath("level1stars" + std::to_string(stars) +  ".png");
 	br.outline_opacity = 0.0f; // No outline
-	graphics::drawRect(m_pos_x / 2.0f, m_pos_y / 2.0f, 7.0f, 7.0f, br);
+	graphics::drawRect(m_pos_x, m_pos_y / 1.5f, 7.0f, 7.0f, br);
 }
 
 void EndScreen::StarShow2(int stars) {
 	graphics::Brush br;
 	br.texture = m_state->getFullAssetPath("level2stars" + std::to_string(stars) + ".png");
 	br.outline_opacity = 0.0f; // No outline
-	graphics::drawRect(m_pos_x / 2.0f, m_pos_y / 2.0f, 7.0f, 7.0f, br);
+	graphics::drawRect(m_pos_x, m_pos_y / 1.5f, 7.0f, 7.0f, br);
 }
 
 
@@ -60,8 +62,8 @@ void EndScreen::draw(int stars) {
 			StarShow2(stars);
 		}
 
-		graphics::drawRect(5.0f, 8.0f, 1.0f, 1.0f, brush_menu);
-		graphics::drawRect(10.0f, 8.0f, 1.0f, 1.0f, brush_next);
+		graphics::drawRect(6.5f, 8.0f, 1.0f, 1.0f, brush_menu);
+		graphics::drawRect(9.5f, 8.0f, 1.0f, 1.0f, brush_next);
 
 		if (m_selected == 1) {
 			SETCOLOR(brush_menu.fill_color, 1.f, 1.f, 0.f);
@@ -71,7 +73,11 @@ void EndScreen::draw(int stars) {
 			SETCOLOR(brush_menu.fill_color, 1.f, 1.f, 1.f);
 			SETCOLOR(brush_next.fill_color, 1.f, 1.f, 0.f);
 		}
+		graphics::setFont(m_state->getFullAssetPath("ThaleahFat.ttf"));
+		graphics::drawText(6.5f, 9.9f, 0.5f, "Press F to select", brush_text);
 	}
+
+	
 }
 
 void EndScreen::update(float dt) {
@@ -80,7 +86,7 @@ void EndScreen::update(float dt) {
 		// Check if enough time has passed since the last key press
 		auto currentTime = std::chrono::steady_clock::now();
 		auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastKeyPressTime).count();
-		if (elapsedTime < 160) {
+		if (elapsedTime < 200) {
 			return;
 		}
 
