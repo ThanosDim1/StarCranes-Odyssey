@@ -90,8 +90,4 @@ public:
 	// Method to switch to the main menu
 	void switchToMenu();
 	
-	/*bool isPaused() const;
-	void pause();
-	void resume();
-	*/
 };
