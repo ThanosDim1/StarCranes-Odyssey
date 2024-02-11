@@ -45,12 +45,6 @@ void Level::drawNonCollisionBlock(int i,  std::vector<NonCollisionObject> m_non_
 
 void Level::update(float dt)
 {
-	/*
-	if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE)) {
-		m_state->pause();
-		m_state->switchToMenu();
-	}
-	*/
 
 	// Update the player
 	if (m_state->getPlayer()->isActive())
@@ -82,7 +76,7 @@ void Level::EnemiesCheck(float dt, std::vector<Enemy*> enemies) {
 	}
 }
 
-
+//draw level
 void Level::draw()
 {
 	
@@ -302,7 +296,7 @@ void Level::checkCollisionPlayerDoor() {
 		}
 		if (!text_showed) {
 			graphics::setFont(m_state->getFullAssetPath("ThaleahFat.ttf"));
-			graphics::drawText(6.5f, 8.9f, 0.7f, "Press E to open door", brush_text);
+			graphics::drawText(5.7f, 8.9f, 0.7f, "Press E to open door", brush_text);
 		}
 	}
 	else {
@@ -642,6 +636,7 @@ void Level::init()
 
 }
 
+//Initalize the sprites 
 void Level::spitesinit() {
 	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full1.png"));
 	m_spriteshealthsystemfull.push_back(m_state->getFullAssetPath("full2.png"));
