@@ -1,36 +1,37 @@
 ![Screenshot (42)](https://github.com/AndreasLampos/StarCranes-Odyssey/assets/17687288/88bace7f-bf32-43c5-9e2c-7a3a199beef6)
 
-### Embark on a cosmic adventure in "Starcrane's Odyssey," a straightforward platform game where you step into the shoes of a Biker navigating through two levels of challenges. Your mission: find the key hidden in the cosmic expanse.
+### <p align="center"> Embark on a cosmic adventure in "Starcrane's Odyssey," a straightforward platform game where you step into the shoes of a Biker navigating through two levels of challenges. Your mission: find the key hidden in the cosmic expanse.</p>
 
-### As you journey through the levels, collect glowing stars to light your way and mark your progress. 
+### <p align="center">As you journey through the levels, collect glowing stars to light your way and mark your progress.</p>
 
 ![Screenshot (62)](https://github.com/AndreasLampos/StarCranes-Odyssey/assets/17687288/3dfac387-4b99-4b05-ba0e-f881bb5b4cc9)
 
-### Be cautious, though, as you'll encounter enemies blocking your path. Take them down to gather more stars and advance in your odyssey.
+### <p align="center"> Be cautious, though, as you'll encounter enemies blocking your path. Take them down to gather more stars and advance in your odyssey.</p>
 
 ![Screenshot (52)](https://github.com/AndreasLampos/StarCranes-Odyssey/assets/17687288/2da591a4-3339-458c-b3a1-7bb05d05f0dd)
 
-### Navigate through obstacles with care, avoiding saws that spell instant trouble and spikes that can be a bit prickly. Precision is key as you navigate these hazards and strive to reach your goal.
+### <p align="center">Navigate through obstacles with care, avoiding saws that spell instant trouble and spikes that can be a bit prickly. Precision is key as you navigate these hazards and strive to reach your goal.</p>
 
 ![Screenshot (54)](https://github.com/AndreasLampos/StarCranes-Odyssey/assets/17687288/ab55ec35-1b50-44f4-bc85-b86d380a4ce8)
 
-### You don't want to see this screen popping off.
+###  <p align="center">💢💥 You don't want to see this screen popping off 💥💢</p>
 
 
 ![Screenshot (46)](https://github.com/AndreasLampos/StarCranes-Odyssey/assets/17687288/088dc4df-4182-43a1-8385-cd3b89a630a8)
 
 
-### "Starcrane's Odyssey" is a no-frills cosmic quest that requires skill and focus. Take on the challenge, defeat enemies, collect stars, and uncover the secrets hidden within the vast cosmic landscape. Your odyssey awaits – are you up for the task?
+### <p align="center">"Starcrane's Odyssey" is a no-frills cosmic quest that requires skill and focus. Take on the challenge, defeat enemies, collect stars, and uncover the secrets hidden within the vast cosmic landscape. Your odyssey awaits – are you up for the task?</p>
 
 
 # Creators Of Starcrane's Odyssey:
-* Dimitrakopoulos Athanasios Zois @ThanosDim1
-* Lampos Andreas @AndreasLampos
-* Taratas Charalambos @haristaratsas
+◾  Dimitrakopoulos Athanasios Zois @ThanosDim1 <br />
+◾  Lampos Andreas @AndreasLampos <br />
+◾  Taratas Charalambos @haristaratsas <br />
+
 
 
 # Instructions to play the game:
-* #### Fork the repository.
-* #### Clone the repository.
-* #### Open the .sln file.
-* #### To build the game, run Debug-x64 and Release-x64 (for faster loading times).
+1️⃣  Fork the repository. <br /> 
+2️⃣  Clone the repository. <br />
+3️⃣  Open the .sln file. <br />
+4️⃣  To build the game, run Debug-x64 and Release-x64 (for faster loading times).
